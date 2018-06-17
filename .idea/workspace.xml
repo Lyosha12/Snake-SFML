@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
+    <generated>
+      <config projectName="Snake" targetName="Snake" />
+    </generated>
+  </component>
+  <component name="CMakeSettings" AUTO_RELOAD="true">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6e959b6e-0de1-4b05-8793-f46476915173" name="Default" comment="" />
+    <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="723">
+              <caret line="413" column="2" lean-forward="true" selection-start-line="413" selection-start-column="2" selection-end-line="413" selection-end-column="2" />
+              <folding>
+                <element signature="e#274#709#0" />
+                <element signature="e#711#1621#1" />
+                <element signature="e#1658#3631#1" />
+                <element signature="e#1948#3454#1" />
+                <element signature="e#2366#2567#0" expanded="true" />
+                <element signature="e#2511#2859#0" expanded="true" />
+                <element signature="e#2868#3352#0" expanded="true" />
+                <element signature="e#3427#3629#0" expanded="true" />
+                <element signature="e#1623#2935#1" />
+                <element signature="e#2120#2249#0" expanded="true" />
+                <element signature="e#5201#5285#0" expanded="true" />
+                <element signature="e#5457#5541#0" expanded="true" />
+                <element signature="e#6247#11571#1" />
+                <element signature="e#6279#6635#1" />
+                <element signature="e#8558#8930#0" expanded="true" />
+                <element signature="e#10941#11087#0" expanded="true" />
+                <element signature="e#11097#11367#0" expanded="true" />
+                <element signature="e#11574#15502#1" />
+                <element signature="e#11602#11648#1" />
+                <element signature="e#12448#13127#0" expanded="true" />
+                <element signature="e#15505#17843#1" />
+                <element signature="e#16326#16586#0" expanded="true" />
+                <element signature="e#16591#17721#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>isBorderBarriersAre</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>isBorderBarriers</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/cmake-build-debug/cp1251.txt" />
+        <option value="$PROJECT_DIR$/cmake-build-debug/cp866.txt" />
+        <option value="$PROJECT_DIR$/Headers/List.h" />
+        <option value="$PROJECT_DIR$/Headers/BidirectionalIterator.h" />
+        <option value="$PROJECT_DIR$/Sources/List.cpp" />
+        <option value="$PROJECT_DIR$/Sources/List" />
+        <option value="$PROJECT_DIR$/Sources/Containers/Vector.cpp" />
+        <option value="$PROJECT_DIR$/Sources/main.cpp" />
+        <option value="$PROJECT_DIR$/Sources/Containers/Vector" />
+        <option value="$PROJECT_DIR$/Sources/Containers/List" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/main.cpp" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths />
+  </component>
+  <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="910" />
+    <option name="y" value="294" />
+    <option name="width" value="975" />
+    <option name="height" value="655" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>C/C++</id>
+          </State>
+          <State>
+            <id>Data flow analysisC/C++</id>
+          </State>
+          <State>
+            <id>Declaration orderC/C++</id>
+          </State>
+          <State>
+            <id>FunctionsC/C++</id>
+          </State>
+          <State>
+            <id>GeneralC/C++</id>
+          </State>
+          <State>
+            <id>GeneralJavaScript</id>
+          </State>
+          <State>
+            <id>JavaScript</id>
+          </State>
+          <State>
+            <id>Python</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>NotImplementedFunctions</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <autoscrollFromSource ProjectPane="true" />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Snake" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Snake" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="js.eslint.eslintPackage" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../Online/Git/bin/git.exe" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Projects\Snake\Sources" />
+      <recent name="C:\Projects\Snake\Sources\Containers" />
+      <recent name="C:\Projects\Snake\Headers" />
+      <recent name="C:\Projects\Snake" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.Snake">
+    <configuration default="true" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Snake" TARGET_NAME="Sneak" CONFIG_NAME="Debug" TEST_MODE="SUITE_TEST" />
+    <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Snake" RUN_TARGET_NAME="Snake" EXPLICIT_BUILD_TARGET_NAME="all" />
+    <configuration name="Snake" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Snake" TARGET_NAME="Snake" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Snake" RUN_TARGET_NAME="Snake" />
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Snake" TARGET_NAME="Sneak" CONFIG_NAME="Debug" />
+    <configuration default="true" type="tests" factoryName="Attests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Sneak" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+    </configuration>
+    <list>
+      <item itemvalue="Application.Build All" />
+      <item itemvalue="Application.Snake" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6e959b6e-0de1-4b05-8793-f46476915173" name="Default" comment="" />
+      <created>1484323014309</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1484323014309</updated>
+      <workItem from="1484323021622" duration="44574000" />
+      <workItem from="1484431528739" duration="3560000" />
+      <workItem from="1484602775279" duration="730000" />
+      <workItem from="1484688153457" duration="719000" />
+      <workItem from="1484692785536" duration="932000" />
+      <workItem from="1484770934843" duration="21039000" />
+      <workItem from="1484827937350" duration="8274000" />
+      <workItem from="1484843992978" duration="275000" />
+      <workItem from="1484932462984" duration="11529000" />
+      <workItem from="1485009576096" duration="2908000" />
+      <workItem from="1485095252603" duration="1319000" />
+      <workItem from="1485466541021" duration="3318000" />
+      <workItem from="1491062231730" duration="16154000" />
+      <workItem from="1491133119972" duration="3000" />
+      <workItem from="1491133191430" duration="13860000" />
+      <workItem from="1491321992051" duration="7393000" />
+      <workItem from="1491657678509" duration="3749000" />
+      <workItem from="1492531468783" duration="10886000" />
+      <workItem from="1492631697990" duration="68000" />
+      <workItem from="1492631847936" duration="8057000" />
+      <workItem from="1492795208789" duration="947000" />
+      <workItem from="1492802921877" duration="826000" />
+      <workItem from="1492804611276" duration="10638000" />
+      <workItem from="1492893098473" duration="7605000" />
+      <workItem from="1492971638051" duration="7853000" />
+      <workItem from="1492984887168" duration="706000" />
+      <workItem from="1493062878477" duration="680000" />
+      <workItem from="1496315071755" duration="3279000" />
+      <workItem from="1529136955133" duration="1302000" />
+      <workItem from="1529217699987" duration="1211000" />
+      <workItem from="1529219675238" duration="19730000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="214124000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12427287" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32921347" />
+      <window_info anchor="bottom" id="Messages" order="9" weight="0.32908458" />
+      <window_info anchor="bottom" id="CMake" order="11" weight="0.32908458" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32908458" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32921347" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32908458" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32908458" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Data View" order="3" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Sources/main.cpp</url>
+          <line>390</line>
+          <option name="timeStamp" value="56" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="71" />
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+          <folding>
+            <element signature="e#274#709#0" />
+            <element signature="e#711#1621#1" />
+            <element signature="e#1658#3631#1" />
+            <element signature="e#1948#3454#1" />
+            <element signature="e#2366#2567#0" expanded="true" />
+            <element signature="e#2511#2859#0" expanded="true" />
+            <element signature="e#2868#3352#0" expanded="true" />
+            <element signature="e#3427#3629#0" expanded="true" />
+            <element signature="e#1623#2935#1" />
+            <element signature="e#2120#2249#0" expanded="true" />
+            <element signature="e#5201#5285#0" expanded="true" />
+            <element signature="e#5457#5541#0" expanded="true" />
+            <element signature="e#6247#11571#1" />
+            <element signature="e#6279#6635#1" />
+            <element signature="e#8558#8930#0" expanded="true" />
+            <element signature="e#10941#11087#0" expanded="true" />
+            <element signature="e#11097#11367#0" expanded="true" />
+            <element signature="e#11574#15502#1" />
+            <element signature="e#11602#11648#1" />
+            <element signature="e#12448#13127#0" expanded="true" />
+            <element signature="e#15505#17843#1" />
+            <element signature="e#16326#16586#0" expanded="true" />
+            <element signature="e#16591#17721#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sources/main.cpp" />
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sources/main.cpp" />
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sources/main.cpp" />
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="49" selection-start-line="4" selection-start-column="49" selection-end-line="4" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sources/main.cpp" />
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="49" selection-start-line="4" selection-start-column="49" selection-end-line="4" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sources/main.cpp" />
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="49" selection-start-line="4" selection-start-column="49" selection-end-line="4" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sources/main.cpp" />
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="49" selection-start-line="4" selection-start-column="49" selection-end-line="4" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sources/main.cpp" />
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="49" selection-start-line="4" selection-start-column="49" selection-end-line="4" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sources/main.cpp" />
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="49" selection-start-line="4" selection-start-column="49" selection-end-line="4" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sources/main.cpp" />
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="49" selection-start-line="4" selection-start-column="49" selection-end-line="4" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sources/main.cpp" />
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="49" selection-start-line="4" selection-start-column="49" selection-end-line="4" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sources/main.cpp" />
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="49" selection-start-line="4" selection-start-column="49" selection-end-line="4" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sources/main.cpp" />
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="49" selection-start-line="4" selection-start-column="49" selection-end-line="4" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Sources/main.cpp" />
+    <entry file="file://C:/MinGW/include/unistd.h" />
+    <entry file="file://C:/MinGW/include/winbase.h" />
+    <entry file="file://$PROJECT_DIR$/cmake-build-debug/cp866.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="627">
+          <caret line="219" column="6" selection-start-line="219" selection-start-column="5" selection-end-line="219" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/MinGW/lib/gcc/mingw32/4.9.3/include/c++/bits/stl_iterator_base_types.h" />
+    <entry file="file://C:/MinGW/lib/gcc/mingw32/4.9.3/include/c++/ext/alloc_traits.h" />
+    <entry file="file://$PROJECT_DIR$/Headers/BidirectionalIterator.h" />
+    <entry file="file://$PROJECT_DIR$/Sources/BidirectionalIterator.cpp" />
+    <entry file="file://$PROJECT_DIR$/Headers/List.h" />
+    <entry file="file://$PROJECT_DIR$/[3, 1000], [5, 950], [10, 800], [17, 650], [28, 400], [50, 80], [65, 0].PNG" />
+    <entry file="file://C:/MinGW/include/stdlib.h" />
+    <entry file="file://$PROJECT_DIR$/../Hello World/main.cpp" />
+    <entry file="file://C:/MinGW/lib/gcc/mingw32/4.9.3/include/c++/stdexcept" />
+    <entry file="file://C:/MinGW/lib/gcc/mingw32/4.9.3/include/c++/bits/alloc_traits.h" />
+    <entry file="file://C:/MinGW/lib/gcc/mingw32/4.9.3/include/c++/type_traits" />
+    <entry file="file://C:/MinGW/lib/gcc/mingw32/4.9.3/include/c++/vector" />
+    <entry file="file://C:/MinGW/lib/gcc/mingw32/4.9.3/include/c++/bits/stl_vector.h" />
+    <entry file="file://$USER_HOME$/Desktop/main.cpp" />
+    <entry file="file://$USER_HOME$/Desktop/main (1).cpp" />
+    <entry file="file://$PROJECT_DIR$/Sources/Containers/List" />
+    <entry file="file://$PROJECT_DIR$/Sources/main.cpp" />
+    <entry file="file://$PROJECT_DIR$/Sources/Containers/Vector" />
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="723">
+          <caret line="413" column="2" lean-forward="true" selection-start-line="413" selection-start-column="2" selection-end-line="413" selection-end-column="2" />
+          <folding>
+            <element signature="e#274#709#0" />
+            <element signature="e#711#1621#1" />
+            <element signature="e#1658#3631#1" />
+            <element signature="e#1948#3454#1" />
+            <element signature="e#2366#2567#0" expanded="true" />
+            <element signature="e#2511#2859#0" expanded="true" />
+            <element signature="e#2868#3352#0" expanded="true" />
+            <element signature="e#3427#3629#0" expanded="true" />
+            <element signature="e#1623#2935#1" />
+            <element signature="e#2120#2249#0" expanded="true" />
+            <element signature="e#5201#5285#0" expanded="true" />
+            <element signature="e#5457#5541#0" expanded="true" />
+            <element signature="e#6247#11571#1" />
+            <element signature="e#6279#6635#1" />
+            <element signature="e#8558#8930#0" expanded="true" />
+            <element signature="e#10941#11087#0" expanded="true" />
+            <element signature="e#11097#11367#0" expanded="true" />
+            <element signature="e#11574#15502#1" />
+            <element signature="e#11602#11648#1" />
+            <element signature="e#12448#13127#0" expanded="true" />
+            <element signature="e#15505#17843#1" />
+            <element signature="e#16326#16586#0" expanded="true" />
+            <element signature="e#16591#17721#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
