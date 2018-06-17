@@ -1,0 +1,3 @@
+W:/Programs/Programming environment/Projects/Fun/Snake/cmake-build-debug/CMakeFiles/Snake.dir
+W:/Programs/Programming environment/Projects/Fun/Snake/cmake-build-debug/CMakeFiles/edit_cache.dir
+W:/Programs/Programming environment/Projects/Fun/Snake/cmake-build-debug/CMakeFiles/rebuild_cache.dir
