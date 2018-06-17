@@ -1,4 +1,4 @@
-"W:\Programs\Programming environment\IDEs\CLion 2018.1.4\bin\cmake\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" "W:\Programs\Programming environment\Projects\Fun\Snake"
+"W:\Programs\Programming environment\IDEs\CLion 2018.1.4\bin\cmake\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" D:\GitRepository\Snake-SFML
 -- The C compiler identification is GNU 7.3.0
 -- The CXX compiler identification is GNU 7.3.0
 -- Check for working C compiler: W:/Programs/Programming environment/Compilers/mingw32-i686-7.3.0-posix-dwarf-rt_v5-rev0/bin/gcc.exe
@@ -16,4 +16,4 @@
 -- Found SFML 2.4.2 in W:/Programs/Programming environment/Librares/SFML-2.4.2/include
 -- Configuring done
 -- Generating done
--- Build files have been written to: W:/Programs/Programming environment/Projects/Fun/Snake/cmake-build-debug
+-- Build files have been written to: D:/GitRepository/Snake-SFML/cmake-build-debug

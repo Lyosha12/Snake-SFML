@@ -1,4 +1,4 @@
-# Install script for directory: W:/Programs/Programming environment/Projects/Fun/Snake
+# Install script for directory: D:/GitRepository/Snake-SFML
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "W:/Programs/Programming environment/Projects/Fun/Snake/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "D:/GitRepository/Snake-SFML/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

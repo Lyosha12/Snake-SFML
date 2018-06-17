@@ -7,6 +7,13 @@ set(CMAKE_DEPENDS_GENERATOR "MinGW Makefiles")
 # The top level Makefile was generated from the following files:
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
+  "../CMakeLists.txt"
+  "CMakeFiles/3.10.3/CMakeCCompiler.cmake"
+  "CMakeFiles/3.10.3/CMakeCXXCompiler.cmake"
+  "CMakeFiles/3.10.3/CMakeRCCompiler.cmake"
+  "CMakeFiles/3.10.3/CMakeSystem.cmake"
+  "CMakeFiles/feature_tests.c"
+  "CMakeFiles/feature_tests.cxx"
   "W:/Programs/Programming environment/IDEs/CLion 2018.1.4/bin/cmake/share/cmake-3.10/Modules/CMakeCCompiler.cmake.in"
   "W:/Programs/Programming environment/IDEs/CLion 2018.1.4/bin/cmake/share/cmake-3.10/Modules/CMakeCCompilerABI.c"
   "W:/Programs/Programming environment/IDEs/CLion 2018.1.4/bin/cmake/share/cmake-3.10/Modules/CMakeCInformation.cmake"
@@ -28,6 +35,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "W:/Programs/Programming environment/IDEs/CLion 2018.1.4/bin/cmake/share/cmake-3.10/Modules/CMakeFindCodeBlocks.cmake"
   "W:/Programs/Programming environment/IDEs/CLion 2018.1.4/bin/cmake/share/cmake-3.10/Modules/CMakeGenericSystem.cmake"
   "W:/Programs/Programming environment/IDEs/CLion 2018.1.4/bin/cmake/share/cmake-3.10/Modules/CMakeLanguageInformation.cmake"
+  "W:/Programs/Programming environment/IDEs/CLion 2018.1.4/bin/cmake/share/cmake-3.10/Modules/CMakeMinGWFindMake.cmake"
   "W:/Programs/Programming environment/IDEs/CLion 2018.1.4/bin/cmake/share/cmake-3.10/Modules/CMakeParseImplicitLinkInfo.cmake"
   "W:/Programs/Programming environment/IDEs/CLion 2018.1.4/bin/cmake/share/cmake-3.10/Modules/CMakeRCCompiler.cmake.in"
   "W:/Programs/Programming environment/IDEs/CLion 2018.1.4/bin/cmake/share/cmake-3.10/Modules/CMakeRCInformation.cmake"
@@ -98,13 +106,6 @@ set(CMAKE_MAKEFILE_DEPENDS
   "W:/Programs/Programming environment/IDEs/CLion 2018.1.4/bin/cmake/share/cmake-3.10/Modules/Platform/WindowsPaths.cmake"
   "W:/Programs/Programming environment/IDEs/CLion 2018.1.4/bin/cmake/share/cmake-3.10/Modules/ProcessorCount.cmake"
   "W:/Programs/Programming environment/Librares/SFML-2.4.2/cmake/Modules/FindSFML.cmake"
-  "../CMakeLists.txt"
-  "CMakeFiles/3.10.3/CMakeCCompiler.cmake"
-  "CMakeFiles/3.10.3/CMakeCXXCompiler.cmake"
-  "CMakeFiles/3.10.3/CMakeRCCompiler.cmake"
-  "CMakeFiles/3.10.3/CMakeSystem.cmake"
-  "CMakeFiles/feature_tests.c"
-  "CMakeFiles/feature_tests.cxx"
   )
 
 # The corresponding makefile is:

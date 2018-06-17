@@ -224,59 +224,6 @@ class CellsPool {
     float cell_width () { return settings.rect.getSize().x; }
     float cell_height() { return settings.rect.getSize().y; }
     
-    Cell* extractCell(Coord coord) {
-        int y = coord.y, x = coord.x;
-        auto isInRange = [] (int z, int max) {
-            return 0 <= z && z < max;
-        };
-    
-        bool xInRange = isInRange(x, count_cells_x);
-        bool yInRange = isInRange(y, count_cells_y);
-    
-        // Нормировка координат требуемой клетки.
-        Cell* required_cell = nullptr;
-        if(xInRange && yInRange) {
-            required_cell = &cells[y][x];
-        } else {
-            if(yInRange) {
-                if(x < 0)
-                    required_cell = &cells[y][count_cells_x - 1];
-                else // if(x >= int(count_cells_x))
-                    required_cell = &cells[y][0];
-            }
-            
-            else if(xInRange) {
-                if(y < 0)
-                    required_cell = &cells[count_cells_y - 1][x];
-                else // if(y >= int(count_cells_y))
-                    required_cell = &cells[0][x];
-            }
-            
-            else
-                throw logic_error("Both components outed of bounds");
-        }
-        
-        return required_cell;
-    }
-    Cell* kickFromAvailable(list<Cell*>::iterator runner, Cell::Filler* filler, bool isPrintable = true) {
-        // Выбросить клетку из свободных и
-        // обновить её содержание новым заполнителем.
-        Cell* cell = *runner;
-        available_cells.erase(runner);
-        cell->filler.reset(filler);
-        return cell;
-    }
-    list<Cell*>::iterator findInAvailable(Cell* cell) {
-        auto runner = available_cells.begin();
-        while(runner != available_cells.end() && *runner != cell)
-            ++runner;
-        
-        if(runner == available_cells.end())
-            throw NotFoundFreeCell(*cell);
-        else
-            return runner;
-    }
-    
     template <class Filler>
     Cell* getRandCell() {
         size_t i = 0;
@@ -331,6 +278,60 @@ class CellsPool {
         window.display();
     }
     
+  private:
+    Cell* extractCell(Coord coord) {
+        int y = coord.y, x = coord.x;
+        auto isInRange = [] (int z, int max) {
+            return 0 <= z && z < max;
+        };
+        
+        bool xInRange = isInRange(x, count_cells_x);
+        bool yInRange = isInRange(y, count_cells_y);
+        
+        // Нормировка координат требуемой клетки.
+        Cell* required_cell = nullptr;
+        if(xInRange && yInRange) {
+            required_cell = &cells[y][x];
+        } else {
+            if(yInRange) {
+                if(x < 0)
+                    required_cell = &cells[y][count_cells_x - 1];
+                else // if(x >= int(count_cells_x))
+                    required_cell = &cells[y][0];
+            }
+            
+            else if(xInRange) {
+                if(y < 0)
+                    required_cell = &cells[count_cells_y - 1][x];
+                else // if(y >= int(count_cells_y))
+                    required_cell = &cells[0][x];
+            }
+            
+            else
+                throw logic_error("Both components outed of bounds");
+        }
+        
+        return required_cell;
+    }
+    Cell* kickFromAvailable(list<Cell*>::iterator runner, Cell::Filler* filler, bool isPrintable = true) {
+        // Выбросить клетку из свободных и
+        // обновить её содержание новым заполнителем.
+        Cell* cell = *runner;
+        available_cells.erase(runner);
+        cell->filler.reset(filler);
+        return cell;
+    }
+    list<Cell*>::iterator findInAvailable(Cell* cell) {
+        auto runner = available_cells.begin();
+        while(runner != available_cells.end() && *runner != cell)
+            ++runner;
+        
+        if(runner == available_cells.end())
+            throw NotFoundFreeCell(*cell);
+        else
+            return runner;
+    }
+
   private:
     DefaultRectangle const& settings;
     size_t count_cells_x;
