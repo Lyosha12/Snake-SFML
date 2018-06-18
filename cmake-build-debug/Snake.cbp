@@ -84,6 +84,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="D:/GitRepository/Snake-SFML/ErrorPrinter/ErrorPrinter.cpp">
+			<Option target="Snake"/>
+		</Unit>
+		<Unit filename="D:/GitRepository/Snake-SFML/ErrorPrinter/ErrorPrinter.hpp">
+			<Option target="Snake"/>
+		</Unit>
 		<Unit filename="D:/GitRepository/Snake-SFML/main.cpp">
 			<Option target="Snake"/>
 		</Unit>

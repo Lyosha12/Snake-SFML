@@ -14,6 +14,8 @@
 using namespace std;
 #include <SFML/Graphics.hpp>
 
+#include "ErrorPrinter/ErrorPrinter.hpp"
+
 namespace MyColors {
   sf::Color const gray         = sf::Color(128, 128, 128);
   sf::Color const royal_blue   = sf::Color(65 , 105, 225);
@@ -120,7 +122,7 @@ class Cell: public sf::Drawable {
       // змейка будет изменена так или иначе.
       public:
         Filler(sf::Sprite sprite) : sprite(sprite) { }
-        virtual void modifer(Snake&) const = 0;
+        virtual void modifer(Snake&) const { }
         
       private:
         sf::Sprite sprite;
@@ -146,6 +148,7 @@ class Cell: public sf::Drawable {
         target.draw(*filler, states);
     }
 };
+
 
 class TextureStorage {
   // Хранит один экземпляр текстуры для каждого типа клетки.
@@ -183,7 +186,7 @@ class SnakeHead: public Cell::Filler {
     : Filler(createSprite(rect_settings, cell))
     { cell.isUsable = false; }
 
-
+    
     sf::Sprite createSprite(DefaultRectangle const& rect_settings, Cell& cell) const {
         return rect_settings.configure(DefaultRectangle::Configurator(cell.coord, texture));
     }
@@ -278,10 +281,10 @@ class CellsPool {
         throw NotFoundFreeCell(*cell);
     }
     template <class Filler>
-    Cell* getNearCell(Cell* cell, Coord move_vector, bool isPrintable = true) {
+    Cell* getNearCell(Cell* cell, Coord move_vector) {
         Cell* required_cell = extractCell(cell->coord + move_vector);
         Filler* filler = new Filler(settings, *required_cell);
-        return kickFromAvailable(findInAvailable(required_cell), filler, isPrintable);
+        return kickFromAvailable(findInAvailable(required_cell), filler);
     }
     void  releaseCell(Cell* cell) {
         cell->filler = nullptr;
@@ -333,7 +336,7 @@ class CellsPool {
         
         return required_cell;
     }
-    Cell* kickFromAvailable(list<Cell*>::iterator runner, Cell::Filler* filler, bool isPrintable = true) {
+    Cell* kickFromAvailable(list<Cell*>::iterator runner, Cell::Filler* filler) {
         // Выбросить клетку из свободных и
         // обновить её содержание новым заполнителем.
         Cell* cell = *runner;
@@ -392,7 +395,7 @@ class Snake {
         last_move = chrono::steady_clock::now();
         tryChangeDirection();
     
-        auto new_head = cells_pool.getNearCell<SnakeHead>(body.front(), direction, false);
+        auto new_head = cells_pool.getNearCell<SnakeHead>(body.front(), direction);
         
         cells_pool.releaseCell(body.front());
         body.push_front(cells_pool.getNearCell<SnakeBody>(body.front(), {0, 0}));
@@ -463,6 +466,8 @@ class Game {
             }
         } catch(CellsPool::NotFoundFreeCell const& e) {
             // TODO: Реализовать показ завершения игры.
+        } catch(std::exception const& e) {
+            ErrorPrinter(e.what()).print();
         }
     }
     void handle_events() {

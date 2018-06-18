@@ -122,6 +122,33 @@ Snake/fast:
 	$(MAKE) -f CMakeFiles\Snake.dir\build.make CMakeFiles/Snake.dir/build
 .PHONY : Snake/fast
 
+ErrorPrinter/ErrorPrinter.obj: ErrorPrinter/ErrorPrinter.cpp.obj
+
+.PHONY : ErrorPrinter/ErrorPrinter.obj
+
+# target to build an object file
+ErrorPrinter/ErrorPrinter.cpp.obj:
+	$(MAKE) -f CMakeFiles\Snake.dir\build.make CMakeFiles/Snake.dir/ErrorPrinter/ErrorPrinter.cpp.obj
+.PHONY : ErrorPrinter/ErrorPrinter.cpp.obj
+
+ErrorPrinter/ErrorPrinter.i: ErrorPrinter/ErrorPrinter.cpp.i
+
+.PHONY : ErrorPrinter/ErrorPrinter.i
+
+# target to preprocess a source file
+ErrorPrinter/ErrorPrinter.cpp.i:
+	$(MAKE) -f CMakeFiles\Snake.dir\build.make CMakeFiles/Snake.dir/ErrorPrinter/ErrorPrinter.cpp.i
+.PHONY : ErrorPrinter/ErrorPrinter.cpp.i
+
+ErrorPrinter/ErrorPrinter.s: ErrorPrinter/ErrorPrinter.cpp.s
+
+.PHONY : ErrorPrinter/ErrorPrinter.s
+
+# target to generate assembly for a file
+ErrorPrinter/ErrorPrinter.cpp.s:
+	$(MAKE) -f CMakeFiles\Snake.dir\build.make CMakeFiles/Snake.dir/ErrorPrinter/ErrorPrinter.cpp.s
+.PHONY : ErrorPrinter/ErrorPrinter.cpp.s
+
 main.obj: main.cpp.obj
 
 .PHONY : main.obj
@@ -158,6 +185,9 @@ help:
 	@echo ... Snake
 	@echo ... edit_cache
 	@echo ... rebuild_cache
+	@echo ... ErrorPrinter/ErrorPrinter.obj
+	@echo ... ErrorPrinter/ErrorPrinter.i
+	@echo ... ErrorPrinter/ErrorPrinter.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
