@@ -70,45 +70,30 @@ class DefaultRectangle {
 
         friend DefaultRectangle;
     public:
-        Configurator(Coord pos_on_field, sf::Color color, float scale = 1)
+        Configurator(Coord pos_on_field, sf::Texture const& texture)
             : pos_on_field(pos_on_field)
             , color(color)
-            , scale(scale)
         { }
       
       private:
-        sf::RectangleShape operator() (sf::RectangleShape rect) const {
-            setPos(rect);
-            rect.setFillColor(color);
-            setScale(rect);
-
-            return rect;
+        sf::Sprite operator() (sf::RectangleShape const& default_rectangle) const {
+            sf::Sprite sprit(texture);
+            setPos(sprite);
+           
+            return sprite;
         }
 
-        void setPos(sf::RectangleShape& rect) const {
+        void setPos(sf::Sprite& sprite, sf::RectangleShape const& default_rectangle) const {
             // В соответствии с текущими настройками
             // устанавливается позиция для переданного прямоугольника.
-            float width  = rect.getSize().x;
-            float height = rect.getSize().y;
-            rect.setPosition(width * pos_on_field.x, height * pos_on_field.y);
-        }
-        void setScale(sf::RectangleShape& rect) const {
-            // Некоторое преобразование масштаба клетки поля и, как следствие,
-            // координат левого верхнего угла прямоугольника,
-            // приятное для глаза.
-            
-            float inverse = 1 - scale;
-            if(abs(inverse) < 1e-5)
-                return;
-            
-            rect.move(rect.getSize().x * inverse/2, rect.getSize().y * inverse/2);
-            rect.setScale({scale, scale});
+            float width  = default_rectangle.getSize().x;
+            float height = default_rectangle.getSize().y;
+            sprite.setPosition(width * pos_on_field.x, height * pos_on_field.y);
         }
       
       private:
         Coord pos_on_field;
-        sf::Color color;
-        float scale;
+        sf::Texture const& texture;
     };
     
     sf::RectangleShape configure(Configurator const& configurator) const {
@@ -185,8 +170,11 @@ class SnakeHead: public Cell::Filler {
 
 
     sf::Sprite createSprite(DefaultRectangle const& rect_settings, Cell& cell) const {
-
+        return rect_settings.configure(DefaultRectangle::Configurator(cell.coord, texture));
     }
+  
+  private:
+    static TextureStorage texture = "Head.png";
 };
 class SnakeBody: public Cell::Filler {
   public:
@@ -196,8 +184,11 @@ class SnakeBody: public Cell::Filler {
 
 
     sf::Sprite createSprite(DefaultRectangle const& rect_settings, Cell& cell) const {
-
+        return rect_settings.configure(DefaultRectangle::Configurator(cell.coord, texture));
     }
+  
+  private:
+    static TextureStorage texture = "Body.png";
 };
 
 class CellsPool {
