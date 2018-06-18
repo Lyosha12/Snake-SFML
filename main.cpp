@@ -148,18 +148,33 @@ class Cell: public sf::Drawable {
 };
 
 class TextureStorage {
+  // Хранит один экземпляр текстуры для каждого типа клетки.
+  // Используется как статический объект - текстура одна на все одинаковые блоки.
+  
   public:
-    TextureStorage(std::string texture_name) {
-         if(!texture.load("Textures/" + texture_name))
-             throw std::runtime_error("Texture " + texture_name + " was not loaded from Textures/"); 
+    TextureStorage(std::vector<std::string> texture_names) {
+        for(auto const& name: texture_names) {
+            textures.push_back({});
+            if(!textures.back().load("Textures/" + name))
+                throw std::runtime_error("Texture " + name + " was not loaded from Textures/"); 
+        }
     }
   
-  operator sf::Texture& () {
-      return texture; 
+  sf::Texture const& operator(size_t texture_index) {
+      if(texture_index < textures.size())
+          return textures[texture_index];
+      else
+          throw std::logic_error("Try to use uncreated texture: " + std::to_string(texture_index));
+  }
+  operator sf::Texture const& () {
+      if(textures.size() == 1)
+          return texture; 
+      else
+          throw std::logic_error("Try to use list of textures as single texture);
   }
   
   private:
-    sf::Texture texture;
+    std::vector<sf::Texture> textures;
 };
 
 class SnakeHead: public Cell::Filler {
