@@ -10,7 +10,7 @@ set(SFML_ROOT "W:/Programs/Programming environment/Librares/SFML-2.4.2")
 set(CMAKE_MODULE_PATH "${SFML_ROOT}/cmake/Modules" ${CMAKE_MODULE_PATH})
 find_package(SFML 2 REQUIRED graphics network audio window system)
 
-add_executable(${PROJECT_NAME} main.cpp ErrorPrinter/ErrorPrinter.cpp ErrorPrinter/ErrorPrinter.hpp Coord/Coord.cpp Coord/Coord.hpp)
+add_executable(${PROJECT_NAME} main.cpp ErrorPrinter/ErrorPrinter.cpp ErrorPrinter/ErrorPrinter.hpp Coord/Coord.cpp Coord/Coord.hpp DefaultRectangle/DefaultRectangle.cpp DefaultRectangle/DefaultRectangle.hpp)
 if(SFML_FOUND)
     include_directories(${SFML_INCLUDE_DIR})
     target_link_libraries(${PROJECT_NAME} ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})

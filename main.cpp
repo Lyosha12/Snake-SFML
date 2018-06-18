@@ -16,6 +16,7 @@ using namespace std;
 
 #include "Coord/Coord.hpp"
 #include "ErrorPrinter/ErrorPrinter.hpp"
+#include "DefaultRectangle/DefaultRectangle.hpp"
 
 namespace MyColors {
   sf::Color const gray         = sf::Color(128, 128, 128);
@@ -28,56 +29,6 @@ namespace MyColors {
 }
 
 class Snake;
-class DefaultRectangle {
-    // Создание стандартного прямоугольника на поле.
-    // В процессе игры он переиспользуется для создания других клеток.
-    
-  public:
-    DefaultRectangle(float cell_width, float cell_height)
-        : rect({cell_width, cell_height})
-    { rect.setFillColor(MyColors::royal_blue); }
-
-    class Configurator {
-        // У любого прямоугольника поля есть позиция,
-        // цвет и масштаб относительно других прямоугольников.
-        // Класс определяет на поле конкретный прямоугольник из стандартного.
-
-        friend DefaultRectangle;
-    public:
-        Configurator(Coord pos_on_field, sf::Texture const& texture)
-            : pos_on_field(pos_on_field)
-            , texture(texture)
-        { }
-      
-      private:
-        sf::Sprite operator() (sf::RectangleShape const& default_rectangle) const {
-            sf::Sprite sprite(texture);
-            setPos(sprite, default_rectangle);
-           
-            return sprite;
-        }
-
-        void setPos(sf::Sprite& sprite, sf::RectangleShape const& default_rectangle) const {
-            // В соответствии с текущими настройками
-            // устанавливается позиция для переданного прямоугольника.
-            float width  = default_rectangle.getSize().x;
-            float height = default_rectangle.getSize().y;
-            sprite.setPosition(width * pos_on_field.x, height * pos_on_field.y);
-        }
-      
-      private:
-        Coord pos_on_field;
-        sf::Texture const& texture;
-    };
-    
-    sf::Sprite configure(Configurator const& configurator) const {
-        // Создание по указанным настройкам прямоугольника для игрового поля.
-        return configurator(rect);
-    }
-    
-    
-    sf::RectangleShape rect;
-};
 
 class Cell: public sf::Drawable {
     // Представляет клетку на поле.
@@ -216,7 +167,7 @@ class SnakeBody: public Cell::Filler {
     inline static TextureStorage texture = "Body.png";
 };
 
-class CellsPool {
+class CellsPool: public sf::Drawable {
   public:
     struct NotFoundFreeCell: public exception {
         NotFoundFreeCell(Cell const& cell, Coord direction = {0, 0})
@@ -305,14 +256,10 @@ class CellsPool {
         available_cells.push_front(cell);
     }
     
-    void display() const {
-        window.clear(default_rectangle.rect.getFillColor());
-        
+    void draw(sf::RenderTarget& target, sf::RenderStates states) const override {
         for(auto const& row: cells)
             for(auto const& cell: row)
-                window.draw(cell);
-        
-        window.display();
+                target.draw(cell, states);
     }
     
   private:
@@ -444,23 +391,17 @@ class Game {
     Game(unsigned long width, unsigned long height,
           size_t count_cells_x, size_t count_cells_y,
           string FieldName)
-    : settings(width / count_cells_x, height / count_cells_y)
-    , window(sf::VideoMode(width, height), FieldName, sf::Style::Default)
-    , cells_pool(count_cells_x, count_cells_y, window, settings)
+    : default_rectangle(width/count_cells_x, height/count_cells_y)
+    , window({width/count_cells_x*count_cells_x, height/count_cells_y*count_cells_y}, FieldName)
+    , cells_pool(count_cells_x, count_cells_y, window, default_rectangle)
     , snake(cells_pool)
-    {
-        size_t cell_width  = static_cast<size_t>(settings.rect.getSize().x);
-        size_t cell_height = static_cast<size_t>(settings.rect.getSize().y);
-        size_t normalized_size_x = cell_width  * count_cells_x;
-        size_t normalized_size_y = cell_height * count_cells_y;
-        window.create({normalized_size_x, normalized_size_y}, FieldName, sf::Style::Default);
-        return;
-    }
+    { }
     
     void mainLoop() {
         try {
             while(window.isOpen()) {
-                cells_pool.display(); // Отрисовываем все клетки поля.
+                window.draw(cells_pool); // Отрисовываем все клетки поля.
+                window.display();
                 handle_events();
                 snake.move(); // Двигаем змейку в соответствии с её направлением.
             }
@@ -504,7 +445,7 @@ class Game {
     }
     
   private:
-    DefaultRectangle settings;
+    DefaultRectangle default_rectangle;
     sf::RenderWindow window;
     CellsPool cells_pool;
     Snake snake;

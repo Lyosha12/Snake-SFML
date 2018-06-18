@@ -90,6 +90,12 @@
 		<Unit filename="D:/GitRepository/Snake-SFML/Coord/Coord.hpp">
 			<Option target="Snake"/>
 		</Unit>
+		<Unit filename="D:/GitRepository/Snake-SFML/DefaultRectangle/DefaultRectangle.cpp">
+			<Option target="Snake"/>
+		</Unit>
+		<Unit filename="D:/GitRepository/Snake-SFML/DefaultRectangle/DefaultRectangle.hpp">
+			<Option target="Snake"/>
+		</Unit>
 		<Unit filename="D:/GitRepository/Snake-SFML/ErrorPrinter/ErrorPrinter.cpp">
 			<Option target="Snake"/>
 		</Unit>

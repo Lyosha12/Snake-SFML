@@ -149,6 +149,33 @@ Coord/Coord.cpp.s:
 	$(MAKE) -f CMakeFiles\Snake.dir\build.make CMakeFiles/Snake.dir/Coord/Coord.cpp.s
 .PHONY : Coord/Coord.cpp.s
 
+DefaultRectangle/DefaultRectangle.obj: DefaultRectangle/DefaultRectangle.cpp.obj
+
+.PHONY : DefaultRectangle/DefaultRectangle.obj
+
+# target to build an object file
+DefaultRectangle/DefaultRectangle.cpp.obj:
+	$(MAKE) -f CMakeFiles\Snake.dir\build.make CMakeFiles/Snake.dir/DefaultRectangle/DefaultRectangle.cpp.obj
+.PHONY : DefaultRectangle/DefaultRectangle.cpp.obj
+
+DefaultRectangle/DefaultRectangle.i: DefaultRectangle/DefaultRectangle.cpp.i
+
+.PHONY : DefaultRectangle/DefaultRectangle.i
+
+# target to preprocess a source file
+DefaultRectangle/DefaultRectangle.cpp.i:
+	$(MAKE) -f CMakeFiles\Snake.dir\build.make CMakeFiles/Snake.dir/DefaultRectangle/DefaultRectangle.cpp.i
+.PHONY : DefaultRectangle/DefaultRectangle.cpp.i
+
+DefaultRectangle/DefaultRectangle.s: DefaultRectangle/DefaultRectangle.cpp.s
+
+.PHONY : DefaultRectangle/DefaultRectangle.s
+
+# target to generate assembly for a file
+DefaultRectangle/DefaultRectangle.cpp.s:
+	$(MAKE) -f CMakeFiles\Snake.dir\build.make CMakeFiles/Snake.dir/DefaultRectangle/DefaultRectangle.cpp.s
+.PHONY : DefaultRectangle/DefaultRectangle.cpp.s
+
 ErrorPrinter/ErrorPrinter.obj: ErrorPrinter/ErrorPrinter.cpp.obj
 
 .PHONY : ErrorPrinter/ErrorPrinter.obj
@@ -215,6 +242,9 @@ help:
 	@echo ... Coord/Coord.obj
 	@echo ... Coord/Coord.i
 	@echo ... Coord/Coord.s
+	@echo ... DefaultRectangle/DefaultRectangle.obj
+	@echo ... DefaultRectangle/DefaultRectangle.i
+	@echo ... DefaultRectangle/DefaultRectangle.s
 	@echo ... ErrorPrinter/ErrorPrinter.obj
 	@echo ... ErrorPrinter/ErrorPrinter.i
 	@echo ... ErrorPrinter/ErrorPrinter.s

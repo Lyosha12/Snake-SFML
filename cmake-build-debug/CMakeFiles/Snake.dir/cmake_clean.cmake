@@ -2,6 +2,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/Snake.dir/main.cpp.obj"
   "CMakeFiles/Snake.dir/ErrorPrinter/ErrorPrinter.cpp.obj"
   "CMakeFiles/Snake.dir/Coord/Coord.cpp.obj"
+  "CMakeFiles/Snake.dir/DefaultRectangle/DefaultRectangle.cpp.obj"
   "Snake.pdb"
   "Snake.exe"
   "Snake.exe.manifest"
