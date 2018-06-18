@@ -11,25 +11,11 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
+    <list id="fd5bec2d-f904-4d80-9b99-3fb7d1364035" name="Fix compile errors." comment="Fix compile errors.&#10;Add class ErrorPrinter.&#10;&#10;(cherry picked from commit d4819bd)">
+      <changelist_data name="Lyosha12" email="lzuz@mail.ru" date="1529318759000" />
+    </list>
     <list default="true" id="6e959b6e-0de1-4b05-8793-f46476915173" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/ErrorPrinter/ErrorPrinter.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ErrorPrinter/ErrorPrinter.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Snake.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Snake.dir/DependInfo.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Snake.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Snake.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Snake.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Snake.dir/cmake_clean.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Snake.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Snake.dir/depend.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Snake.dir/objects1.rsp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Snake.dir/objects1.rsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Snake.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Snake.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Snake.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Snake.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Snake.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Snake.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cp866.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -49,26 +35,22 @@
       <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="457" column="5" lean-forward="true" selection-start-line="457" selection-start-column="5" selection-end-line="457" selection-end-column="5" />
+            <state relative-caret-position="259">
+              <caret line="394" column="43" lean-forward="true" selection-start-line="394" selection-start-column="43" selection-end-line="394" selection-end-column="43" />
               <folding>
                 <element signature="e#296#731#0" />
                 <element signature="e#1488#1566#0" expanded="true" />
                 <element signature="e#1571#1641#0" expanded="true" />
                 <element signature="e#1658#3366#1" />
                 <element signature="e#1976#3125#1" />
+                <element signature="e#3369#4558#1" />
+                <element signature="e#3546#4158#1" />
                 <element signature="e#4561#5555#1" />
                 <element signature="e#5558#6002#1" />
                 <element signature="e#6004#6448#1" />
+                <element signature="e#6451#11650#1" />
                 <element signature="e#6483#6839#1" />
-                <element signature="e#7622#7937#0" expanded="true" />
-                <element signature="e#8956#9285#0" expanded="true" />
-                <element signature="e#10787#11118#0" expanded="true" />
                 <element signature="e#11681#11727#1" />
-                <element signature="e#11748#12517#0" expanded="true" />
-                <element signature="e#12527#13090#0" expanded="true" />
-                <element signature="e#14869#15265#0" expanded="true" />
-                <element signature="e#16653#16856#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -103,8 +85,8 @@
         <option value="$PROJECT_DIR$/Sources/Containers/List" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/ErrorPrinter/ErrorPrinter.cpp" />
-        <option value="$PROJECT_DIR$/main.cpp" />
         <option value="$PROJECT_DIR$/ErrorPrinter/ErrorPrinter.hpp" />
+        <option value="$PROJECT_DIR$/main.cpp" />
       </list>
     </option>
   </component>
@@ -295,7 +277,7 @@
       <workItem from="1529217699987" duration="1211000" />
       <workItem from="1529219675238" duration="19730000" />
       <workItem from="1529272647932" duration="3407000" />
-      <workItem from="1529316012551" duration="2571000" />
+      <workItem from="1529316012551" duration="3368000" />
     </task>
     <task id="LOCAL-00001" summary="From CLion. Test.">
       <created>1529278038677</created>
@@ -311,11 +293,18 @@
       <option name="project" value="LOCAL" />
       <updated>1529317477156</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Fix compile errors. &#10;Add class ErrorPrinter.">
+      <created>1529318759968</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1529318759968</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="220102000" />
+    <option name="totallyTimeSpent" value="220899000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -339,7 +328,7 @@
       <window_info anchor="bottom" id="Run" order="2" weight="0.32908458" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39976826" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39976826" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Data View" order="3" />
@@ -396,7 +385,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="From CLion. Test." />
     <MESSAGE value="Fix syntax errors" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix syntax errors" />
+    <MESSAGE value="Fix compile errors. &#10;Add class ErrorPrinter." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix compile errors. &#10;Add class ErrorPrinter." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -571,26 +561,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="457" column="5" lean-forward="true" selection-start-line="457" selection-start-column="5" selection-end-line="457" selection-end-column="5" />
+        <state relative-caret-position="259">
+          <caret line="394" column="43" lean-forward="true" selection-start-line="394" selection-start-column="43" selection-end-line="394" selection-end-column="43" />
           <folding>
             <element signature="e#296#731#0" />
             <element signature="e#1488#1566#0" expanded="true" />
             <element signature="e#1571#1641#0" expanded="true" />
             <element signature="e#1658#3366#1" />
             <element signature="e#1976#3125#1" />
+            <element signature="e#3369#4558#1" />
+            <element signature="e#3546#4158#1" />
             <element signature="e#4561#5555#1" />
             <element signature="e#5558#6002#1" />
             <element signature="e#6004#6448#1" />
+            <element signature="e#6451#11650#1" />
             <element signature="e#6483#6839#1" />
-            <element signature="e#7622#7937#0" expanded="true" />
-            <element signature="e#8956#9285#0" expanded="true" />
-            <element signature="e#10787#11118#0" expanded="true" />
             <element signature="e#11681#11727#1" />
-            <element signature="e#11748#12517#0" expanded="true" />
-            <element signature="e#12527#13090#0" expanded="true" />
-            <element signature="e#14869#15265#0" expanded="true" />
-            <element signature="e#16653#16856#0" expanded="true" />
           </folding>
         </state>
       </provider>

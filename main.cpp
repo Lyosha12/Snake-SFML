@@ -374,19 +374,26 @@ class Snake {
     : move_time(move_time)
     , cells_pool(cells_pool)
     {
+        // Разместим голову в случайном месте поля.
         body.push_back(cells_pool.getRandCell<SnakeHead>());
     
+        // Создадим параметры змейки.
         int guaranteed_parts = 2;
         int additional_parts = rand()%(max_start_parts - guaranteed_parts);
         int start_parts = additional_parts + guaranteed_parts;
         try {
+            // Сгенерируем остальное тело.
             while(start_parts--)
                 body.push_back(cells_pool.getNearCell<SnakeBody>(body.back()));
         } catch(CellsPool::NotFoundFreeCell const& e) {
             // Заканчиваем построение змеи - нет клеток для продолжения.
         }
         
-        direction = (*body.begin())->coord - (*++body.begin())->coord;
+        // Узнаем направление змейки. От координат головы
+        // отнимем координаты следующего блока после неё.
+        Cell* head = *body.begin();
+        Cell* after_head = *++body.begin();
+        direction = head->coord - after_head->coord;
     }
     
     void move() {
