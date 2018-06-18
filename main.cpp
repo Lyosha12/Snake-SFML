@@ -32,12 +32,16 @@ struct Coord {
     // Координаты целые знаковые - это позволяет использовать
     // их как компоненты вектора направления чего-либо (змейки).
     int x = -1, y = -1;
-    double vectorLenght() const {
+    Coord(int x, int y): x(x), y(y) { }
+    Coord(size_t x, size_t y): x(x), y(y) { }
+    
+    
+    double vectorLength() const {
         return sqrt(x*x + y*y);
     }
     
     bool  operator== (double value) const {
-        return abs(vectorLenght() - value) < 1e-5;
+        return abs(vectorLength() - value) < 1e-5;
     }
     bool  operator== (Coord const& rhs) {
         return this->x == rhs.x && this->y == rhs.y;
@@ -111,6 +115,8 @@ class Cell: public sf::Drawable {
     // Представляет клетку на поле.
     // Клетка имеет координаты, возможность
     // быть использованной(usable) или нет.
+    // Имеет заполнитель - то, чем она является.
+    // Заполнитель контролирует бассейн клеток (cells_pool).
     
   public:
     class Filler: public sf::Drawable {
@@ -151,23 +157,40 @@ class Cell: public sf::Drawable {
 
 
 class TextureStorage {
-  // Хранит один экземпляр текстуры для каждого типа клетки.
-  // Используется как статический объект - текстура одна на все одинаковые блоки.
+  // Хранит один экземпляр(ы) текстуры для каждого типа клетки статически.
   
   public:
     TextureStorage(std::vector<std::string> texture_names) {
         for(auto const& name: texture_names) {
             textures.push_back({});
             if(!textures.back().loadFromFile("Textures/" + name))
-                throw std::runtime_error("Texture " + name + " was not loaded from Textures/"); 
+                throw std::runtime_error(
+                    "Texture " +
+                    name +
+                    " was not loaded from Textures/"
+                );
         }
+    }
+    TextureStorage(const char* texture_name): TextureStorage(std::string(texture_name)) { }
+    TextureStorage(std::string texture_name) {
+        textures.push_back({});
+        if(!textures.back().loadFromFile("Textures/" + texture_name))
+            throw std::runtime_error(
+                "Texture " +
+                texture_name +
+                " was not loaded from Textures/"
+            );
+    
     }
   
   sf::Texture const& operator() (size_t texture_index) {
       if(texture_index < textures.size())
           return textures[texture_index];
       else
-          throw std::logic_error("Try to use uncreated texture: " + std::to_string(texture_index));
+          throw std::logic_error(
+              "Try to use uncreated texture: " +
+              std::to_string(texture_index)
+          );
   }
   operator sf::Texture const& () {
       if(textures.size() == 1)
@@ -180,33 +203,49 @@ class TextureStorage {
     std::vector<sf::Texture> textures;
 };
 
+class FreeCell: public Cell::Filler {
+  public:
+    FreeCell(DefaultRectangle const& default_rectangle, Cell& cell, Coord const& coord)
+        : Filler(createSprite(default_rectangle, cell.coord = coord))
+    { cell.is_usable = true; }
+    FreeCell(DefaultRectangle const& default_rectangle, Cell& cell)
+        : Filler(createSprite(default_rectangle, cell.coord))
+    { cell.is_usable = true; }
+    
+    
+    sf::Sprite createSprite(DefaultRectangle const& default_rectangle, Coord const& coord) const {
+        return default_rectangle.configure(DefaultRectangle::Configurator(coord, texture));
+    }
+  
+  private:
+    inline static TextureStorage texture = "Background.png";
+};
 class SnakeHead: public Cell::Filler {
   public:
-    SnakeHead(DefaultRectangle const& rect_settings, Cell& cell)
-    : Filler(createSprite(rect_settings, cell))
+    SnakeHead(DefaultRectangle const& default_rectangle, Cell& cell)
+    : Filler(createSprite(default_rectangle, cell.coord))
     { cell.is_usable = false; }
 
     
-    sf::Sprite createSprite(DefaultRectangle const& rect_settings, Cell& cell) const {
-        return rect_settings.configure(DefaultRectangle::Configurator(cell.coord, texture));
+    sf::Sprite createSprite(DefaultRectangle const& default_rectangle, Coord const& coord) const {
+        return default_rectangle.configure(DefaultRectangle::Configurator(coord, texture));
     }
   
   private:
-    inline static TextureStorage texture = std::vector<std::string>{("Head.png")};
+    inline static TextureStorage texture = "Head.png";
 };
 class SnakeBody: public Cell::Filler {
   public:
-    SnakeBody(DefaultRectangle const& rect_settings, Cell& cell)
-    : Filler(createSprite(rect_settings, cell))
+    SnakeBody(DefaultRectangle const& default_rectangle, Cell& cell)
+    : Filler(createSprite(default_rectangle, cell.coord))
     { cell.is_usable = false; }
-
-
-    sf::Sprite createSprite(DefaultRectangle const& rect_settings, Cell& cell) const {
-        return rect_settings.configure(DefaultRectangle::Configurator(cell.coord, texture));
+    
+    sf::Sprite createSprite(DefaultRectangle const& default_rectangle, Coord const& coord) const {
+        return default_rectangle.configure(DefaultRectangle::Configurator(coord, texture));
     }
   
   private:
-    inline static TextureStorage texture = std::vector<std::string>{("Body.png")};
+    inline static TextureStorage texture = "Body.png";
 };
 
 class CellsPool {
@@ -228,7 +267,7 @@ class CellsPool {
   public:
     CellsPool(size_t count_cells_x, size_t count_cells_y,
               sf::RenderWindow& window, DefaultRectangle const& settings)
-    : settings(settings)
+    : default_rectangle(settings)
     , count_cells_x(count_cells_x)
     , count_cells_y(count_cells_y)
     , window(window)
@@ -239,43 +278,45 @@ class CellsPool {
          
          for(size_t y = 0; y != count_cells_y; ++y)
             for(size_t x = 0; x != count_cells_x; ++x) {
-                cells[y][x].coord = {int(x), int(y)};
-                cells[y][x].is_usable = true;
+                cells[y][x].filler.reset(new FreeCell(
+                    default_rectangle,
+                    cells[y][x],
+                    Coord(x, y)
+                ));
                 available_cells.push_back(&cells[y][x]);
             }
     }
-    
-    float cell_width () { return settings.rect.getSize().x; }
-    float cell_height() { return settings.rect.getSize().y; }
     
     template <class Filler>
     Cell* getRandCell() {
         size_t i = 0;
         size_t rand_cell = rand()%available_cells.size();
-        auto runner = available_cells.begin();
-        while(i++ != rand_cell)
+        auto runner = available_cells.begin(); // Пробежимся по всем свободным клеткам.
+        while(i++ != rand_cell) // Пока не найдём выбранную случайную клетку.
             ++runner;
     
-        return kickFromAvailable(runner, new Filler(settings, **runner));
+        // Удалим клетку из свободных, заполнив её переданным типом клетки.
+        return kickFromAvailable(runner, new Filler(default_rectangle, **runner));
     }
     template <class Filler>
     Cell* getNearCell(Cell* cell) {
-        size_t y = size_t(cell->coord.y), x = size_t(cell->coord.x);
-        Cell* up    = y   != 0             ? &cells[y-1][x  ] : nullptr;
-        Cell* down  = y+1 != count_cells_y ? &cells[y+1][x  ] : nullptr;
-        Cell* right = x+1 != count_cells_x ? &cells[y  ][x+1] : nullptr;
-        Cell* left  = x   != 0             ? &cells[y  ][x-1] : nullptr;
+        // Берём случайную клетку в радиусе одной от заданной.
+        
+        // Найдём её соседей
+        Cell* up    = extractCell(cell->coord + Coord{ 0, -1});
+        Cell* down  = extractCell(cell->coord + Coord{ 0,  1});
+        Cell* right = extractCell(cell->coord + Coord{ 1,  0});
+        Cell* left  = extractCell(cell->coord + Coord{-1,  0});
         vector<Cell*> neighbors = {up, down, right, left};
         
         while(!neighbors.empty()) {
-            size_t rand_neighbor = rand() % neighbors.size();
+            size_t rand_neighbor = rand()%neighbors.size();
             Cell* neighbor = neighbors[rand_neighbor];
-            
-            if(neighbor && neighbor->is_usable) {
-                Filler* filler = new Filler(settings, *neighbor);
+    
+            if(neighbor->is_usable) {
+                Filler* filler = new Filler(default_rectangle, *neighbor);
                 return kickFromAvailable(findInAvailable(neighbor), filler);
-            }
-            else
+            } else
                 neighbors.erase(neighbors.begin() + rand_neighbor);
         }
         
@@ -283,17 +324,20 @@ class CellsPool {
     }
     template <class Filler>
     Cell* getNearCell(Cell* cell, Coord move_vector) {
+        // Возьмём клетку по заданному направлению от текущей.
         Cell* required_cell = extractCell(cell->coord + move_vector);
-        Filler* filler = new Filler(settings, *required_cell);
+        Filler* filler = new Filler(default_rectangle, *required_cell);
         return kickFromAvailable(findInAvailable(required_cell), filler);
     }
     void  releaseCell(Cell* cell) {
-        cell->filler = nullptr;
+        // Освободить клетку от текущего заполнителя,
+        // добавить в список свободных.
+        cell->filler.reset(new FreeCell(default_rectangle, *cell));
         available_cells.push_front(cell);
     }
     
     void display() const {
-        window.clear(settings.rect.getFillColor());
+        window.clear(default_rectangle.rect.getFillColor());
         
         for(auto const& row: cells)
             for(auto const& cell: row)
@@ -303,39 +347,18 @@ class CellsPool {
     }
     
   private:
-    Cell* extractCell(Coord coord) {
-        int y = coord.y, x = coord.x;
-        auto isInRange = [] (int z, int max) {
-            return 0 <= z && z < max;
+    Coord normalize(Coord coord) const {
+        auto normalize_component = [] (int c, int max) {
+            return c >= 0 ? c % max : max + c;
         };
-        
-        bool xInRange = isInRange(x, count_cells_x);
-        bool yInRange = isInRange(y, count_cells_y);
-        
-        // Нормировка координат требуемой клетки.
-        Cell* required_cell = nullptr;
-        if(xInRange && yInRange) {
-            required_cell = &cells[y][x];
-        } else {
-            if(yInRange) {
-                if(x < 0)
-                    required_cell = &cells[y][count_cells_x - 1];
-                else // if(x >= int(count_cells_x))
-                    required_cell = &cells[y][0];
-            }
-            
-            else if(xInRange) {
-                if(y < 0)
-                    required_cell = &cells[count_cells_y - 1][x];
-                else // if(y >= int(count_cells_y))
-                    required_cell = &cells[0][x];
-            }
-            
-            else
-                throw logic_error("Both components outed of bounds");
-        }
-        
-        return required_cell;
+        return Coord(
+            normalize_component(coord.x, count_cells_x),
+            normalize_component(coord.y, count_cells_y)
+        );
+    }
+    Cell* extractCell(Coord coord) {
+        coord = normalize(coord);
+        return &cells[coord.y][coord.x];
     }
     Cell* kickFromAvailable(list<Cell*>::iterator runner, Cell::Filler* filler) {
         // Выбросить клетку из свободных и
@@ -355,9 +378,9 @@ class CellsPool {
         else
             return runner;
     }
-
+  
   private:
-    DefaultRectangle const& settings;
+    DefaultRectangle const& default_rectangle;
     size_t count_cells_x;
     size_t count_cells_y;
     sf::RenderWindow& window;
