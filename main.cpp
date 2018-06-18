@@ -136,12 +136,12 @@ class Cell: public sf::Drawable {
     Cell(Cell&& cell)
     : coord(cell.coord)
     , filler(move(cell.filler))
-    , isUsable(cell.isUsable)
+    , is_usable(cell.is_usable)
     { }
     
     Coord coord = {-1, -1};
     unique_ptr<Filler> filler = nullptr;
-    bool isUsable = false;
+    bool is_usable = false;
     
   private:
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override  {
@@ -184,7 +184,7 @@ class SnakeHead: public Cell::Filler {
   public:
     SnakeHead(DefaultRectangle const& rect_settings, Cell& cell)
     : Filler(createSprite(rect_settings, cell))
-    { cell.isUsable = false; }
+    { cell.is_usable = false; }
 
     
     sf::Sprite createSprite(DefaultRectangle const& rect_settings, Cell& cell) const {
@@ -198,7 +198,7 @@ class SnakeBody: public Cell::Filler {
   public:
     SnakeBody(DefaultRectangle const& rect_settings, Cell& cell)
     : Filler(createSprite(rect_settings, cell))
-    { cell.isUsable = false; }
+    { cell.is_usable = false; }
 
 
     sf::Sprite createSprite(DefaultRectangle const& rect_settings, Cell& cell) const {
@@ -240,6 +240,7 @@ class CellsPool {
          for(size_t y = 0; y != count_cells_y; ++y)
             for(size_t x = 0; x != count_cells_x; ++x) {
                 cells[y][x].coord = {int(x), int(y)};
+                cells[y][x].is_usable = true;
                 available_cells.push_back(&cells[y][x]);
             }
     }
@@ -270,7 +271,7 @@ class CellsPool {
             size_t rand_neighbor = rand() % neighbors.size();
             Cell* neighbor = neighbors[rand_neighbor];
             
-            if(neighbor && neighbor->isUsable) {
+            if(neighbor && neighbor->is_usable) {
                 Filler* filler = new Filler(settings, *neighbor);
                 return kickFromAvailable(findInAvailable(neighbor), filler);
             }

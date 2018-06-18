@@ -11,12 +11,13 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
+    <list default="true" id="6e959b6e-0de1-4b05-8793-f46476915173" name="Default" comment="Push test">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Snake.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Snake.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+    </list>
     <list id="fd5bec2d-f904-4d80-9b99-3fb7d1364035" name="Fix compile errors." comment="Fix compile errors.&#10;Add class ErrorPrinter.&#10;&#10;(cherry picked from commit d4819bd)">
       <changelist_data name="Lyosha12" email="lzuz@mail.ru" date="1529318759000" />
-    </list>
-    <list default="true" id="6e959b6e-0de1-4b05-8793-f46476915173" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,22 +36,23 @@
       <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
-              <caret line="394" column="43" lean-forward="true" selection-start-line="394" selection-start-column="43" selection-end-line="394" selection-end-column="43" />
+            <state relative-caret-position="-811">
+              <caret line="134" column="21" selection-start-line="134" selection-start-column="21" selection-end-line="134" selection-end-column="21" />
               <folding>
                 <element signature="e#296#731#0" />
                 <element signature="e#1488#1566#0" expanded="true" />
                 <element signature="e#1571#1641#0" expanded="true" />
                 <element signature="e#1658#3366#1" />
                 <element signature="e#1976#3125#1" />
-                <element signature="e#3369#4558#1" />
                 <element signature="e#3546#4158#1" />
                 <element signature="e#4561#5555#1" />
                 <element signature="e#5558#6002#1" />
                 <element signature="e#6004#6448#1" />
-                <element signature="e#6451#11650#1" />
                 <element signature="e#6483#6839#1" />
+                <element signature="e#6860#7483#0" expanded="true" />
+                <element signature="e#11653#14005#1" />
                 <element signature="e#11681#11727#1" />
+                <element signature="e#11748#12517#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -277,7 +279,7 @@
       <workItem from="1529217699987" duration="1211000" />
       <workItem from="1529219675238" duration="19730000" />
       <workItem from="1529272647932" duration="3407000" />
-      <workItem from="1529316012551" duration="3368000" />
+      <workItem from="1529316012551" duration="4071000" />
     </task>
     <task id="LOCAL-00001" summary="From CLion. Test.">
       <created>1529278038677</created>
@@ -300,11 +302,18 @@
       <option name="project" value="LOCAL" />
       <updated>1529318759968</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Comment the Snake class.">
+      <created>1529319556191</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1529319556191</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="220899000" />
+    <option name="totallyTimeSpent" value="221602000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -325,10 +334,10 @@
       <window_info anchor="bottom" id="CMake" order="11" weight="0.32908458" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32908458" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32908458" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32908458" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32908458" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39976826" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39976826" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Data View" order="3" />
@@ -386,7 +395,8 @@
     <MESSAGE value="From CLion. Test." />
     <MESSAGE value="Fix syntax errors" />
     <MESSAGE value="Fix compile errors. &#10;Add class ErrorPrinter." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix compile errors. &#10;Add class ErrorPrinter." />
+    <MESSAGE value="Comment the Snake class." />
+    <option name="LAST_COMMIT_MESSAGE" value="Comment the Snake class." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -396,18 +406,26 @@
           <line>390</line>
           <option name="timeStamp" value="56" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.cpp</url>
+          <line>386</line>
+          <option name="timeStamp" value="71" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.cpp</url>
+          <line>387</line>
+          <option name="timeStamp" value="72" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.cpp</url>
+          <line>394</line>
+          <option name="timeStamp" value="73" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="71" />
+      <option name="time" value="79" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Sources/main.cpp" />
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
@@ -559,24 +577,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="394" column="43" lean-forward="true" selection-start-line="394" selection-start-column="43" selection-end-line="394" selection-end-column="43" />
+        <state relative-caret-position="-811">
+          <caret line="134" column="21" selection-start-line="134" selection-start-column="21" selection-end-line="134" selection-end-column="21" />
           <folding>
             <element signature="e#296#731#0" />
             <element signature="e#1488#1566#0" expanded="true" />
             <element signature="e#1571#1641#0" expanded="true" />
             <element signature="e#1658#3366#1" />
             <element signature="e#1976#3125#1" />
-            <element signature="e#3369#4558#1" />
             <element signature="e#3546#4158#1" />
             <element signature="e#4561#5555#1" />
             <element signature="e#5558#6002#1" />
             <element signature="e#6004#6448#1" />
-            <element signature="e#6451#11650#1" />
             <element signature="e#6483#6839#1" />
+            <element signature="e#6860#7483#0" expanded="true" />
+            <element signature="e#11653#14005#1" />
             <element signature="e#11681#11727#1" />
+            <element signature="e#11748#12517#0" expanded="true" />
           </folding>
         </state>
       </provider>
