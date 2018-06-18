@@ -10,69 +10,18 @@
 #include <iostream>
 #include <iomanip>
 #include <functional>
+#include <cstdlib>
 #include <windows.h>
-using namespace std;
+using namespace std::chrono_literals;
+
 #include <SFML/Graphics.hpp>
 
 #include "Coord/Coord.hpp"
 #include "ErrorPrinter/ErrorPrinter.hpp"
 #include "DefaultRectangle/DefaultRectangle.hpp"
+#include "Cell/Cell.hpp"
+#include "TimeCounter/TimeCounter.hpp"
 
-namespace MyColors {
-  sf::Color const gray         = sf::Color(128, 128, 128);
-  sf::Color const royal_blue   = sf::Color(65 , 105, 225);
-  sf::Color const tomato       = sf::Color(255, 99 , 71 );
-  sf::Color const orange       = sf::Color(255, 165,  0 );
-  sf::Color const gold         = sf::Color(255, 215,  0 );
-  sf::Color const lime_green   = sf::Color(50 , 205, 50 );
-  sf::Color const dark_green   = sf::Color(0  , 100,  0 );
-}
-
-class Snake;
-
-class Cell: public sf::Drawable {
-    // Представляет клетку на поле.
-    // Клетка имеет координаты, возможность
-    // быть использованной(usable) или нет.
-    // Имеет заполнитель - то, чем она является.
-    // Заполнитель контролирует бассейн клеток (cells_pool).
-    
-  public:
-    class Filler: public sf::Drawable {
-      // Заполнитель клетки - это некий спрайт.
-      // Его текстуру и форму определяет наследник этого класса.
-    
-      // Каждую клетку змейка может занять.
-      // И, в зависимости от реализации функции modifer,
-      // змейка будет изменена так или иначе.
-      public:
-        Filler(sf::Sprite sprite) : sprite(sprite) { }
-        virtual void modifer(Snake&) const { }
-        
-      private:
-        sf::Sprite sprite;
-        void draw(sf::RenderTarget& target, sf::RenderStates states) const override  {
-            target.draw(sprite, states);
-        }
-    };
-    
-  public:
-    Cell() = default;
-    Cell(Cell&& cell)
-    : coord(cell.coord)
-    , filler(move(cell.filler))
-    , is_usable(cell.is_usable)
-    { }
-    
-    Coord coord = {-1, -1};
-    unique_ptr<Filler> filler = nullptr;
-    bool is_usable = false;
-    
-  private:
-    void draw(sf::RenderTarget& target, sf::RenderStates states) const override  {
-        target.draw(*filler, states);
-    }
-};
 
 
 class TextureStorage {
@@ -169,7 +118,7 @@ class SnakeBody: public Cell::Filler {
 
 class CellsPool: public sf::Drawable {
   public:
-    struct NotFoundFreeCell: public exception {
+    struct NotFoundFreeCell: public std::exception {
         NotFoundFreeCell(Cell const& cell, Coord direction = {0, 0})
         : cell(cell)
         , direction(direction)
@@ -193,7 +142,7 @@ class CellsPool: public sf::Drawable {
      {
          cells.resize(count_cells_y);
          for(auto& row: cells)
-             row = move(vector<Cell>(count_cells_x));
+             row = std::move(std::vector<Cell>(count_cells_x));
          
          for(size_t y = 0; y != count_cells_y; ++y)
             for(size_t x = 0; x != count_cells_x; ++x) {
@@ -209,7 +158,7 @@ class CellsPool: public sf::Drawable {
     template <class Filler>
     Cell* getRandCell() {
         size_t i = 0;
-        size_t rand_cell = rand()%available_cells.size();
+        size_t rand_cell = std::rand()%available_cells.size();
         auto runner = available_cells.begin(); // Пробежимся по всем свободным клеткам.
         while(i++ != rand_cell) // Пока не найдём выбранную случайную клетку.
             ++runner;
@@ -226,11 +175,11 @@ class CellsPool: public sf::Drawable {
         Cell* down  = extractCell(cell->coord + Coord{ 0,  1});
         Cell* right = extractCell(cell->coord + Coord{ 1,  0});
         Cell* left  = extractCell(cell->coord + Coord{-1,  0});
-        vector<Cell*> neighbors = {up, down, right, left};
+        std::vector<Cell*> neighbors = {up, down, right, left};
         
         // Выберем случайную клетку, доступную к использованию.
         while(!neighbors.empty()) {
-            size_t rand_neighbor = rand()%neighbors.size();
+            size_t rand_neighbor = std::rand()%neighbors.size();
             Cell* neighbor = neighbors[rand_neighbor];
     
             if(neighbor->is_usable) {
@@ -276,7 +225,7 @@ class CellsPool: public sf::Drawable {
         coord = normalize(coord);
         return &cells[coord.y][coord.x];
     }
-    Cell* kickFromAvailable(list<Cell*>::iterator runner, Cell::Filler* filler) {
+    Cell* kickFromAvailable(std::list<Cell*>::iterator runner, Cell::Filler* filler) {
         // Выбросить клетку из свободных и
         // обновить её содержание новым заполнителем.
         Cell* cell = *runner;
@@ -284,7 +233,7 @@ class CellsPool: public sf::Drawable {
         cell->filler.reset(filler);
         return cell;
     }
-    list<Cell*>::iterator findInAvailable(Cell* cell) {
+    std::list<Cell*>::iterator findInAvailable(Cell* cell) {
         auto runner = available_cells.begin();
         while(runner != available_cells.end() && *runner != cell)
             ++runner;
@@ -300,8 +249,8 @@ class CellsPool: public sf::Drawable {
     size_t count_cells_x;
     size_t count_cells_y;
     sf::RenderWindow& window;
-    vector<vector<Cell>> cells;
-    list<Cell*> available_cells;
+    std::vector<std::vector<Cell>> cells;
+    std::list<Cell*> available_cells;
 };
 
 class Snake {
@@ -309,10 +258,8 @@ class Snake {
     enum class Direction { Up, Down, Left, Right };
     
   public:
-    Snake(CellsPool& cells_pool, size_t max_start_parts = 4,
-          chrono::duration<int64_t, nano> move_time = 80ms)
-    : move_time(move_time)
-    , cells_pool(cells_pool)
+    Snake(CellsPool& cells_pool, size_t max_start_parts = 4)
+    : cells_pool(cells_pool)
     {
         // Разместим голову в случайном месте поля.
         body.push_back(cells_pool.getRandCell<SnakeHead>());
@@ -337,19 +284,25 @@ class Snake {
     }
     
     void move() {
-        if(chrono::steady_clock::now() - last_move < move_time)
+        if(!move_time.isIntervalPassed())
            return;
-        last_move = chrono::steady_clock::now();
+        
         tryChangeDirection();
     
-        auto new_head = cells_pool.getNearCell<SnakeHead>(body.front(), direction);
+        // Получим новую голову по направлению движения относительно текущей головы.
+        Cell* new_head = cells_pool.getNearCell<SnakeHead>(body.front(), direction);
         
+        // Освободим клетку старой головы.
         cells_pool.releaseCell(body.front());
-        body.push_front(cells_pool.getNearCell<SnakeBody>(body.front(), {0, 0}));
+        // Удалим старую голову из списка.
         body.pop_front();
         
+        // Добавим часть тела в список между новой головой и удалённой прошлой.
+        body.push_front(cells_pool.getNearCell<SnakeBody>(new_head, -direction));
+        // Добавим вслед за частью тела новую голову.
         body.push_front(new_head);
         
+        // Освободим клетку хвоста.
         cells_pool.releaseCell(body.back());
         body.pop_back();
     }
@@ -374,12 +327,11 @@ class Snake {
     }
     
   private:
-    list<Cell*> body;
+    std::list<Cell*> body;
     Coord direction = {0, 0};
-    chrono::duration<int64_t, nano> move_time;
-    queue<Coord> moves;
-    chrono::time_point<chrono::steady_clock, chrono::nanoseconds>
-    last_move = chrono::steady_clock::now();
+    TimeCounter<std::chrono::steady_clock> move_time = 80ms;
+    std::queue<Coord> moves;
+    
     
     CellsPool& cells_pool;
 };
@@ -390,7 +342,7 @@ class Game {
   public:
     Game(unsigned long width, unsigned long height,
           size_t count_cells_x, size_t count_cells_y,
-          string FieldName)
+          std::string FieldName)
     : default_rectangle(width/count_cells_x, height/count_cells_y)
     , window({width/count_cells_x*count_cells_x, height/count_cells_y*count_cells_y}, FieldName)
     , cells_pool(count_cells_x, count_cells_y, window, default_rectangle)

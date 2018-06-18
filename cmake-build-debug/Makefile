@@ -122,6 +122,33 @@ Snake/fast:
 	$(MAKE) -f CMakeFiles\Snake.dir\build.make CMakeFiles/Snake.dir/build
 .PHONY : Snake/fast
 
+Cell/Cell.obj: Cell/Cell.cpp.obj
+
+.PHONY : Cell/Cell.obj
+
+# target to build an object file
+Cell/Cell.cpp.obj:
+	$(MAKE) -f CMakeFiles\Snake.dir\build.make CMakeFiles/Snake.dir/Cell/Cell.cpp.obj
+.PHONY : Cell/Cell.cpp.obj
+
+Cell/Cell.i: Cell/Cell.cpp.i
+
+.PHONY : Cell/Cell.i
+
+# target to preprocess a source file
+Cell/Cell.cpp.i:
+	$(MAKE) -f CMakeFiles\Snake.dir\build.make CMakeFiles/Snake.dir/Cell/Cell.cpp.i
+.PHONY : Cell/Cell.cpp.i
+
+Cell/Cell.s: Cell/Cell.cpp.s
+
+.PHONY : Cell/Cell.s
+
+# target to generate assembly for a file
+Cell/Cell.cpp.s:
+	$(MAKE) -f CMakeFiles\Snake.dir\build.make CMakeFiles/Snake.dir/Cell/Cell.cpp.s
+.PHONY : Cell/Cell.cpp.s
+
 Coord/Coord.obj: Coord/Coord.cpp.obj
 
 .PHONY : Coord/Coord.obj
@@ -239,6 +266,9 @@ help:
 	@echo ... Snake
 	@echo ... edit_cache
 	@echo ... rebuild_cache
+	@echo ... Cell/Cell.obj
+	@echo ... Cell/Cell.i
+	@echo ... Cell/Cell.s
 	@echo ... Coord/Coord.obj
 	@echo ... Coord/Coord.i
 	@echo ... Coord/Coord.s
