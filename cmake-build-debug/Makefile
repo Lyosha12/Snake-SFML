@@ -122,6 +122,33 @@ Snake/fast:
 	$(MAKE) -f CMakeFiles\Snake.dir\build.make CMakeFiles/Snake.dir/build
 .PHONY : Snake/fast
 
+Coord/Coord.obj: Coord/Coord.cpp.obj
+
+.PHONY : Coord/Coord.obj
+
+# target to build an object file
+Coord/Coord.cpp.obj:
+	$(MAKE) -f CMakeFiles\Snake.dir\build.make CMakeFiles/Snake.dir/Coord/Coord.cpp.obj
+.PHONY : Coord/Coord.cpp.obj
+
+Coord/Coord.i: Coord/Coord.cpp.i
+
+.PHONY : Coord/Coord.i
+
+# target to preprocess a source file
+Coord/Coord.cpp.i:
+	$(MAKE) -f CMakeFiles\Snake.dir\build.make CMakeFiles/Snake.dir/Coord/Coord.cpp.i
+.PHONY : Coord/Coord.cpp.i
+
+Coord/Coord.s: Coord/Coord.cpp.s
+
+.PHONY : Coord/Coord.s
+
+# target to generate assembly for a file
+Coord/Coord.cpp.s:
+	$(MAKE) -f CMakeFiles\Snake.dir\build.make CMakeFiles/Snake.dir/Coord/Coord.cpp.s
+.PHONY : Coord/Coord.cpp.s
+
 ErrorPrinter/ErrorPrinter.obj: ErrorPrinter/ErrorPrinter.cpp.obj
 
 .PHONY : ErrorPrinter/ErrorPrinter.obj
@@ -185,6 +212,9 @@ help:
 	@echo ... Snake
 	@echo ... edit_cache
 	@echo ... rebuild_cache
+	@echo ... Coord/Coord.obj
+	@echo ... Coord/Coord.i
+	@echo ... Coord/Coord.s
 	@echo ... ErrorPrinter/ErrorPrinter.obj
 	@echo ... ErrorPrinter/ErrorPrinter.i
 	@echo ... ErrorPrinter/ErrorPrinter.s

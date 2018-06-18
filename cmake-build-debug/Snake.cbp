@@ -84,6 +84,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="D:/GitRepository/Snake-SFML/Coord/Coord.cpp">
+			<Option target="Snake"/>
+		</Unit>
+		<Unit filename="D:/GitRepository/Snake-SFML/Coord/Coord.hpp">
+			<Option target="Snake"/>
+		</Unit>
 		<Unit filename="D:/GitRepository/Snake-SFML/ErrorPrinter/ErrorPrinter.cpp">
 			<Option target="Snake"/>
 		</Unit>

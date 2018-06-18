@@ -14,6 +14,7 @@
 using namespace std;
 #include <SFML/Graphics.hpp>
 
+#include "Coord/Coord.hpp"
 #include "ErrorPrinter/ErrorPrinter.hpp"
 
 namespace MyColors {
@@ -26,39 +27,6 @@ namespace MyColors {
   sf::Color const dark_green   = sf::Color(0  , 100,  0 );
 }
 
-struct Coord {
-    // Описывает координату квадрата в матрице квадратов.
-    // От левого верхнего угла: x - по ширине, y - по высоте.
-    // Координаты целые знаковые - это позволяет использовать
-    // их как компоненты вектора направления чего-либо (змейки).
-    int x = -1, y = -1;
-    Coord(int x, int y): x(x), y(y) { }
-    Coord(size_t x, size_t y): x(x), y(y) { }
-    
-    
-    double vectorLength() const {
-        return sqrt(x*x + y*y);
-    }
-    
-    bool  operator== (double value) const {
-        return abs(vectorLength() - value) < 1e-5;
-    }
-    bool  operator== (Coord const& rhs) {
-        return this->x == rhs.x && this->y == rhs.y;
-    }
-    bool  operator!= (int value) const {
-        return !(*this == value);
-    }
-    Coord operator+  (Coord const& rhs) const {
-        return {this->x + rhs.x, this->y + rhs.y};
-    }
-    Coord operator-  (Coord const& rhs) const {
-        return *this + -rhs;
-    }
-    Coord operator-  () const {
-        return {-this->x, -this->y};
-    }
-};
 class Snake;
 class DefaultRectangle {
     // Создание стандартного прямоугольника на поле.
@@ -309,6 +277,7 @@ class CellsPool {
         Cell* left  = extractCell(cell->coord + Coord{-1,  0});
         vector<Cell*> neighbors = {up, down, right, left};
         
+        // Выберем случайную клетку, доступную к использованию.
         while(!neighbors.empty()) {
             size_t rand_neighbor = rand()%neighbors.size();
             Cell* neighbor = neighbors[rand_neighbor];
