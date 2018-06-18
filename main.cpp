@@ -72,13 +72,13 @@ class DefaultRectangle {
     public:
         Configurator(Coord pos_on_field, sf::Texture const& texture)
             : pos_on_field(pos_on_field)
-            , color(color)
+            , texture(texture)
         { }
       
       private:
         sf::Sprite operator() (sf::RectangleShape const& default_rectangle) const {
-            sf::Sprite sprit(texture);
-            setPos(sprite);
+            sf::Sprite sprite(texture);
+            setPos(sprite, default_rectangle);
            
             return sprite;
         }
@@ -96,7 +96,7 @@ class DefaultRectangle {
         sf::Texture const& texture;
     };
     
-    sf::RectangleShape configure(Configurator const& configurator) const {
+    sf::Sprite configure(Configurator const& configurator) const {
         // Создание по указанным настройкам прямоугольника для игрового поля.
         return configurator(rect);
     }
@@ -155,12 +155,12 @@ class TextureStorage {
     TextureStorage(std::vector<std::string> texture_names) {
         for(auto const& name: texture_names) {
             textures.push_back({});
-            if(!textures.back().load("Textures/" + name))
+            if(!textures.back().loadFromFile("Textures/" + name))
                 throw std::runtime_error("Texture " + name + " was not loaded from Textures/"); 
         }
     }
   
-  sf::Texture const& operator(size_t texture_index) {
+  sf::Texture const& operator() (size_t texture_index) {
       if(texture_index < textures.size())
           return textures[texture_index];
       else
@@ -168,9 +168,9 @@ class TextureStorage {
   }
   operator sf::Texture const& () {
       if(textures.size() == 1)
-          return texture; 
+          return textures[0];
       else
-          throw std::logic_error("Try to use list of textures as single texture);
+          throw std::logic_error("Try to use list of textures as single texture");
   }
   
   private:
@@ -189,7 +189,7 @@ class SnakeHead: public Cell::Filler {
     }
   
   private:
-    static TextureStorage texture = "Head.png";
+    inline static TextureStorage texture = std::vector<std::string>{("Head.png")};
 };
 class SnakeBody: public Cell::Filler {
   public:
@@ -203,7 +203,7 @@ class SnakeBody: public Cell::Filler {
     }
   
   private:
-    static TextureStorage texture = "Body.png";
+    inline static TextureStorage texture = std::vector<std::string>{("Body.png")};
 };
 
 class CellsPool {
