@@ -162,6 +162,20 @@ class Cell: public sf::Drawable {
     }
 };
 
+class TextureStorage {
+  public:
+    TextureStorage(std::string texture_name) {
+         if(!texture.load("Textures/" + texture_name))
+             throw std::runtime_error("Texture " + texture_name + " was not loaded from Textures/"); 
+    }
+  
+  operator sf::Texture& () {
+      return texture; 
+  }
+  
+  private:
+    sf::Texture texture;
+};
 
 class SnakeHead: public Cell::Filler {
   public:
