@@ -13,32 +13,18 @@ struct Coord {
     // Координаты целые знаковые - это позволяет использовать
     // их как компоненты вектора направления змейки или другого объекта.
     int x = -1, y = -1;
-    Coord(int x, int y): x(x), y(y) { }
-    Coord(size_t x, size_t y): x(x), y(y) { }
+    Coord(int x, int y);
+    Coord(size_t x, size_t y);
     
     
-    double vectorLength() const {
-        return std::sqrt(x*x + y*y);
-    }
+    double vectorLength() const;
     
-    bool  operator== (double value) const {
-        return std::abs(vectorLength() - value) < 1e-5;
-    }
-    bool  operator== (Coord const& rhs) {
-        return this->x == rhs.x && this->y == rhs.y;
-    }
-    bool  operator!= (int value) const {
-        return !(*this == value);
-    }
-    Coord operator+  (Coord const& rhs) const {
-        return {this->x + rhs.x, this->y + rhs.y};
-    }
-    Coord operator-  (Coord const& rhs) const {
-        return *this + -rhs;
-    }
-    Coord operator-  () const {
-        return {-this->x, -this->y};
-    }
+    bool  operator== (double value) const;
+    bool  operator== (Coord const& rhs);
+    bool  operator!= (int value) const;
+    Coord operator+  (Coord const& rhs) const;
+    Coord operator-  (Coord const& rhs) const;
+    Coord operator-  () const;
 };
 
 
