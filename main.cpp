@@ -26,49 +26,51 @@ using namespace std::chrono_literals;
 
 
 
-
-class SnakeHead: public Cell::Filler {
+class SnakeFiller: public Cell::Filler {
   public:
-    SnakeHead(DefaultRectangle const& default_rectangle, Cell& cell)
-    : Filler(createSprite(default_rectangle, cell.coord))
+    SnakeFiller(
+        DefaultRectangle const& default_rectangle,
+        Cell& cell,
+        sf::Texture const& texture
+    )
+    : Filler(createSprite(default_rectangle, cell.coord, texture))
     { cell.is_usable = false; }
-
     
-    sf::Sprite createSprite(DefaultRectangle const& default_rectangle, Coord const& coord) const {
-        sf::Sprite sprite = default_rectangle.configure(DefaultRectangle::Configurator(coord, texture));
     
+    sf::Sprite createSprite(
+        DefaultRectangle const& default_rectangle,
+        Coord const& coord,
+        sf::Texture const& texture
+    ) const {
+        sf::Sprite sprite = default_rectangle.configure(
+            DefaultRectangle::Configurator(coord, texture)
+        );
+        
         sf::Vector2f scale = {
-            default_rectangle.getSize().x / texture->getSize().x,
-            default_rectangle.getSize().y / texture->getSize().y
+            default_rectangle.getSize().x / texture.getSize().x,
+            default_rectangle.getSize().y / texture.getSize().y
         };
-    
+        
         sprite.setScale(scale);
-    
+        
         return sprite;
     }
+};
+class SnakeHead: public SnakeFiller {
+  public:
+    SnakeHead(DefaultRectangle const& default_rectangle, Cell& cell)
+    : SnakeFiller(default_rectangle, cell, texture)
+    {  }
   
   private:
     inline static TextureStorage texture = std::string("Head.png");
 };
-class SnakeBody: public Cell::Filler {
+class SnakeBody: public SnakeFiller {
   public:
     SnakeBody(DefaultRectangle const& default_rectangle, Cell& cell)
-    : Filler(createSprite(default_rectangle, cell.coord))
-    { cell.is_usable = false; }
+    : SnakeFiller(default_rectangle, cell, texture)
+    {  }
     
-    sf::Sprite createSprite(DefaultRectangle const& default_rectangle, Coord const& coord) const {
-        sf::Sprite sprite = default_rectangle.configure(DefaultRectangle::Configurator(coord, texture));
-    
-        sf::Vector2f scale = {
-            default_rectangle.getSize().x / texture->getSize().x,
-            default_rectangle.getSize().y / texture->getSize().y
-        };
-    
-        sprite.setScale(scale);
-    
-        return sprite;
-    }
-  
   private:
     inline static TextureStorage texture = std::string("Body.png");
 };

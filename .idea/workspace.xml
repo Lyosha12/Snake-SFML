@@ -12,19 +12,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e959b6e-0de1-4b05-8793-f46476915173" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/TextureStorage/TextureStorage.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TextureStorage/TextureStorage.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Snake.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Snake.dir/DependInfo.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Snake.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Snake.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Snake.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Snake.dir/cmake_clean.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Snake.dir/objects1.rsp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Snake.dir/objects1.rsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Snake.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Snake.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Snake.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Snake.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Snake.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Snake.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Snake.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Snake.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -53,22 +43,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Cell.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Cell/Cell.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="14" column="37" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
-              <caret line="23" column="44" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
+            <state relative-caret-position="202">
+              <caret line="70" column="41" selection-start-line="70" selection-start-column="41" selection-end-line="70" selection-end-column="41" />
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
+                <element signature="e#303#331#0" expanded="true" />
+                <element signature="e#772#1220#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -112,9 +95,9 @@
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/Cell/Cell.cpp" />
         <option value="$PROJECT_DIR$/Cell/Cell.hpp" />
-        <option value="$PROJECT_DIR$/main.cpp" />
         <option value="$PROJECT_DIR$/TextureStorage/TextureStorage.hpp" />
         <option value="$PROJECT_DIR$/TextureStorage/TextureStorage.cpp" />
+        <option value="$PROJECT_DIR$/main.cpp" />
       </list>
     </option>
   </component>
@@ -324,7 +307,7 @@
       <workItem from="1529316012551" duration="18955000" />
       <workItem from="1529340260407" duration="13662000" />
       <workItem from="1529402105896" duration="13619000" />
-      <workItem from="1529498885622" duration="1433000" />
+      <workItem from="1529498885622" duration="3346000" />
     </task>
     <task id="LOCAL-00001" summary="From CLion. Test.">
       <created>1529278038677</created>
@@ -403,11 +386,18 @@
       <option name="project" value="LOCAL" />
       <updated>1529497978033</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Split TextureStorage class to files.">
+      <created>1529500954944</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1529500954944</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="265200000" />
+    <option name="totallyTimeSpent" value="267113000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -422,12 +412,13 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12427287" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12427287" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32921347" />
+      <window_info anchor="bottom" id="Messages" order="9" weight="0.23174971" />
       <window_info anchor="bottom" id="CMake" order="11" weight="0.32908458" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5002644" side_tool="true" weight="0.32908458" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32908458" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4997356" weight="0.32908458" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4997356" visible="true" weight="0.32908458" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39976826" />
@@ -437,7 +428,6 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32921347" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Messages" order="9" weight="0.23174971" />
       <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -497,7 +487,8 @@
     <MESSAGE value="Refactor. Split DefaultRectangle to files." />
     <MESSAGE value="Refactor&#10;* Split Cell class to files.&#10;* Replace hardcoded snake move timer to special class." />
     <MESSAGE value="Add 3 textures. Return nullptr as filler free cell." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add 3 textures. Return nullptr as filler free cell." />
+    <MESSAGE value="Split TextureStorage class to files." />
+    <option name="LAST_COMMIT_MESSAGE" value="Split TextureStorage class to files." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -509,7 +500,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/main.cpp</url>
-          <line>166</line>
+          <line>168</line>
           <option name="timeStamp" value="101" />
         </line-breakpoint>
       </breakpoints>
@@ -743,21 +734,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TextureStorage/TextureStorage.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
-          <caret line="39" selection-start-line="39" selection-end-line="39" />
+        <state relative-caret-position="63">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
           <folding>
-            <element signature="e#76#351#0" expanded="true" />
-            <element signature="e#352#654#0" expanded="true" />
+            <element signature="e#448#822#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="23" column="44" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
+        <state relative-caret-position="202">
+          <caret line="70" column="41" selection-start-line="70" selection-start-column="41" selection-end-line="70" selection-end-column="41" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
+            <element signature="e#303#331#0" expanded="true" />
+            <element signature="e#772#1220#0" expanded="true" />
           </folding>
         </state>
       </provider>
