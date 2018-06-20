@@ -21,63 +21,11 @@ using namespace std::chrono_literals;
 #include "DefaultRectangle/DefaultRectangle.hpp"
 #include "Cell/Cell.hpp"
 #include "TimeCounter/TimeCounter.hpp"
+#include "TextureStorage/TextureStorage.hpp"
 
 
 
-class TextureStorage {
-  // Хранит один экземпляр(ы) текстуры для каждого типа клетки статически.
-  
-  public:
-    TextureStorage(std::vector<std::string> texture_names) {
-        for(auto const& name: texture_names) {
-            textures.push_back({});
-            if(!textures.back().loadFromFile("Textures/" + name))
-                throw std::runtime_error(
-                    "Texture " +
-                    name +
-                    " was not loaded from Textures/"
-                );
-        }
-    }
-    TextureStorage(std::string texture_name, bool is_repeated = false) {
-        textures.push_back({});
-        
-        if(!textures.back().loadFromFile("Textures/" + texture_name))
-            throw std::runtime_error(
-                "Texture " +
-                texture_name +
-                " was not loaded from Textures/"
-            );
-        
-        textures[0].setRepeated(is_repeated);
-    }
-    
-    sf::Texture const& operator[] (size_t texture_index) const {
-        if(texture_index < textures.size())
-            return textures[texture_index];
-        else
-            throw std::logic_error(
-                "Try to use uncreated texture: " +
-                std::to_string(texture_index)
-            );
-    }
-    
-    operator sf::Texture const& () const {
-        if(textures.size() == 1)
-            return textures[0];
-        else
-            throw std::logic_error(
-                "Try to use list of textures as single texture"
-            );
-    }
-    sf::Texture const* operator-> () const {
-        return &static_cast<sf::Texture const&> (*this);
-    }
-    
-    
-  private:
-    std::vector<sf::Texture> textures;
-};
+
 
 class SnakeHead: public Cell::Filler {
   public:

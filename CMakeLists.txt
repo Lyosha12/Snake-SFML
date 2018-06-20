@@ -19,7 +19,7 @@ add_executable(${PROJECT_NAME} main.cpp
         DefaultRectangle/DefaultRectangle.hpp
         Cell/Cell.cpp
         Cell/Cell.hpp
-        TimeCounter/TimeCounter.hpp)
+        TimeCounter/TimeCounter.hpp TextureStorage/TextureStorage.cpp TextureStorage/TextureStorage.hpp)
 if(SFML_FOUND)
     include_directories(${SFML_INCLUDE_DIR})
     target_link_libraries(${PROJECT_NAME} ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})

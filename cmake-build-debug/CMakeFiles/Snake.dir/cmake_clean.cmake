@@ -4,6 +4,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/Snake.dir/Coord/Coord.cpp.obj"
   "CMakeFiles/Snake.dir/DefaultRectangle/DefaultRectangle.cpp.obj"
   "CMakeFiles/Snake.dir/Cell/Cell.cpp.obj"
+  "CMakeFiles/Snake.dir/TextureStorage/TextureStorage.cpp.obj"
   "Snake.pdb"
   "Snake.exe"
   "Snake.exe.manifest"

@@ -230,6 +230,33 @@ ErrorPrinter/ErrorPrinter.cpp.s:
 	$(MAKE) -f CMakeFiles\Snake.dir\build.make CMakeFiles/Snake.dir/ErrorPrinter/ErrorPrinter.cpp.s
 .PHONY : ErrorPrinter/ErrorPrinter.cpp.s
 
+TextureStorage/TextureStorage.obj: TextureStorage/TextureStorage.cpp.obj
+
+.PHONY : TextureStorage/TextureStorage.obj
+
+# target to build an object file
+TextureStorage/TextureStorage.cpp.obj:
+	$(MAKE) -f CMakeFiles\Snake.dir\build.make CMakeFiles/Snake.dir/TextureStorage/TextureStorage.cpp.obj
+.PHONY : TextureStorage/TextureStorage.cpp.obj
+
+TextureStorage/TextureStorage.i: TextureStorage/TextureStorage.cpp.i
+
+.PHONY : TextureStorage/TextureStorage.i
+
+# target to preprocess a source file
+TextureStorage/TextureStorage.cpp.i:
+	$(MAKE) -f CMakeFiles\Snake.dir\build.make CMakeFiles/Snake.dir/TextureStorage/TextureStorage.cpp.i
+.PHONY : TextureStorage/TextureStorage.cpp.i
+
+TextureStorage/TextureStorage.s: TextureStorage/TextureStorage.cpp.s
+
+.PHONY : TextureStorage/TextureStorage.s
+
+# target to generate assembly for a file
+TextureStorage/TextureStorage.cpp.s:
+	$(MAKE) -f CMakeFiles\Snake.dir\build.make CMakeFiles/Snake.dir/TextureStorage/TextureStorage.cpp.s
+.PHONY : TextureStorage/TextureStorage.cpp.s
+
 main.obj: main.cpp.obj
 
 .PHONY : main.obj
@@ -278,6 +305,9 @@ help:
 	@echo ... ErrorPrinter/ErrorPrinter.obj
 	@echo ... ErrorPrinter/ErrorPrinter.i
 	@echo ... ErrorPrinter/ErrorPrinter.s
+	@echo ... TextureStorage/TextureStorage.obj
+	@echo ... TextureStorage/TextureStorage.i
+	@echo ... TextureStorage/TextureStorage.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

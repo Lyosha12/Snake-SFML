@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "D:/GitRepository/Snake-SFML/Coord/Coord.cpp" "D:/GitRepository/Snake-SFML/cmake-build-debug/CMakeFiles/Snake.dir/Coord/Coord.cpp.obj"
   "D:/GitRepository/Snake-SFML/DefaultRectangle/DefaultRectangle.cpp" "D:/GitRepository/Snake-SFML/cmake-build-debug/CMakeFiles/Snake.dir/DefaultRectangle/DefaultRectangle.cpp.obj"
   "D:/GitRepository/Snake-SFML/ErrorPrinter/ErrorPrinter.cpp" "D:/GitRepository/Snake-SFML/cmake-build-debug/CMakeFiles/Snake.dir/ErrorPrinter/ErrorPrinter.cpp.obj"
+  "D:/GitRepository/Snake-SFML/TextureStorage/TextureStorage.cpp" "D:/GitRepository/Snake-SFML/cmake-build-debug/CMakeFiles/Snake.dir/TextureStorage/TextureStorage.cpp.obj"
   "D:/GitRepository/Snake-SFML/main.cpp" "D:/GitRepository/Snake-SFML/cmake-build-debug/CMakeFiles/Snake.dir/main.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
