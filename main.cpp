@@ -23,58 +23,6 @@ using namespace std::chrono_literals;
 #include "TimeCounter/TimeCounter.hpp"
 #include "TextureStorage/TextureStorage.hpp"
 
-
-
-
-class SnakeFiller: public Cell::Filler {
-  public:
-    SnakeFiller(
-        DefaultRectangle const& default_rectangle,
-        Cell& cell,
-        sf::Texture const& texture
-    )
-    : Filler(createSprite(default_rectangle, cell.coord, texture))
-    { cell.is_usable = false; }
-    
-    
-    sf::Sprite createSprite(
-        DefaultRectangle const& default_rectangle,
-        Coord const& coord,
-        sf::Texture const& texture
-    ) const {
-        sf::Sprite sprite = default_rectangle.configure(
-            DefaultRectangle::Configurator(coord, texture)
-        );
-        
-        sf::Vector2f scale = {
-            default_rectangle.getSize().x / texture.getSize().x,
-            default_rectangle.getSize().y / texture.getSize().y
-        };
-        
-        sprite.setScale(scale);
-        
-        return sprite;
-    }
-};
-class SnakeHead: public SnakeFiller {
-  public:
-    SnakeHead(DefaultRectangle const& default_rectangle, Cell& cell)
-    : SnakeFiller(default_rectangle, cell, texture)
-    {  }
-  
-  private:
-    inline static TextureStorage texture = std::string("Head.png");
-};
-class SnakeBody: public SnakeFiller {
-  public:
-    SnakeBody(DefaultRectangle const& default_rectangle, Cell& cell)
-    : SnakeFiller(default_rectangle, cell, texture)
-    {  }
-    
-  private:
-    inline static TextureStorage texture = std::string("Body.png");
-};
-
 class CellsPool: public sf::Drawable {
   public:
     struct NotFoundFreeCell: public std::exception {
@@ -220,6 +168,56 @@ class CellsPool: public sf::Drawable {
 };
 
 class Snake {
+  private:
+    class SnakeFiller: public Cell::Filler {
+      public:
+        SnakeFiller(
+            DefaultRectangle const& default_rectangle,
+            Cell& cell,
+            sf::Texture const& texture
+        )
+        : Filler(createSprite(default_rectangle, cell.coord, texture))
+        { cell.is_usable = false; }
+        
+        
+        sf::Sprite createSprite(
+            DefaultRectangle const& default_rectangle,
+            Coord const& coord,
+            sf::Texture const& texture
+        ) const {
+            sf::Sprite sprite = default_rectangle.configure(
+                DefaultRectangle::Configurator(coord, texture)
+            );
+            
+            sf::Vector2f scale = {
+                default_rectangle.getSize().x / texture.getSize().x,
+                default_rectangle.getSize().y / texture.getSize().y
+            };
+            
+            sprite.setScale(scale);
+            
+            return sprite;
+        }
+    };
+    class SnakeHead: public SnakeFiller {
+      public:
+        SnakeHead(DefaultRectangle const& default_rectangle, Cell& cell)
+        : SnakeFiller(default_rectangle, cell, texture)
+        {  }
+      
+      private:
+        inline static TextureStorage texture = std::string("Head.png");
+    };
+    class SnakeBody: public SnakeFiller {
+      public:
+        SnakeBody(DefaultRectangle const& default_rectangle, Cell& cell)
+        : SnakeFiller(default_rectangle, cell, texture)
+        {  }
+      
+      private:
+        inline static TextureStorage texture = std::string("Body.png");
+    };
+    
   public:
     enum class Direction { Up, Down, Left, Right };
     
