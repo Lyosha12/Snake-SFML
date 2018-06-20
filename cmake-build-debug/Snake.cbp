@@ -11,10 +11,10 @@
 				<Option working_dir="D:/GitRepository/Snake-SFML/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-P/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-P/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-P/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-P/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-R/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-R/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-R/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-R/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Snake">
@@ -26,18 +26,18 @@
 				<Compiler>
 					<Add option="-DSFML_STATIC"/>
 					<Add directory="W:/Programs/Programming environment/Librares/SFML-2.4.2/include"/>
-					<Add directory="W:/Programs/Programming environment/Compilers/mingw32-i686-7.3.0-posix-dwarf-rt_v5-rev0/bin/../lib/gcc/i686-w64-mingw32/7.3.0/include/c++"/>
-					<Add directory="W:/Programs/Programming environment/Compilers/mingw32-i686-7.3.0-posix-dwarf-rt_v5-rev0/bin/../lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32"/>
-					<Add directory="W:/Programs/Programming environment/Compilers/mingw32-i686-7.3.0-posix-dwarf-rt_v5-rev0/bin/../lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward"/>
-					<Add directory="W:/Programs/Programming environment/Compilers/mingw32-i686-7.3.0-posix-dwarf-rt_v5-rev0/bin/../lib/gcc/i686-w64-mingw32/7.3.0/include"/>
-					<Add directory="W:/Programs/Programming environment/Compilers/mingw32-i686-7.3.0-posix-dwarf-rt_v5-rev0/bin/../lib/gcc/i686-w64-mingw32/7.3.0/include-fixed"/>
-					<Add directory="W:/Programs/Programming environment/Compilers/mingw32-i686-7.3.0-posix-dwarf-rt_v5-rev0/bin/../lib/gcc/i686-w64-mingw32/7.3.0/../../../../i686-w64-mingw32/include"/>
+					<Add directory="W:/Programs/Programming environment/Compilers/mingw32-i686-8.1.0-release-posix-dwarf-rt_v6-rev0/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="W:/Programs/Programming environment/Compilers/mingw32-i686-8.1.0-release-posix-dwarf-rt_v6-rev0/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32"/>
+					<Add directory="W:/Programs/Programming environment/Compilers/mingw32-i686-8.1.0-release-posix-dwarf-rt_v6-rev0/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="W:/Programs/Programming environment/Compilers/mingw32-i686-8.1.0-release-posix-dwarf-rt_v6-rev0/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include"/>
+					<Add directory="W:/Programs/Programming environment/Compilers/mingw32-i686-8.1.0-release-posix-dwarf-rt_v6-rev0/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="W:/Programs/Programming environment/Compilers/mingw32-i686-8.1.0-release-posix-dwarf-rt_v6-rev0/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-P/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 Snake"/>
-					<CompileFile command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-P/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-P/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-P/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-R/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 Snake"/>
+					<CompileFile command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-R/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-R/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-R/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Snake/fast">
@@ -49,38 +49,38 @@
 				<Compiler>
 					<Add option="-DSFML_STATIC"/>
 					<Add directory="W:/Programs/Programming environment/Librares/SFML-2.4.2/include"/>
-					<Add directory="W:/Programs/Programming environment/Compilers/mingw32-i686-7.3.0-posix-dwarf-rt_v5-rev0/bin/../lib/gcc/i686-w64-mingw32/7.3.0/include/c++"/>
-					<Add directory="W:/Programs/Programming environment/Compilers/mingw32-i686-7.3.0-posix-dwarf-rt_v5-rev0/bin/../lib/gcc/i686-w64-mingw32/7.3.0/include/c++/i686-w64-mingw32"/>
-					<Add directory="W:/Programs/Programming environment/Compilers/mingw32-i686-7.3.0-posix-dwarf-rt_v5-rev0/bin/../lib/gcc/i686-w64-mingw32/7.3.0/include/c++/backward"/>
-					<Add directory="W:/Programs/Programming environment/Compilers/mingw32-i686-7.3.0-posix-dwarf-rt_v5-rev0/bin/../lib/gcc/i686-w64-mingw32/7.3.0/include"/>
-					<Add directory="W:/Programs/Programming environment/Compilers/mingw32-i686-7.3.0-posix-dwarf-rt_v5-rev0/bin/../lib/gcc/i686-w64-mingw32/7.3.0/include-fixed"/>
-					<Add directory="W:/Programs/Programming environment/Compilers/mingw32-i686-7.3.0-posix-dwarf-rt_v5-rev0/bin/../lib/gcc/i686-w64-mingw32/7.3.0/../../../../i686-w64-mingw32/include"/>
+					<Add directory="W:/Programs/Programming environment/Compilers/mingw32-i686-8.1.0-release-posix-dwarf-rt_v6-rev0/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="W:/Programs/Programming environment/Compilers/mingw32-i686-8.1.0-release-posix-dwarf-rt_v6-rev0/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32"/>
+					<Add directory="W:/Programs/Programming environment/Compilers/mingw32-i686-8.1.0-release-posix-dwarf-rt_v6-rev0/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="W:/Programs/Programming environment/Compilers/mingw32-i686-8.1.0-release-posix-dwarf-rt_v6-rev0/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include"/>
+					<Add directory="W:/Programs/Programming environment/Compilers/mingw32-i686-8.1.0-release-posix-dwarf-rt_v6-rev0/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="W:/Programs/Programming environment/Compilers/mingw32-i686-8.1.0-release-posix-dwarf-rt_v6-rev0/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-P/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 Snake/fast"/>
-					<CompileFile command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-P/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-P/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-P/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-R/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 Snake/fast"/>
+					<CompileFile command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-R/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-R/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-R/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
 				<Option working_dir="D:/GitRepository/Snake-SFML/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-P/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-P/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-P/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-P/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-R/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-R/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-R/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-R/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
 				<Option working_dir="D:/GitRepository/Snake-SFML/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-P/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-P/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-P/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-P/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-R/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-R/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-R/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="W:/Programs/PROGRA~1/COMPIL~1/MINGW3~1.0-R/bin/mingw32-make.exe -f &quot;D:/GitRepository/Snake-SFML/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>

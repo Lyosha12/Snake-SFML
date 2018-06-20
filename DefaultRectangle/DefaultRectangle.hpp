@@ -37,6 +37,7 @@ class DefaultRectangle {
     };
     
     sf::Sprite configure(Configurator const& configurator) const;
+    sf::Vector2f getSize() const;
     
   private:
     sf::RectangleShape default_rectangle;

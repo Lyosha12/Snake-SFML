@@ -20,7 +20,7 @@ struct Coord {
     double vectorLength() const;
     
     bool  operator== (double value) const;
-    bool  operator== (Coord const& rhs);
+    bool  operator== (Coord const& rhs) const;
     bool  operator!= (int value) const;
     Coord operator+  (Coord const& rhs) const;
     Coord operator-  (Coord const& rhs) const;

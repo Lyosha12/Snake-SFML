@@ -39,55 +39,46 @@ class TextureStorage {
                 );
         }
     }
-    TextureStorage(const char* texture_name): TextureStorage(std::string(texture_name)) { }
-    TextureStorage(std::string texture_name) {
+    TextureStorage(std::string texture_name, bool is_repeated = false) {
         textures.push_back({});
+        
         if(!textures.back().loadFromFile("Textures/" + texture_name))
             throw std::runtime_error(
                 "Texture " +
                 texture_name +
                 " was not loaded from Textures/"
             );
-    
+        
+        textures[0].setRepeated(is_repeated);
     }
-  
-  sf::Texture const& operator() (size_t texture_index) {
-      if(texture_index < textures.size())
-          return textures[texture_index];
-      else
-          throw std::logic_error(
-              "Try to use uncreated texture: " +
-              std::to_string(texture_index)
-          );
-  }
-  operator sf::Texture const& () {
-      if(textures.size() == 1)
-          return textures[0];
-      else
-          throw std::logic_error("Try to use list of textures as single texture");
-  }
-  
+    
+    sf::Texture const& operator[] (size_t texture_index) const {
+        if(texture_index < textures.size())
+            return textures[texture_index];
+        else
+            throw std::logic_error(
+                "Try to use uncreated texture: " +
+                std::to_string(texture_index)
+            );
+    }
+    
+    operator sf::Texture const& () const {
+        if(textures.size() == 1)
+            return textures[0];
+        else
+            throw std::logic_error(
+                "Try to use list of textures as single texture"
+            );
+    }
+    sf::Texture const* operator-> () const {
+        return &static_cast<sf::Texture const&> (*this);
+    }
+    
+    
   private:
     std::vector<sf::Texture> textures;
 };
 
-class FreeCell: public Cell::Filler {
-  public:
-    FreeCell(DefaultRectangle const& default_rectangle, Cell& cell, Coord const& coord)
-        : Filler(createSprite(default_rectangle, cell.coord = coord))
-    { cell.is_usable = true; }
-    FreeCell(DefaultRectangle const& default_rectangle, Cell& cell)
-        : Filler(createSprite(default_rectangle, cell.coord))
-    { cell.is_usable = true; }
-    
-    
-    sf::Sprite createSprite(DefaultRectangle const& default_rectangle, Coord const& coord) const {
-        return default_rectangle.configure(DefaultRectangle::Configurator(coord, texture));
-    }
-  
-  private:
-    inline static TextureStorage texture = "Background.png";
-};
 class SnakeHead: public Cell::Filler {
   public:
     SnakeHead(DefaultRectangle const& default_rectangle, Cell& cell)
@@ -96,11 +87,20 @@ class SnakeHead: public Cell::Filler {
 
     
     sf::Sprite createSprite(DefaultRectangle const& default_rectangle, Coord const& coord) const {
-        return default_rectangle.configure(DefaultRectangle::Configurator(coord, texture));
+        sf::Sprite sprite = default_rectangle.configure(DefaultRectangle::Configurator(coord, texture));
+    
+        sf::Vector2f scale = {
+            default_rectangle.getSize().x / texture->getSize().x,
+            default_rectangle.getSize().y / texture->getSize().y
+        };
+    
+        sprite.setScale(scale);
+    
+        return sprite;
     }
   
   private:
-    inline static TextureStorage texture = "Head.png";
+    inline static TextureStorage texture = std::string("Head.png");
 };
 class SnakeBody: public Cell::Filler {
   public:
@@ -109,11 +109,20 @@ class SnakeBody: public Cell::Filler {
     { cell.is_usable = false; }
     
     sf::Sprite createSprite(DefaultRectangle const& default_rectangle, Coord const& coord) const {
-        return default_rectangle.configure(DefaultRectangle::Configurator(coord, texture));
+        sf::Sprite sprite = default_rectangle.configure(DefaultRectangle::Configurator(coord, texture));
+    
+        sf::Vector2f scale = {
+            default_rectangle.getSize().x / texture->getSize().x,
+            default_rectangle.getSize().y / texture->getSize().y
+        };
+    
+        sprite.setScale(scale);
+    
+        return sprite;
     }
   
   private:
-    inline static TextureStorage texture = "Body.png";
+    inline static TextureStorage texture = std::string("Body.png");
 };
 
 class CellsPool: public sf::Drawable {
@@ -138,19 +147,19 @@ class CellsPool: public sf::Drawable {
     : default_rectangle(settings)
     , count_cells_x(count_cells_x)
     , count_cells_y(count_cells_y)
+    , background_texture("Background.png", true)
+    , background(background_texture)
     , window(window)
      {
+         background.setTextureRect(sf::IntRect(0, 0, window.getSize().x, window.getSize().y));
+         
          cells.resize(count_cells_y);
          for(auto& row: cells)
              row = std::move(std::vector<Cell>(count_cells_x));
          
          for(size_t y = 0; y != count_cells_y; ++y)
             for(size_t x = 0; x != count_cells_x; ++x) {
-                cells[y][x].filler.reset(new FreeCell(
-                    default_rectangle,
-                    cells[y][x],
-                    Coord(x, y)
-                ));
+                cells[y][x].coord = {x, y};
                 available_cells.push_back(&cells[y][x]);
             }
     }
@@ -201,11 +210,12 @@ class CellsPool: public sf::Drawable {
     void  releaseCell(Cell* cell) {
         // Освободить клетку от текущего заполнителя,
         // добавить в список свободных.
-        cell->filler.reset(new FreeCell(default_rectangle, *cell));
+        cell->filler = nullptr;
         available_cells.push_front(cell);
     }
     
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override {
+        target.draw(background);
         for(auto const& row: cells)
             for(auto const& cell: row)
                 target.draw(cell, states);
@@ -244,13 +254,19 @@ class CellsPool: public sf::Drawable {
             return runner;
     }
   
+    
   private:
     DefaultRectangle const& default_rectangle;
     size_t count_cells_x;
     size_t count_cells_y;
-    sf::RenderWindow& window;
+    
     std::vector<std::vector<Cell>> cells;
     std::list<Cell*> available_cells;
+    
+    TextureStorage background_texture;
+    sf::Sprite background;
+    
+    sf::RenderWindow& window;
 };
 
 class Snake {
@@ -329,7 +345,7 @@ class Snake {
   private:
     std::list<Cell*> body;
     Coord direction = {0, 0};
-    TimeCounter<std::chrono::steady_clock> move_time = 80ms;
+    TimeCounter<std::chrono::steady_clock> move_time = 150ms;
     std::queue<Coord> moves;
     
     
@@ -408,6 +424,6 @@ int main() {
     ShowWindow(GetConsoleWindow(), SW_HIDE);
     srand(static_cast<unsigned int>(time(0)));
     
-    Game(500, 500, 25, 25, "Snake").mainLoop();
+    Game(800, 600, 20, 20, "Snake").mainLoop();
     return 0;
 }

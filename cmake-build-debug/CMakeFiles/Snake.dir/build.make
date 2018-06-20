@@ -60,15 +60,15 @@ CMakeFiles/Snake.dir/main.cpp.obj: CMakeFiles/Snake.dir/flags.make
 CMakeFiles/Snake.dir/main.cpp.obj: CMakeFiles/Snake.dir/includes_CXX.rsp
 CMakeFiles/Snake.dir/main.cpp.obj: ../main.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\GitRepository\Snake-SFML\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Snake.dir/main.cpp.obj"
-	W:\Programs\PROGRA~1\COMPIL~1\MINGW3~1.0-P\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Snake.dir\main.cpp.obj -c D:\GitRepository\Snake-SFML\main.cpp
+	W:\Programs\PROGRA~1\COMPIL~1\MINGW3~1.0-R\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Snake.dir\main.cpp.obj -c D:\GitRepository\Snake-SFML\main.cpp
 
 CMakeFiles/Snake.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Snake.dir/main.cpp.i"
-	W:\Programs\PROGRA~1\COMPIL~1\MINGW3~1.0-P\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\GitRepository\Snake-SFML\main.cpp > CMakeFiles\Snake.dir\main.cpp.i
+	W:\Programs\PROGRA~1\COMPIL~1\MINGW3~1.0-R\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\GitRepository\Snake-SFML\main.cpp > CMakeFiles\Snake.dir\main.cpp.i
 
 CMakeFiles/Snake.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Snake.dir/main.cpp.s"
-	W:\Programs\PROGRA~1\COMPIL~1\MINGW3~1.0-P\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\GitRepository\Snake-SFML\main.cpp -o CMakeFiles\Snake.dir\main.cpp.s
+	W:\Programs\PROGRA~1\COMPIL~1\MINGW3~1.0-R\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\GitRepository\Snake-SFML\main.cpp -o CMakeFiles\Snake.dir\main.cpp.s
 
 CMakeFiles/Snake.dir/main.cpp.obj.requires:
 
@@ -85,15 +85,15 @@ CMakeFiles/Snake.dir/ErrorPrinter/ErrorPrinter.cpp.obj: CMakeFiles/Snake.dir/fla
 CMakeFiles/Snake.dir/ErrorPrinter/ErrorPrinter.cpp.obj: CMakeFiles/Snake.dir/includes_CXX.rsp
 CMakeFiles/Snake.dir/ErrorPrinter/ErrorPrinter.cpp.obj: ../ErrorPrinter/ErrorPrinter.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\GitRepository\Snake-SFML\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Snake.dir/ErrorPrinter/ErrorPrinter.cpp.obj"
-	W:\Programs\PROGRA~1\COMPIL~1\MINGW3~1.0-P\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Snake.dir\ErrorPrinter\ErrorPrinter.cpp.obj -c D:\GitRepository\Snake-SFML\ErrorPrinter\ErrorPrinter.cpp
+	W:\Programs\PROGRA~1\COMPIL~1\MINGW3~1.0-R\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Snake.dir\ErrorPrinter\ErrorPrinter.cpp.obj -c D:\GitRepository\Snake-SFML\ErrorPrinter\ErrorPrinter.cpp
 
 CMakeFiles/Snake.dir/ErrorPrinter/ErrorPrinter.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Snake.dir/ErrorPrinter/ErrorPrinter.cpp.i"
-	W:\Programs\PROGRA~1\COMPIL~1\MINGW3~1.0-P\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\GitRepository\Snake-SFML\ErrorPrinter\ErrorPrinter.cpp > CMakeFiles\Snake.dir\ErrorPrinter\ErrorPrinter.cpp.i
+	W:\Programs\PROGRA~1\COMPIL~1\MINGW3~1.0-R\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\GitRepository\Snake-SFML\ErrorPrinter\ErrorPrinter.cpp > CMakeFiles\Snake.dir\ErrorPrinter\ErrorPrinter.cpp.i
 
 CMakeFiles/Snake.dir/ErrorPrinter/ErrorPrinter.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Snake.dir/ErrorPrinter/ErrorPrinter.cpp.s"
-	W:\Programs\PROGRA~1\COMPIL~1\MINGW3~1.0-P\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\GitRepository\Snake-SFML\ErrorPrinter\ErrorPrinter.cpp -o CMakeFiles\Snake.dir\ErrorPrinter\ErrorPrinter.cpp.s
+	W:\Programs\PROGRA~1\COMPIL~1\MINGW3~1.0-R\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\GitRepository\Snake-SFML\ErrorPrinter\ErrorPrinter.cpp -o CMakeFiles\Snake.dir\ErrorPrinter\ErrorPrinter.cpp.s
 
 CMakeFiles/Snake.dir/ErrorPrinter/ErrorPrinter.cpp.obj.requires:
 
@@ -110,15 +110,15 @@ CMakeFiles/Snake.dir/Coord/Coord.cpp.obj: CMakeFiles/Snake.dir/flags.make
 CMakeFiles/Snake.dir/Coord/Coord.cpp.obj: CMakeFiles/Snake.dir/includes_CXX.rsp
 CMakeFiles/Snake.dir/Coord/Coord.cpp.obj: ../Coord/Coord.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\GitRepository\Snake-SFML\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Snake.dir/Coord/Coord.cpp.obj"
-	W:\Programs\PROGRA~1\COMPIL~1\MINGW3~1.0-P\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Snake.dir\Coord\Coord.cpp.obj -c D:\GitRepository\Snake-SFML\Coord\Coord.cpp
+	W:\Programs\PROGRA~1\COMPIL~1\MINGW3~1.0-R\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Snake.dir\Coord\Coord.cpp.obj -c D:\GitRepository\Snake-SFML\Coord\Coord.cpp
 
 CMakeFiles/Snake.dir/Coord/Coord.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Snake.dir/Coord/Coord.cpp.i"
-	W:\Programs\PROGRA~1\COMPIL~1\MINGW3~1.0-P\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\GitRepository\Snake-SFML\Coord\Coord.cpp > CMakeFiles\Snake.dir\Coord\Coord.cpp.i
+	W:\Programs\PROGRA~1\COMPIL~1\MINGW3~1.0-R\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\GitRepository\Snake-SFML\Coord\Coord.cpp > CMakeFiles\Snake.dir\Coord\Coord.cpp.i
 
 CMakeFiles/Snake.dir/Coord/Coord.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Snake.dir/Coord/Coord.cpp.s"
-	W:\Programs\PROGRA~1\COMPIL~1\MINGW3~1.0-P\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\GitRepository\Snake-SFML\Coord\Coord.cpp -o CMakeFiles\Snake.dir\Coord\Coord.cpp.s
+	W:\Programs\PROGRA~1\COMPIL~1\MINGW3~1.0-R\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\GitRepository\Snake-SFML\Coord\Coord.cpp -o CMakeFiles\Snake.dir\Coord\Coord.cpp.s
 
 CMakeFiles/Snake.dir/Coord/Coord.cpp.obj.requires:
 
@@ -135,15 +135,15 @@ CMakeFiles/Snake.dir/DefaultRectangle/DefaultRectangle.cpp.obj: CMakeFiles/Snake
 CMakeFiles/Snake.dir/DefaultRectangle/DefaultRectangle.cpp.obj: CMakeFiles/Snake.dir/includes_CXX.rsp
 CMakeFiles/Snake.dir/DefaultRectangle/DefaultRectangle.cpp.obj: ../DefaultRectangle/DefaultRectangle.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\GitRepository\Snake-SFML\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Snake.dir/DefaultRectangle/DefaultRectangle.cpp.obj"
-	W:\Programs\PROGRA~1\COMPIL~1\MINGW3~1.0-P\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Snake.dir\DefaultRectangle\DefaultRectangle.cpp.obj -c D:\GitRepository\Snake-SFML\DefaultRectangle\DefaultRectangle.cpp
+	W:\Programs\PROGRA~1\COMPIL~1\MINGW3~1.0-R\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Snake.dir\DefaultRectangle\DefaultRectangle.cpp.obj -c D:\GitRepository\Snake-SFML\DefaultRectangle\DefaultRectangle.cpp
 
 CMakeFiles/Snake.dir/DefaultRectangle/DefaultRectangle.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Snake.dir/DefaultRectangle/DefaultRectangle.cpp.i"
-	W:\Programs\PROGRA~1\COMPIL~1\MINGW3~1.0-P\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\GitRepository\Snake-SFML\DefaultRectangle\DefaultRectangle.cpp > CMakeFiles\Snake.dir\DefaultRectangle\DefaultRectangle.cpp.i
+	W:\Programs\PROGRA~1\COMPIL~1\MINGW3~1.0-R\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\GitRepository\Snake-SFML\DefaultRectangle\DefaultRectangle.cpp > CMakeFiles\Snake.dir\DefaultRectangle\DefaultRectangle.cpp.i
 
 CMakeFiles/Snake.dir/DefaultRectangle/DefaultRectangle.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Snake.dir/DefaultRectangle/DefaultRectangle.cpp.s"
-	W:\Programs\PROGRA~1\COMPIL~1\MINGW3~1.0-P\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\GitRepository\Snake-SFML\DefaultRectangle\DefaultRectangle.cpp -o CMakeFiles\Snake.dir\DefaultRectangle\DefaultRectangle.cpp.s
+	W:\Programs\PROGRA~1\COMPIL~1\MINGW3~1.0-R\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\GitRepository\Snake-SFML\DefaultRectangle\DefaultRectangle.cpp -o CMakeFiles\Snake.dir\DefaultRectangle\DefaultRectangle.cpp.s
 
 CMakeFiles/Snake.dir/DefaultRectangle/DefaultRectangle.cpp.obj.requires:
 
@@ -160,15 +160,15 @@ CMakeFiles/Snake.dir/Cell/Cell.cpp.obj: CMakeFiles/Snake.dir/flags.make
 CMakeFiles/Snake.dir/Cell/Cell.cpp.obj: CMakeFiles/Snake.dir/includes_CXX.rsp
 CMakeFiles/Snake.dir/Cell/Cell.cpp.obj: ../Cell/Cell.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\GitRepository\Snake-SFML\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Snake.dir/Cell/Cell.cpp.obj"
-	W:\Programs\PROGRA~1\COMPIL~1\MINGW3~1.0-P\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Snake.dir\Cell\Cell.cpp.obj -c D:\GitRepository\Snake-SFML\Cell\Cell.cpp
+	W:\Programs\PROGRA~1\COMPIL~1\MINGW3~1.0-R\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Snake.dir\Cell\Cell.cpp.obj -c D:\GitRepository\Snake-SFML\Cell\Cell.cpp
 
 CMakeFiles/Snake.dir/Cell/Cell.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Snake.dir/Cell/Cell.cpp.i"
-	W:\Programs\PROGRA~1\COMPIL~1\MINGW3~1.0-P\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\GitRepository\Snake-SFML\Cell\Cell.cpp > CMakeFiles\Snake.dir\Cell\Cell.cpp.i
+	W:\Programs\PROGRA~1\COMPIL~1\MINGW3~1.0-R\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\GitRepository\Snake-SFML\Cell\Cell.cpp > CMakeFiles\Snake.dir\Cell\Cell.cpp.i
 
 CMakeFiles/Snake.dir/Cell/Cell.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Snake.dir/Cell/Cell.cpp.s"
-	W:\Programs\PROGRA~1\COMPIL~1\MINGW3~1.0-P\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\GitRepository\Snake-SFML\Cell\Cell.cpp -o CMakeFiles\Snake.dir\Cell\Cell.cpp.s
+	W:\Programs\PROGRA~1\COMPIL~1\MINGW3~1.0-R\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\GitRepository\Snake-SFML\Cell\Cell.cpp -o CMakeFiles\Snake.dir\Cell\Cell.cpp.s
 
 CMakeFiles/Snake.dir/Cell/Cell.cpp.obj.requires:
 

@@ -43,7 +43,7 @@ class Cell: public sf::Drawable {
     
     Coord coord = {-1, -1};
     std::unique_ptr<Filler> filler = nullptr;
-    bool is_usable = false;
+    bool is_usable = true; // Изначально змейка может попасть в любую клетку.
     
   private:
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

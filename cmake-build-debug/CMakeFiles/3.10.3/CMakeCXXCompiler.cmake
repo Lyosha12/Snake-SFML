@@ -1,7 +1,7 @@
-set(CMAKE_CXX_COMPILER "W:/Programs/Programming environment/Compilers/mingw32-i686-7.3.0-posix-dwarf-rt_v5-rev0/bin/g++.exe")
+set(CMAKE_CXX_COMPILER "W:/Programs/Programming environment/Compilers/mingw32-i686-8.1.0-release-posix-dwarf-rt_v6-rev0/bin/g++.exe")
 set(CMAKE_CXX_COMPILER_ARG1 "")
 set(CMAKE_CXX_COMPILER_ID "GNU")
-set(CMAKE_CXX_COMPILER_VERSION "7.3.0")
+set(CMAKE_CXX_COMPILER_VERSION "8.1.0")
 set(CMAKE_CXX_COMPILER_VERSION_INTERNAL "")
 set(CMAKE_CXX_COMPILER_WRAPPER "")
 set(CMAKE_CXX_STANDARD_COMPUTED_DEFAULT "14")
@@ -17,11 +17,11 @@ set(CMAKE_CXX_SIMULATE_VERSION "")
 
 
 
-set(CMAKE_AR "W:/Programs/Programming environment/Compilers/mingw32-i686-7.3.0-posix-dwarf-rt_v5-rev0/bin/ar.exe")
-set(CMAKE_CXX_COMPILER_AR "W:/Programs/Programming environment/Compilers/mingw32-i686-7.3.0-posix-dwarf-rt_v5-rev0/bin/gcc-ar.exe")
-set(CMAKE_RANLIB "W:/Programs/Programming environment/Compilers/mingw32-i686-7.3.0-posix-dwarf-rt_v5-rev0/bin/ranlib.exe")
-set(CMAKE_CXX_COMPILER_RANLIB "W:/Programs/Programming environment/Compilers/mingw32-i686-7.3.0-posix-dwarf-rt_v5-rev0/bin/gcc-ranlib.exe")
-set(CMAKE_LINKER "W:/Programs/Programming environment/Compilers/mingw32-i686-7.3.0-posix-dwarf-rt_v5-rev0/bin/ld.exe")
+set(CMAKE_AR "W:/Programs/Programming environment/Compilers/mingw32-i686-8.1.0-release-posix-dwarf-rt_v6-rev0/bin/ar.exe")
+set(CMAKE_CXX_COMPILER_AR "W:/Programs/Programming environment/Compilers/mingw32-i686-8.1.0-release-posix-dwarf-rt_v6-rev0/bin/gcc-ar.exe")
+set(CMAKE_RANLIB "W:/Programs/Programming environment/Compilers/mingw32-i686-8.1.0-release-posix-dwarf-rt_v6-rev0/bin/ranlib.exe")
+set(CMAKE_CXX_COMPILER_RANLIB "W:/Programs/Programming environment/Compilers/mingw32-i686-8.1.0-release-posix-dwarf-rt_v6-rev0/bin/gcc-ranlib.exe")
+set(CMAKE_LINKER "W:/Programs/Programming environment/Compilers/mingw32-i686-8.1.0-release-posix-dwarf-rt_v6-rev0/bin/ld.exe")
 set(CMAKE_COMPILER_IS_GNUCXX 1)
 set(CMAKE_CXX_COMPILER_LOADED 1)
 set(CMAKE_CXX_COMPILER_WORKS TRUE)
@@ -71,5 +71,5 @@ endif()
 
 
 set(CMAKE_CXX_IMPLICIT_LINK_LIBRARIES "stdc++;mingw32;gcc_s;gcc;moldname;mingwex;pthread;advapi32;shell32;user32;kernel32;iconv;mingw32;gcc_s;gcc;moldname;mingwex")
-set(CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES "W:/Programs/Programming environment/Compilers/mingw32-i686-7.3.0-posix-dwarf-rt_v5-rev0/lib/gcc/i686-w64-mingw32/7.3.0;W:/Programs/Programming environment/Compilers/mingw32-i686-7.3.0-posix-dwarf-rt_v5-rev0/lib/gcc;W:/Programs/Programming environment/Compilers/mingw32-i686-7.3.0-posix-dwarf-rt_v5-rev0/i686-w64-mingw32/lib;W:/Programs/Programming environment/Compilers/mingw32-i686-7.3.0-posix-dwarf-rt_v5-rev0/lib")
+set(CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES "W:/Programs/Programming environment/Compilers/mingw32-i686-8.1.0-release-posix-dwarf-rt_v6-rev0/lib/gcc/i686-w64-mingw32/8.1.0;W:/Programs/Programming environment/Compilers/mingw32-i686-8.1.0-release-posix-dwarf-rt_v6-rev0/lib/gcc;W:/Programs/Programming environment/Compilers/mingw32-i686-8.1.0-release-posix-dwarf-rt_v6-rev0/i686-w64-mingw32/lib;W:/Programs/Programming environment/Compilers/mingw32-i686-8.1.0-release-posix-dwarf-rt_v6-rev0/lib")
 set(CMAKE_CXX_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES "")

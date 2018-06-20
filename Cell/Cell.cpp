@@ -11,7 +11,8 @@ Cell::Cell(Cell&& cell)
 { }
 
 void Cell::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-    target.draw(*filler, states);
+    if(filler)
+        target.draw(*filler, states);
 }
 
 

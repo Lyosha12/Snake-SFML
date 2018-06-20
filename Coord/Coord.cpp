@@ -16,7 +16,7 @@ bool  Coord::operator== (double value) const {
     return std::abs(vectorLength() - value) < 1e-5;
 }
 
-bool  Coord::operator== (Coord const& rhs) {
+bool  Coord::operator== (Coord const& rhs) const {
     return this->x == rhs.x && this->y == rhs.y;
 }
 

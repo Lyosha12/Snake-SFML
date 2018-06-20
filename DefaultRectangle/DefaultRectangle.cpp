@@ -13,6 +13,10 @@ sf::Sprite DefaultRectangle::configure(Configurator const& configurator) const {
     return configurator(default_rectangle);
 }
 
+sf::Vector2f DefaultRectangle::getSize() const {
+    return default_rectangle.getSize();
+}
+
 
 
 

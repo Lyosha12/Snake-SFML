@@ -1,4 +1,4 @@
-ToolSet: w64 6.0@W:\Programs\Programming environment\Compilers\mingw32-i686-7.3.0-posix-dwarf-rt_v5-rev0
+ToolSet: w64 6.0@W:\Programs\Programming environment\Compilers\mingw32-i686-8.1.0-release-posix-dwarf-rt_v6-rev0
 Options: 
 
 Options:
