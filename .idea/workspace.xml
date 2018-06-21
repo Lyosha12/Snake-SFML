@@ -12,7 +12,8 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e959b6e-0de1-4b05-8793-f46476915173" name="Default" comment="Test gitignore">
+    <list default="true" id="6e959b6e-0de1-4b05-8793-f46476915173" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/Sneak.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" beforeDir="false" />
@@ -27,44 +28,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.3/CMakeCCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.3/CMakeCXXCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.3/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.3/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.3/CMakeRCCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.3/CMakeSystem.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.3/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.3/CompilerIdC/a.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.3/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.10.3/CompilerIdCXX/a.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Snake.dir/DependInfo.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Snake.dir/build.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Snake.dir/cmake_clean.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Snake.dir/depend.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Snake.dir/flags.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Snake.dir/includes_CXX.rsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Snake.dir/link.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Snake.dir/linklibs.rsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Snake.dir/objects1.rsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Snake.dir/progress.make" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cmake.check_cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/feature_tests.cxx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Snake.cbp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Snake.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Sneak.cbp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/cmake-build-release/" />
@@ -95,11 +58,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="62">
-              <caret line="268" column="11" selection-start-line="268" selection-start-column="11" selection-end-line="268" selection-end-column="11" />
+            <state relative-caret-position="230">
+              <caret line="276" column="14" selection-start-line="276" selection-start-column="14" selection-end-line="276" selection-end-column="14" />
               <folding>
                 <element signature="e#613#6241#1" />
                 <element signature="e#666#1027#1" />
@@ -110,6 +73,15 @@
                 <element signature="e#7841#7887#1" />
                 <element signature="e#10940#13361#1" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="42">
+              <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -155,6 +127,7 @@
         <option value="$PROJECT_DIR$/TextureStorage/TextureStorage.cpp" />
         <option value="$PROJECT_DIR$/Cell/Cell.hpp" />
         <option value="$PROJECT_DIR$/main.cpp" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -312,7 +285,7 @@
       <workItem from="1529498885622" duration="3903000" />
       <workItem from="1529503297786" duration="9490000" />
       <workItem from="1529570061286" duration="8380000" />
-      <workItem from="1529610623138" duration="4036000" />
+      <workItem from="1529610623138" duration="4281000" />
     </task>
     <task id="LOCAL-00001" summary="From CLion. Test.">
       <created>1529278038677</created>
@@ -426,11 +399,25 @@
       <option name="project" value="LOCAL" />
       <updated>1529617454489</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Delete unnecessary folders">
+      <created>1529617757083</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1529617757083</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Delete unnecessary folders again">
+      <created>1529617896748</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1529617896748</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="289576000" />
+    <option name="totallyTimeSpent" value="289821000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -443,15 +430,16 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12268641" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32921347" />
       <window_info anchor="bottom" id="Messages" order="9" weight="0.42526072" />
-      <window_info anchor="bottom" id="CMake" order="11" weight="0.32908458" />
+      <window_info anchor="bottom" id="CMake" order="11" visible="true" weight="0.32908458" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5002644" side_tool="true" weight="0.32908458" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32908458" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4997356" weight="0.32908458" />
-      <window_info anchor="bottom" id="Version Control" order="8" visible="true" weight="0.32908458" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32908458" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39976826" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -524,7 +512,9 @@
     <MESSAGE value="Moving snake fillers of cell into the class Snake." />
     <MESSAGE value="Prepare to introduce other game objects." />
     <MESSAGE value="Test gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="Test gitignore" />
+    <MESSAGE value="Delete unnecessary folders" />
+    <MESSAGE value="Delete unnecessary folders again" />
+    <option name="LAST_COMMIT_MESSAGE" value="Delete unnecessary folders again" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -553,13 +543,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="49" selection-start-line="4" selection-start-column="49" selection-end-line="4" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Sources/main.cpp" />
     <entry file="file://C:/MinGW/include/unistd.h" />
     <entry file="file://C:/MinGW/include/winbase.h" />
@@ -781,8 +764,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="62">
-          <caret line="268" column="11" selection-start-line="268" selection-start-column="11" selection-end-line="268" selection-end-column="11" />
+        <state relative-caret-position="230">
+          <caret line="276" column="14" selection-start-line="276" selection-start-column="14" selection-end-line="276" selection-end-column="14" />
           <folding>
             <element signature="e#613#6241#1" />
             <element signature="e#666#1027#1" />
@@ -793,6 +776,13 @@
             <element signature="e#7841#7887#1" />
             <element signature="e#10940#13361#1" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
         </state>
       </provider>
     </entry>
