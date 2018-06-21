@@ -11,6 +11,9 @@
 #include <iomanip>
 #include <functional>
 #include <cstdlib>
+#include <thread>
+#include <atomic>
+#include <mutex>
 #include <windows.h>
 using namespace std::chrono_literals;
 
@@ -40,8 +43,12 @@ class CellsPool: public sf::Drawable {
     };
     
   public:
-    CellsPool(size_t count_cells_x, size_t count_cells_y,
-              sf::RenderWindow& window, DefaultRectangle const& settings)
+    CellsPool(
+        size_t count_cells_x,
+        size_t count_cells_y,
+        sf::RenderWindow& window,
+        DefaultRectangle const& settings
+    )
     : default_rectangle(settings)
     , count_cells_x(count_cells_x)
     , count_cells_y(count_cells_y)
@@ -62,26 +69,37 @@ class CellsPool: public sf::Drawable {
             }
     }
     
+    struct RequestedCell {
+        Cell* cell;
+        std::unique_ptr<Cell::Filler> prev_filler;
+        void operator() (Snake& snake) const {
+            if(prev_filler)
+                prev_filler->modify(snake);
+        }
+    };
     template <class Filler>
-    Cell* getRandCell() {
+    RequestedCell getRandCell() {
         size_t i = 0;
         size_t rand_cell = std::rand()%available_cells.size();
         auto runner = available_cells.begin(); // Пробежимся по всем свободным клеткам.
         while(i++ != rand_cell) // Пока не найдём выбранную случайную клетку.
             ++runner;
     
-        // Удалим клетку из свободных, заполнив её переданным типом клетки.
-        return kickFromAvailable(runner, new Filler(default_rectangle, **runner));
+        // Удалим клетку из свободных,
+        // если новый её заполнитель недоступен для использования.
+        // Вернём клетку и её предыдущий заполнитель.
+        std::unique_ptr<Cell::Filler> new_filler(new Filler(default_rectangle, **runner));
+        return kickFromAvailable(runner, std::move(new_filler));
     }
     template <class Filler>
-    Cell* getNearCell(Cell* cell) {
+    RequestedCell getNearCell(Cell* target) {
         // Берём случайную клетку в радиусе одной от заданной.
         
         // Найдём её соседей
-        Cell* up    = extractCell(cell->coord + Coord{ 0, -1});
-        Cell* down  = extractCell(cell->coord + Coord{ 0,  1});
-        Cell* right = extractCell(cell->coord + Coord{ 1,  0});
-        Cell* left  = extractCell(cell->coord + Coord{-1,  0});
+        Cell* up    = extractCell(target->coord + Coord{ 0, -1});
+        Cell* down  = extractCell(target->coord + Coord{ 0,  1});
+        Cell* right = extractCell(target->coord + Coord{ 1,  0});
+        Cell* left  = extractCell(target->coord + Coord{-1,  0});
         std::vector<Cell*> neighbors = {up, down, right, left};
         
         // Выберем случайную клетку, доступную к использованию.
@@ -90,37 +108,48 @@ class CellsPool: public sf::Drawable {
             Cell* neighbor = neighbors[rand_neighbor];
     
             if(neighbor->is_usable) {
-                Filler* filler = new Filler(default_rectangle, *neighbor);
-                return kickFromAvailable(findInAvailable(neighbor), filler);
+                std::unique_ptr<Cell::Filler> new_filler(new Filler(default_rectangle, *neighbor));
+                return kickFromAvailable(findInAvailable(neighbor), std::move(new_filler));
             } else
                 neighbors.erase(neighbors.begin() + rand_neighbor);
         }
         
-        throw NotFoundFreeCell(*cell);
+        throw NotFoundFreeCell(*target);
     }
     template <class Filler>
-    Cell* getNearCell(Cell* cell, Coord move_vector) {
+    RequestedCell getNearCell(Cell* target, Coord direction) {
         // Возьмём клетку по заданному направлению от текущей.
-        Cell* required_cell = extractCell(cell->coord + move_vector);
-        Filler* filler = new Filler(default_rectangle, *required_cell);
-        return kickFromAvailable(findInAvailable(required_cell), filler);
-    }
-    void  releaseCell(Cell* cell) {
-        // Освободить клетку от текущего заполнителя,
-        // добавить в список свободных.
-        cell->filler = nullptr;
-        available_cells.push_front(cell);
+        Cell* required_cell = extractCell(target->coord + direction);
+        std::unique_ptr<Cell::Filler> new_filler(new Filler(default_rectangle, *required_cell));
+        return kickFromAvailable(findInAvailable(required_cell), std::move(new_filler));
     }
     
-    void draw(sf::RenderTarget& target, sf::RenderStates states) const override {
-        target.draw(background);
-        for(auto const& row: cells)
-            for(auto const& cell: row)
-                target.draw(cell, states);
+    void releaseCell(Cell* cell) {
+        cell->filler = nullptr;
+        // Если клетка бонусная, то она уже была в списке доступных
+        // И её не нужно добавлять заново.
+        if(!cell->is_usable)
+            available_cells.push_front(cell);
     }
+    
     
   private:
+    RequestedCell kickFromAvailable(
+        std::list<Cell*>::iterator runner,
+        std::unique_ptr<Cell::Filler> new_filler
+    ) {
+        Cell* cell = *runner;
+        // Если клетка бонусная, то из доступных её удалять не нужно.
+        if(!cell->is_usable)
+            available_cells.erase(runner);
+        
+        std::unique_ptr<Cell::Filler> prev_filler(std::move(cell->filler));
+        cell->filler = std::move(new_filler);
+        return { cell, std::move(prev_filler) };
+    }
     Coord normalize(Coord coord) const {
+        // Обеспечивает перепрыгивание через границу
+        // поля на противоположную часть.
         auto normalize_component = [] (int c, int max) {
             return c >= 0 ? c % max : max + c;
         };
@@ -133,26 +162,24 @@ class CellsPool: public sf::Drawable {
         coord = normalize(coord);
         return &cells[coord.y][coord.x];
     }
-    Cell* kickFromAvailable(std::list<Cell*>::iterator runner, Cell::Filler* filler) {
-        // Выбросить клетку из свободных и
-        // обновить её содержание новым заполнителем.
-        Cell* cell = *runner;
-        available_cells.erase(runner);
-        cell->filler.reset(filler);
-        return cell;
-    }
     std::list<Cell*>::iterator findInAvailable(Cell* cell) {
         auto runner = available_cells.begin();
         while(runner != available_cells.end() && *runner != cell)
             ++runner;
         
-        if(runner == available_cells.end())
-            throw NotFoundFreeCell(*cell);
-        else
+        if(runner != available_cells.end())
             return runner;
+        else
+            throw NotFoundFreeCell(*cell);
     }
-  
     
+    
+    void draw(sf::RenderTarget& target, sf::RenderStates states) const override {
+        target.draw(background);
+        for(auto const& row: cells)
+            for(auto const& cell: row)
+                target.draw(cell, states);
+    }
   private:
     DefaultRectangle const& default_rectangle;
     size_t count_cells_x;
@@ -222,29 +249,12 @@ class Snake {
     enum class Direction { Up, Down, Left, Right };
     
   public:
-    Snake(CellsPool& cells_pool, size_t max_start_parts = 4)
+    Snake(CellsPool& cells_pool)
     : cells_pool(cells_pool)
     {
-        // Разместим голову в случайном месте поля.
-        body.push_back(cells_pool.getRandCell<SnakeHead>());
-    
-        // Создадим параметры змейки.
-        int guaranteed_parts = 2;
-        int additional_parts = rand()%(max_start_parts - guaranteed_parts);
-        int start_parts = additional_parts + guaranteed_parts;
-        try {
-            // Сгенерируем остальное тело.
-            while(start_parts--)
-                body.push_back(cells_pool.getNearCell<SnakeBody>(body.back()));
-        } catch(CellsPool::NotFoundFreeCell const& e) {
-            // Заканчиваем построение змеи - нет клеток для продолжения.
-        }
-        
-        // Узнаем направление змейки. От координат головы
-        // отнимем координаты следующего блока после неё.
-        Cell* head = *body.begin();
-        Cell* after_head = *++body.begin();
-        direction = head->coord - after_head->coord;
+        addHead();
+        addBody();
+        findHeadDirection();
     }
     
     void move() {
@@ -254,7 +264,7 @@ class Snake {
         tryChangeDirection();
     
         // Получим новую голову по направлению движения относительно текущей головы.
-        Cell* new_head = cells_pool.getNearCell<SnakeHead>(body.front(), direction);
+        CellsPool::RequestedCell new_head = cells_pool.getNearCell<SnakeHead>(body.front(), direction);
         
         // Освободим клетку старой головы.
         cells_pool.releaseCell(body.front());
@@ -262,15 +272,23 @@ class Snake {
         body.pop_front();
         
         // Добавим часть тела в список между новой головой и удалённой прошлой.
-        body.push_front(cells_pool.getNearCell<SnakeBody>(new_head, -direction));
+        // Т.к. бонус не мог появиться между удалением текущей головы и
+        // добавлением части тела вместо неё,
+        // будем игнорировать прошлый заполнитель клетки.
+        body.push_front(cells_pool.getNearCell<SnakeBody>(new_head.cell, -direction).cell);
         // Добавим вслед за частью тела новую голову.
-        body.push_front(new_head);
+        body.push_front(new_head.cell);
         
         // Освободим клетку хвоста.
         cells_pool.releaseCell(body.back());
         body.pop_back();
+        
+        // Дадим возможность потенциальному бонусу на клетке, где теперь
+        // нахдится голова змейки, изменить змейку.
+        new_head(*this);
     }
     void changeDirection(Direction direction) {
+        // Внешнее управление змейкой посредством пользовательского ввода.
         switch(direction) {
             case Direction::Up   : moves.push({ 0, -1}); break;
             case Direction::Down : moves.push({ 0,  1}); break;
@@ -280,6 +298,42 @@ class Snake {
     }
     
   private:
+    void addHead() {
+        // Разместим голову в случайном месте поля.
+        // Потом, если попали на какую-то бонусную клетку,
+        // применим бонус с неё.
+        CellsPool::RequestedCell head = cells_pool.getRandCell<SnakeHead>();
+        body.push_back(head.cell);
+        head(*this);
+    }
+    void addBody() {
+        // Создадим параметры змейки.
+        size_t max_start_parts = 4;
+        size_t guaranteed_parts = 2;
+        size_t additional_parts = rand()%(max_start_parts - guaranteed_parts);
+        size_t start_parts = additional_parts + guaranteed_parts;
+        
+        // Сгенерируем остальное тело.
+        try {
+            while(start_parts--) {
+                // Полученная клетка может быть бонусной.
+                CellsPool::RequestedCell body_part = cells_pool.getNearCell<SnakeBody>(body.back());
+                
+                body.push_back(body_part.cell);
+                // Поэтому после присоединения её к телу дадим возможность бонусу изменить змейку.
+                body_part(*this);
+            }
+        } catch(CellsPool::NotFoundFreeCell const& e) {
+            // Заканчиваем построение змеи - нет клеток для продолжения.
+        }
+    }
+    void findHeadDirection() {
+        // Узнаем направление змейки. От координат головы
+        // отнимем координаты блока перед головой.
+        Cell* head = *body.begin();
+        Cell* prev_head = *++body.begin();
+        direction = head->coord - prev_head->coord;
+    }
     void tryChangeDirection() {
         while(!moves.empty() && (moves.front() + direction == 0 || moves.front() == direction))
             moves.pop();
@@ -293,7 +347,7 @@ class Snake {
   private:
     std::list<Cell*> body;
     Coord direction = {0, 0};
-    TimeCounter<std::chrono::steady_clock> move_time = 150ms;
+    TimeCounter<std::chrono::steady_clock> move_time = 180ms;
     std::queue<Coord> moves;
     
     

@@ -26,11 +26,11 @@ class Cell: public sf::Drawable {
       // Его текстуру и форму определяет наследник этого класса.
     
       // Каждую клетку змейка может занять.
-      // И, в зависимости от реализации функции modifer,
+      // И, в зависимости от реализации функции modify,
       // змейка будет изменена так или иначе.
       public:
         Filler(sf::Sprite sprite);
-        virtual void modifer(Snake&) const;
+        virtual void modify(Snake&) const;
         
       private:
         sf::Sprite sprite;
