@@ -1,3 +1,0 @@
-D:/GitRepository/Snake-SFML/cmake-build-debug/CMakeFiles/Snake.dir
-D:/GitRepository/Snake-SFML/cmake-build-debug/CMakeFiles/edit_cache.dir
-D:/GitRepository/Snake-SFML/cmake-build-debug/CMakeFiles/rebuild_cache.dir

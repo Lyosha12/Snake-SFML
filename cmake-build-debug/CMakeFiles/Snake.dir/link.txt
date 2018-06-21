@@ -1,3 +1,0 @@
-"W:\Programs\Programming environment\IDEs\CLion 2018.1.4\bin\cmake\bin\cmake.exe" -E remove -f CMakeFiles\Snake.dir/objects.a
-W:\Programs\PROGRA~1\COMPIL~1\MINGW3~1.0-R\bin\ar.exe cr CMakeFiles\Snake.dir/objects.a @CMakeFiles\Snake.dir\objects1.rsp
-W:\Programs\PROGRA~1\COMPIL~1\MINGW3~1.0-R\bin\G__~1.EXE  -std=gnu++17 -pedantic -Wall -Wextra -g  -static -static-libgcc -Wl,--whole-archive CMakeFiles\Snake.dir/objects.a -Wl,--no-whole-archive  -o Snake.exe -Wl,--out-implib,libSnake.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\Snake.dir\linklibs.rsp

@@ -1,5 +1,0 @@
-"W:\Programs\Programming environment\IDEs\CLion 2018.1.4\bin\cmake\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" D:\GitRepository\Snake-SFML
--- Found SFML 2.4.2 in W:/Programs/Programming environment/Librares/SFML-2.4.2/include
--- Configuring done
--- Generating done
--- Build files have been written to: D:/GitRepository/Snake-SFML/cmake-build-debug
