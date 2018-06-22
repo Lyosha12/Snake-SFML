@@ -17,12 +17,12 @@
 #include "NotFoundFreeCell/NotFoundFreeCell.hpp"
 
 class CellsPool: public sf::Drawable {
-    // Класс отвечает за распределение клеток между
-    // объектами на поле. Между змейкой,
-    // бонусами и другими сущностями типа барьеров.
+    // РљР»Р°СЃСЃ РѕС‚РІРµС‡Р°РµС‚ Р·Р° СЂР°СЃРїСЂРµРґРµР»РµРЅРёРµ РєР»РµС‚РѕРє РјРµР¶РґСѓ
+    // РѕР±СЉРµРєС‚Р°РјРё РЅР° РїРѕР»Рµ. РњРµР¶РґСѓ Р·РјРµР№РєРѕР№,
+    // Р±РѕРЅСѓСЃР°РјРё Рё РґСЂСѓРіРёРјРё СЃСѓС‰РЅРѕСЃС‚СЏРјРё С‚РёРїР° Р±Р°СЂСЊРµСЂРѕРІ.
     
-    // Это разделяемый ресурс. Прежде, чем обратиться к нему,
-    // сначала нужно захватить его мьютекс.
+    // Р­С‚Рѕ СЂР°Р·РґРµР»СЏРµРјС‹Р№ СЂРµСЃСѓСЂСЃ. РџСЂРµР¶РґРµ, С‡РµРј РѕР±СЂР°С‚РёС‚СЊСЃСЏ Рє РЅРµРјСѓ,
+    // СЃРЅР°С‡Р°Р»Р° РЅСѓР¶РЅРѕ Р·Р°С…РІР°С‚РёС‚СЊ РµРіРѕ РјСЊСЋС‚РµРєСЃ.
     
     using FillerUPtr   = Cell::FillerUPtr;
     using CellCPtr     = Cell::CellCPtr  ;
@@ -46,36 +46,36 @@ class CellsPool: public sf::Drawable {
         size_t i = 0;
         size_t rand_cell = std::rand()%available_cells.size();
         AviablesIter cells_runner = available_cells.begin();
-        while(i++ != rand_cell) // Пока не найдём выбранную случайную клетку.
+        while(i++ != rand_cell) // РџРѕРєР° РЅРµ РЅР°Р№РґС‘Рј РІС‹Р±СЂР°РЅРЅСѓСЋ СЃР»СѓС‡Р°Р№РЅСѓСЋ РєР»РµС‚РєСѓ.
             ++cells_runner;
         
-        // Удалим клетку из свободных,
-        // если новый её заполнитель недоступен для использования.
-        // Вернём клетку и её предыдущий заполнитель.
+        // РЈРґР°Р»РёРј РєР»РµС‚РєСѓ РёР· СЃРІРѕР±РѕРґРЅС‹С…,
+        // РµСЃР»Рё РЅРѕРІС‹Р№ РµС‘ Р·Р°РїРѕР»РЅРёС‚РµР»СЊ РЅРµРґРѕСЃС‚СѓРїРµРЅ РґР»СЏ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ.
+        // Р’РµСЂРЅС‘Рј РєР»РµС‚РєСѓ Рё РµС‘ РїСЂРµРґС‹РґСѓС‰РёР№ Р·Р°РїРѕР»РЅРёС‚РµР»СЊ.
         std::unique_ptr<Cell::Filler> new_filler(
-            // TODO: Почему Filler должен изменять доступность клетки у себя в конструкторе?
+            // TODO: РџРѕС‡РµРјСѓ Filler РґРѕР»Р¶РµРЅ РёР·РјРµРЅСЏС‚СЊ РґРѕСЃС‚СѓРїРЅРѕСЃС‚СЊ РєР»РµС‚РєРё Сѓ СЃРµР±СЏ РІ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂРµ?
             new Filler(default_rectangle, const_cast<Cell&>(**cells_runner))
         );
         return kickFromAvailable(cells_runner, std::move(new_filler));
     }
     template <class Filler>
     RequestedCell getNearCell(CellCPtr target) {
-        // Берём случайную клетку в радиусе одной от заданной.
+        // Р‘РµСЂС‘Рј СЃР»СѓС‡Р°Р№РЅСѓСЋ РєР»РµС‚РєСѓ РІ СЂР°РґРёСѓСЃРµ РѕРґРЅРѕР№ РѕС‚ Р·Р°РґР°РЅРЅРѕР№.
         
-        // Найдём её соседей
+        // РќР°Р№РґС‘Рј РµС‘ СЃРѕСЃРµРґРµР№
         CellCPtr up    = extractCell(target->coord + Coord{ 0, -1});
         CellCPtr down  = extractCell(target->coord + Coord{ 0,  1});
         CellCPtr right = extractCell(target->coord + Coord{ 1,  0});
         CellCPtr left  = extractCell(target->coord + Coord{-1,  0});
         std::vector<CellCPtr> neighbors = {up, down, right, left};
         
-        // Выберем случайную клетку, доступную к использованию.
+        // Р’С‹Р±РµСЂРµРј СЃР»СѓС‡Р°Р№РЅСѓСЋ РєР»РµС‚РєСѓ, РґРѕСЃС‚СѓРїРЅСѓСЋ Рє РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЋ.
         while(!neighbors.empty()) {
             size_t rand_neighbor = std::rand()%neighbors.size();
             CellCPtr neighbor = neighbors[rand_neighbor];
             
             if(neighbor->is_usable) {
-                // TODO: Почему Filler должен изменять доступность клетки у себя в конструкторе?
+                // TODO: РџРѕС‡РµРјСѓ Filler РґРѕР»Р¶РµРЅ РёР·РјРµРЅСЏС‚СЊ РґРѕСЃС‚СѓРїРЅРѕСЃС‚СЊ РєР»РµС‚РєРё Сѓ СЃРµР±СЏ РІ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂРµ?
                 FillerUPtr new_filler(new Filler(default_rectangle, const_cast<Cell&>(*neighbor)));
                 return kickFromAvailable(findInAvailable(neighbor), std::move(new_filler));
         } else
@@ -86,10 +86,10 @@ class CellsPool: public sf::Drawable {
     }
     template <class Filler>
     RequestedCell getNearCell(CellCPtr target, Coord direction) {
-        // Возьмём клетку по заданному направлению от текущей.
+        // Р’РѕР·СЊРјС‘Рј РєР»РµС‚РєСѓ РїРѕ Р·Р°РґР°РЅРЅРѕРјСѓ РЅР°РїСЂР°РІР»РµРЅРёСЋ РѕС‚ С‚РµРєСѓС‰РµР№.
         CellPtr required_cell = extractCell(target->coord + direction);
         
-        // TODO: Почему Filler должен изменять доступность клетки у себя в конструкторе?
+        // TODO: РџРѕС‡РµРјСѓ Filler РґРѕР»Р¶РµРЅ РёР·РјРµРЅСЏС‚СЊ РґРѕСЃС‚СѓРїРЅРѕСЃС‚СЊ РєР»РµС‚РєРё Сѓ СЃРµР±СЏ РІ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂРµ?
         std::unique_ptr<Cell::Filler> new_filler(new Filler(default_rectangle, const_cast<Cell&>(*required_cell)));
 
         return kickFromAvailable(findInAvailable(required_cell), std::move(new_filler));
@@ -111,16 +111,16 @@ class CellsPool: public sf::Drawable {
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     
   private:
-    // Задаётся при старте программы и хранится в меню.
+    // Р—Р°РґР°С‘С‚СЃСЏ РїСЂРё СЃС‚Р°СЂС‚Рµ РїСЂРѕРіСЂР°РјРјС‹ Рё С…СЂР°РЅРёС‚СЃСЏ РІ РјРµРЅСЋ.
     DefaultRectangle const& default_rectangle;
     size_t count_cells_x;
     size_t count_cells_y;
     
     std::vector<std::vector<Cell>> cells;
-    // Из этого списка раздаются указатели на клетки
-    // для учёта их другими сущностями.
-    // Изменять их может только внутренняя реализация
-    // бассейна клеток - через const_cast<CellPtr>.
+    // РР· СЌС‚РѕРіРѕ СЃРїРёСЃРєР° СЂР°Р·РґР°СЋС‚СЃСЏ СѓРєР°Р·Р°С‚РµР»Рё РЅР° РєР»РµС‚РєРё
+    // РґР»СЏ СѓС‡С‘С‚Р° РёС… РґСЂСѓРіРёРјРё СЃСѓС‰РЅРѕСЃС‚СЏРјРё.
+    // РР·РјРµРЅСЏС‚СЊ РёС… РјРѕР¶РµС‚ С‚РѕР»СЊРєРѕ РІРЅСѓС‚СЂРµРЅРЅСЏСЏ СЂРµР°Р»РёР·Р°С†РёСЏ
+    // Р±Р°СЃСЃРµР№РЅР° РєР»РµС‚РѕРє - С‡РµСЂРµР· const_cast<CellPtr>.
     std::list<CellCPtr> available_cells;
     
     TextureStorage background_texture;

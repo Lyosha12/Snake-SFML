@@ -20,8 +20,8 @@ operator() (sf::RectangleShape const& default_rectangle) const {
 
 void DefaultRectangle::Configurator::
 setPos(sf::Sprite& sprite, sf::RectangleShape const& default_rectangle) const {
-    // В соответствии с текущими настройками
-    // устанавливается позиция для переданного прямоугольника.
+    // Р’ СЃРѕРѕС‚РІРµС‚СЃС‚РІРёРё СЃ С‚РµРєСѓС‰РёРјРё РЅР°СЃС‚СЂРѕР№РєР°РјРё
+    // СѓСЃС‚Р°РЅР°РІР»РёРІР°РµС‚СЃСЏ РїРѕР·РёС†РёСЏ РґР»СЏ РїРµСЂРµРґР°РЅРЅРѕРіРѕ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРєР°.
     float width  = default_rectangle.getSize().x;
     float height = default_rectangle.getSize().y;
     sprite.setPosition(width * pos_on_field.x, height * pos_on_field.y);

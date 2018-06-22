@@ -11,7 +11,7 @@
 #include <windows.h>
 
 class ErrorPrinter {
-    // Реализует обработку фатального исключения.
+    // Р РµР°Р»РёР·СѓРµС‚ РѕР±СЂР°Р±РѕС‚РєСѓ С„Р°С‚Р°Р»СЊРЅРѕРіРѕ РёСЃРєР»СЋС‡РµРЅРёСЏ.
     
   public:
     ErrorPrinter(std::string cause);

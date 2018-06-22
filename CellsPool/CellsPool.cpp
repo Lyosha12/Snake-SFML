@@ -37,8 +37,8 @@ void CellsPool::releaseCell(CellCPtr cell) {
     CellPtr returned_cell = const_cast<CellPtr>(cell);
     
     returned_cell->filler = nullptr;
-    // Если клетка бонусная, то она уже была в списке доступных
-    // И её не нужно добавлять заново.
+    // Р•СЃР»Рё РєР»РµС‚РєР° Р±РѕРЅСѓСЃРЅР°СЏ, С‚Рѕ РѕРЅР° СѓР¶Рµ Р±С‹Р»Р° РІ СЃРїРёСЃРєРµ РґРѕСЃС‚СѓРїРЅС‹С…
+    // Р РµС‘ РЅРµ РЅСѓР¶РЅРѕ РґРѕР±Р°РІР»СЏС‚СЊ Р·Р°РЅРѕРІРѕ.
     if(!returned_cell->is_usable)
         available_cells.push_front(returned_cell);
 }
@@ -49,7 +49,7 @@ bool CellsPool::try_lock() { return cells_mutex.try_lock(); }
 
 RequestedCell CellsPool::kickFromAvailable(AviablesIter runner, FillerUPtr new_filler) {
     CellPtr cell = const_cast<CellPtr>(*runner);
-    // Если клетка бонусная, то из доступных её удалять не нужно.
+    // Р•СЃР»Рё РєР»РµС‚РєР° Р±РѕРЅСѓСЃРЅР°СЏ, С‚Рѕ РёР· РґРѕСЃС‚СѓРїРЅС‹С… РµС‘ СѓРґР°Р»СЏС‚СЊ РЅРµ РЅСѓР¶РЅРѕ.
     if(!cell->is_usable)
         available_cells.erase(runner);
     
@@ -58,8 +58,8 @@ RequestedCell CellsPool::kickFromAvailable(AviablesIter runner, FillerUPtr new_f
     return { cell, std::move(prev_filler) };
 }
 Coord CellsPool::normalize(Coord coord) const {
-    // Обеспечивает перепрыгивание через границу
-    // поля на противоположную часть.
+    // РћР±РµСЃРїРµС‡РёРІР°РµС‚ РїРµСЂРµРїСЂС‹РіРёРІР°РЅРёРµ С‡РµСЂРµР· РіСЂР°РЅРёС†Сѓ
+    // РїРѕР»СЏ РЅР° РїСЂРѕС‚РёРІРѕРїРѕР»РѕР¶РЅСѓСЋ С‡Р°СЃС‚СЊ.
     auto normalize_component = [] (int c, int max) {
         return c >= 0 ? c % max : max + c;
     };
@@ -73,9 +73,9 @@ CellsPool::CellPtr CellsPool::extractCell(Coord coord) {
     return &cells[coord.y][coord.x];
 }
 CellsPool::AviablesIter CellsPool::findInAvailable(CellCPtr cell) {
-    // При попытке получить клетку по направлению или соседнюю к заданной
-    // она может быть недоступна. Если так, то данная функция
-    // выбросит исключение NotFoundFreeCell.
+    // РџСЂРё РїРѕРїС‹С‚РєРµ РїРѕР»СѓС‡РёС‚СЊ РєР»РµС‚РєСѓ РїРѕ РЅР°РїСЂР°РІР»РµРЅРёСЋ РёР»Рё СЃРѕСЃРµРґРЅСЋСЋ Рє Р·Р°РґР°РЅРЅРѕР№
+    // РѕРЅР° РјРѕР¶РµС‚ Р±С‹С‚СЊ РЅРµРґРѕСЃС‚СѓРїРЅР°. Р•СЃР»Рё С‚Р°Рє, С‚Рѕ РґР°РЅРЅР°СЏ С„СѓРЅРєС†РёСЏ
+    // РІС‹Р±СЂРѕСЃРёС‚ РёСЃРєР»СЋС‡РµРЅРёРµ NotFoundFreeCell.
     
     auto runner = available_cells.begin();
     while(runner != available_cells.end() && *runner != cell)

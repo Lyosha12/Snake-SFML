@@ -10,7 +10,7 @@ DefaultRectangle::DefaultRectangle(float cell_width, float cell_height)
 
 sf::Sprite DefaultRectangle::
 configure(Configurator const& configurator) const {
-    // Создание по указанным настройкам прямоугольника для игрового поля.
+    // РЎРѕР·РґР°РЅРёРµ РїРѕ СѓРєР°Р·Р°РЅРЅС‹Рј РЅР°СЃС‚СЂРѕР№РєР°Рј РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРєР° РґР»СЏ РёРіСЂРѕРІРѕРіРѕ РїРѕР»СЏ.
     return configurator(default_rectangle);
 }
 
