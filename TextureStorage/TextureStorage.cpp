@@ -4,29 +4,22 @@
 
 #include "TextureStorage.hpp"
 
-TextureStorage::TextureStorage(std::vector<std::string> texture_names) {
-    for(auto const& name: texture_names) {
+TextureStorage::TextureStorage(std::vector<LoadTextureParams> params) {
+    for(auto const& param: params) {
         textures.push_back({});
-        if(!textures.back().loadFromFile("Textures/" + name))
+        if(!textures.back().loadFromFile("Textures/" + param.name)) {
+            textures.pop_back();
             throw std::runtime_error(
                 "Texture " +
-                name +
+                param.name +
                 " was not loaded from Textures/"
             );
+        }
+        
+        textures.back().setRepeated(param.is_repeated);
     }
 }
-TextureStorage::TextureStorage(std::string texture_name, bool is_repeated) {
-    textures.push_back({});
-    
-    if(!textures.back().loadFromFile("Textures/" + texture_name))
-        throw std::runtime_error(
-            "Texture " +
-            texture_name +
-            " was not loaded from Textures/"
-        );
-    
-    textures[0].setRepeated(is_repeated);
-}
+TextureStorage::TextureStorage(LoadTextureParams params): TextureStorage(std::vector{params}) { }
 
 sf::Texture const& TextureStorage::operator[] (size_t texture_index) const {
     if(texture_index < textures.size())

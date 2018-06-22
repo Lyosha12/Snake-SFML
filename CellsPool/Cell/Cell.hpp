@@ -8,11 +8,11 @@
 #include <SFML/Graphics.hpp>
 
 #include "../../Coord/Coord.hpp"
-// #include "../RequestedCell/RequestedCell.hpp"
 
 // #include "../Snake/Snake.hpp"
 class Snake;
-class RequestedCell;
+
+class RequestedCell; // TODO: Maybe a circular dependency here - is that bad?
 
 class Cell: public sf::Drawable {
     // Представляет клетку на поле.

@@ -13,7 +13,7 @@ CellsPool::CellsPool(
     : default_rectangle(settings)
     , count_cells_x(count_cells_x)
     , count_cells_y(count_cells_y)
-    , background_texture("Background.png", true)
+    , background_texture({"Background.png", true})
     , background(background_texture)
     , window(window)
 {
