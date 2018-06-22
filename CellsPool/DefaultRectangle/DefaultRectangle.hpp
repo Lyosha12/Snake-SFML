@@ -1,12 +1,12 @@
 //
-// Created by Lyosha12 on 18.06.2018.
+// Created by Lyosha12 on 22.06.2018.
 //
 
 #ifndef SNAKE_DEFAULTRECTANGLE_HPP
 #define SNAKE_DEFAULTRECTANGLE_HPP
 
 #include <SFML/Graphics.hpp>
-#include "../Coord/Coord.hpp"
+#include "../../Coord/Coord.hpp"
 
 class DefaultRectangle {
     // Стандартный прямоугольник поля.
@@ -18,10 +18,9 @@ class DefaultRectangle {
     DefaultRectangle(float cell_width, float cell_height);
     
     class Configurator {
-        // У любого прямоугольника поля есть позиция,
-        // цвет и масштаб относительно других прямоугольников.
-        // Класс определяет на поле конкретный прямоугольник из стандартного.
-        
+        // Это вспомогательный класс. Является посредником между стандартным
+        // прямоугольником и спрайтом, который на него натягивается.
+      
       public:
         Configurator(Coord pos_on_field, sf::Texture const& texture);
       
@@ -38,10 +37,9 @@ class DefaultRectangle {
     
     sf::Sprite configure(Configurator const& configurator) const;
     sf::Vector2f getSize() const;
-    
+  
   private:
     sf::RectangleShape default_rectangle;
 };
-
 
 #endif //SNAKE_DEFAULTRECTANGLE_HPP

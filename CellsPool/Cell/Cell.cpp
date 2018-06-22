@@ -14,14 +14,3 @@ void Cell::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     if(filler)
         target.draw(*filler, states);
 }
-
-
-
-
-Cell::Filler::Filler(sf::Sprite sprite) : sprite(sprite) { }
-
-void Cell::Filler::modify(Snake&) const { }
-
-void Cell::Filler::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-    target.draw(sprite, states);
-}
