@@ -10,13 +10,19 @@
 template <class ClockType = std::chrono::steady_clock>
 class TimeCounter {
   public:
-    template <class IntervalType = std::chrono::seconds>
-    TimeCounter(IntervalType interval)
-        : interval(std::chrono::duration_cast<std::chrono::nanoseconds> (interval))
+    using IntervalType = std::chrono::nanoseconds;
+    
+  public:
+    template <class IntervalTypeIncoming = std::chrono::seconds>
+    TimeCounter(IntervalTypeIncoming interval)
+        : interval(std::chrono::duration_cast<IntervalType> (interval))
     { }
     
-    bool isIntervalPassed(int interval_multipler = 1) {
-        if(ClockType::now() - last_moment < interval*interval_multipler) {
+    bool isIntervalPassed(float interval_multipler = 1) {
+        if(is_paused)
+            throw std::logic_error("Trying to check TimeCounter when it has paused.");
+        
+        if(ClockType::now() - last_moment < interval * interval_multipler) {
             return false;
         }
         else {
@@ -25,10 +31,29 @@ class TimeCounter {
         }
     }
     
+    
+    std::chrono::nanoseconds getInterval() const {
+        return interval;
+    }
+    void setInterval(IntervalType interval) {
+        this->interval = interval;
+    }
+    
+    void pause() {
+        residual_interval = ClockType::now() - last_moment;
+        is_paused = true;
+    }
+    void resume() {
+        last_moment = ClockType::now() - residual_interval;
+        is_paused = false;
+    }
+    
   private:
     typename ClockType::time_point last_moment = ClockType::now();
-    std::chrono::nanoseconds interval;
-  
+    IntervalType interval;
+    
+    IntervalType residual_interval; // Остаток интервала при паузе.
+    bool is_paused = false;
 };
 
 

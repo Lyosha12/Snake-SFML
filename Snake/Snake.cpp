@@ -50,7 +50,7 @@ Snake::Snake(CellsPool& cells_pool)
     }
 
 void Snake::move() {
-    if(!move_time.isIntervalPassed())
+    if(!move_interval.isIntervalPassed())
         return;
     
     tryChangeDirection();
@@ -90,6 +90,15 @@ void Snake::changeDirection(Direction direction) {
     }
 }
 
+size_t Snake::bodyLength() const {
+    return body.size();
+}
+auto Snake::getMoveInterval() const {
+    return move_interval.getInterval();
+}
+void Snake::setMoveInterval(TimeCounter<>::IntervalType move_interval) {
+    this->move_interval = move_interval;
+}
 
 void Snake::addHead() {
     // Разместим голову в случайном месте поля.

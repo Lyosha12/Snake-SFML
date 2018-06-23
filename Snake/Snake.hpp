@@ -55,6 +55,23 @@ class Snake {
     
     void move();
     void changeDirection(Direction direction);
+    
+  public:
+    // Добавить часть тела перед частью n (0 = голова).
+    template <class Filler>
+    void pushSnakeChapter(size_t n) {
+    
+    }
+    // Удалить заданную часть тела.
+    template <class Filler>
+    void popSnakeChapter(size_t n) {
+    
+    }
+    
+    size_t bodyLength() const;
+    auto getMoveInterval() const;
+    void setMoveInterval(TimeCounter<>::IntervalType move_interval);
+    
   
   private:
     void addHead();
@@ -65,7 +82,7 @@ class Snake {
   private:
     std::list<Cell const*> body;
     Coord direction = {0, 0};
-    TimeCounter<std::chrono::steady_clock> move_time = 150ms;
+    TimeCounter<> move_interval = 150ms;
     std::queue<Coord> moves;
     
     CellsPool& cells_pool;

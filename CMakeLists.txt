@@ -41,7 +41,13 @@ add_executable(${PROJECT_NAME}
         CellsPool/CellsPool.cpp
         CellsPool/CellsPool.hpp
 
-        Snake/Snake.cpp Snake/Snake.hpp)
+        Snake/Snake.cpp
+        Snake/Snake.hpp
+
+        BonusManager/BonusManager.cpp
+        BonusManager/BonusManager.hpp
+
+        BonusManager/Eat/Eat.cpp BonusManager/Eat/Eat.hpp BonusManager/Bonus/Bonus.cpp BonusManager/Bonus/Bonus.hpp)
 if(SFML_FOUND)
     include_directories(${SFML_INCLUDE_DIR})
     target_link_libraries(${PROJECT_NAME} ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})

@@ -23,7 +23,7 @@ using namespace std::chrono_literals;
 #include "TimeCounter/TimeCounter.hpp"
 #include "CellsPool/CellsPool.hpp"
 #include "Snake/Snake.hpp"
-
+#include "BonusManager/BonusManager.hpp"
 class Game {
     // Главный класс. Управляет игровым циклом и отрисовкой.
     
@@ -97,5 +97,6 @@ int main() {
     srand(static_cast<unsigned int>(time(0)));
     
     Game(800, 600, 20, 20, "Snake").mainLoop();
+    
     return 0;
 }
