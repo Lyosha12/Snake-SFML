@@ -36,11 +36,12 @@ CellsPool::CellsPool(
 void CellsPool::releaseCell(CellCPtr cell) {
     CellPtr returned_cell = const_cast<CellPtr>(cell);
     
-    returned_cell->filler = nullptr;
     // Если клетка бонусная, то она уже была в списке доступных
     // И её не нужно добавлять заново.
-    if(!returned_cell->is_usable)
+    if(!returned_cell->filler->isUsable())
         available_cells.push_front(returned_cell);
+    
+    returned_cell->filler = nullptr;
 }
 
 void CellsPool::lock()     { cells_mutex.lock();            }
@@ -50,10 +51,10 @@ bool CellsPool::try_lock() { return cells_mutex.try_lock(); }
 RequestedCell CellsPool::kickFromAvailable(AviablesIter runner, FillerUPtr new_filler) {
     CellPtr cell = const_cast<CellPtr>(*runner);
     // Если клетка бонусная, то из доступных её удалять не нужно.
-    if(!cell->is_usable)
+    if(cell->filler == nullptr || !cell->filler->isUsable())
         available_cells.erase(runner);
     
-    std::unique_ptr<Cell::Filler> prev_filler(std::move(cell->filler));
+    std::unique_ptr<Filler> prev_filler(std::move(cell->filler));
     cell->filler = std::move(new_filler);
     return { cell, std::move(prev_filler) };
 }

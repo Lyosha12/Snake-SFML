@@ -4,50 +4,23 @@
 
 #include "Snake.hpp"
 
-Snake::SnakeFiller::SnakeFiller(
-    DefaultRectangle const& default_rectangle,
-    Cell& cell,
-    sf::Texture const& texture
-): Filler(createSprite(default_rectangle, cell.coord, texture))
-{ cell.is_usable = false; }
-
-
-sf::Sprite Snake::SnakeFiller::createSprite(
-    DefaultRectangle const& default_rectangle,
-    Coord const& coord,
-    sf::Texture const& texture
-) const {
-    sf::Sprite sprite = default_rectangle.configure(
-        DefaultRectangle::Configurator(coord, texture)
-    );
-    
-    sf::Vector2f scale = {
-        default_rectangle.getSize().x / texture.getSize().x,
-        default_rectangle.getSize().y / texture.getSize().y
-    };
-    
-    sprite.setScale(scale);
-    
-    return sprite;
-}
-
-Snake::SnakeHead::SnakeHead(DefaultRectangle const& default_rectangle, Cell& cell)
-    : SnakeFiller(default_rectangle, cell, texture)
+Snake::SnakeHead::SnakeHead(DefaultRectangle const& default_rectangle, Coord const& coord)
+    : Filler(default_rectangle, coord, texture, false)
 {  }
-Snake::SnakeBody::SnakeBody(DefaultRectangle const& default_rectangle, Cell& cell)
-    : SnakeFiller(default_rectangle, cell, texture)
+Snake::SnakeBody::SnakeBody(DefaultRectangle const& default_rectangle, Coord const& coord)
+    : Filler(default_rectangle, coord, texture, false)
 {  }
 
 
 
 Snake::Snake(CellsPool& cells_pool)
 : cells_pool(cells_pool)
-    {
-        std::lock_guard<CellsPool> lock(cells_pool);
-        Snake::addHead();
-        Snake::addBody();
-        Snake::findHeadDirection();
-    }
+{
+    std::lock_guard<CellsPool> lock(cells_pool);
+    Snake::addHead();
+    Snake::addBody();
+    Snake::findHeadDirection();
+}
 
 void Snake::move() {
     if(!move_interval.isIntervalPassed())
@@ -95,9 +68,6 @@ size_t Snake::bodyLength() const {
 }
 auto Snake::getMoveInterval() const {
     return move_interval.getInterval();
-}
-void Snake::setMoveInterval(TimeCounter<>::IntervalType move_interval) {
-    this->move_interval = move_interval;
 }
 
 void Snake::addHead() {

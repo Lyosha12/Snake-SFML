@@ -5,7 +5,7 @@
 #include "RequestedCell.hpp"
 
 RequestedCell::
-RequestedCell(Cell const* cell, std::unique_ptr<Cell::Filler> prev_filler)
+RequestedCell(Cell const* cell, std::unique_ptr<Filler> prev_filler)
 : prev_filler(std::move(prev_filler))
 , cell(cell)
 { }

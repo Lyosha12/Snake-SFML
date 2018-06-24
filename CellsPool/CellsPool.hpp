@@ -52,9 +52,8 @@ class CellsPool: public sf::Drawable {
         // Удалим клетку из свободных,
         // если новый её заполнитель недоступен для использования.
         // Вернём клетку и её предыдущий заполнитель.
-        std::unique_ptr<Cell::Filler> new_filler(
-            // TODO: Почему Filler должен изменять доступность клетки у себя в конструкторе?
-            new Filler(default_rectangle, const_cast<Cell&>(**cells_runner))
+        std::unique_ptr<Filler> new_filler(
+            new Filler(default_rectangle, (*cells_runner)->coord)
         );
         return kickFromAvailable(cells_runner, std::move(new_filler));
     }
@@ -69,16 +68,16 @@ class CellsPool: public sf::Drawable {
         CellCPtr left  = extractCell(target->coord + Coord{-1,  0});
         std::vector<CellCPtr> neighbors = {up, down, right, left};
         
-        // Выберем случайную клетку, доступную к использованию.
+        // Выберем случайную клетку...
         while(!neighbors.empty()) {
             size_t rand_neighbor = std::rand()%neighbors.size();
             CellCPtr neighbor = neighbors[rand_neighbor];
             
-            if(neighbor->is_usable) {
-                // TODO: Почему Filler должен изменять доступность клетки у себя в конструкторе?
-                FillerUPtr new_filler(new Filler(default_rectangle, const_cast<Cell&>(*neighbor)));
+            // ... доступную к использованию.
+            if(neighbor->filler == nullptr || neighbor->filler->isUsable()) {
+                FillerUPtr new_filler(new Filler(default_rectangle, neighbor->coord));
                 return kickFromAvailable(findInAvailable(neighbor), std::move(new_filler));
-        } else
+            } else
                 neighbors.erase(neighbors.begin() + rand_neighbor);
         }
         
@@ -89,8 +88,7 @@ class CellsPool: public sf::Drawable {
         // Возьмём клетку по заданному направлению от текущей.
         CellPtr required_cell = extractCell(target->coord + direction);
         
-        // TODO: Почему Filler должен изменять доступность клетки у себя в конструкторе?
-        std::unique_ptr<Cell::Filler> new_filler(new Filler(default_rectangle, const_cast<Cell&>(*required_cell)));
+        std::unique_ptr<Filler> new_filler(new Filler(default_rectangle, required_cell->coord));
 
         return kickFromAvailable(findInAvailable(required_cell), std::move(new_filler));
     }

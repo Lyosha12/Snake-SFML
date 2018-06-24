@@ -23,7 +23,7 @@ add_executable(${PROJECT_NAME}
         CellsPool/DefaultRectangle/DefaultRectangle.cpp
         CellsPool/DefaultRectangle/DefaultRectangle.hpp
 
-        CellsPool/Cell/Filler.cpp
+        CellsPool/Cell/Filler/Filler.cpp
         CellsPool/Cell/Cell.cpp
         CellsPool/Cell/Cell.hpp
 
@@ -47,7 +47,13 @@ add_executable(${PROJECT_NAME}
         BonusManager/BonusManager.cpp
         BonusManager/BonusManager.hpp
 
-        BonusManager/Eat/Eat.cpp BonusManager/Eat/Eat.hpp BonusManager/Bonus/Bonus.cpp BonusManager/Bonus/Bonus.hpp)
+        BonusManager/Bonus/Bonus.cpp
+        BonusManager/Bonus/Bonus.hpp
+
+        BonusManager/Eat/Eat.cpp
+        BonusManager/Eat/Eat.hpp
+
+        CellsPool/Cell/Filler/Filler.hpp)
 if(SFML_FOUND)
     include_directories(${SFML_INCLUDE_DIR})
     target_link_libraries(${PROJECT_NAME} ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})

@@ -32,7 +32,13 @@ class Game {
           size_t count_cells_x, size_t count_cells_y,
           std::string FieldName)
     : default_rectangle(width/count_cells_x, height/count_cells_y)
-    , window({width/count_cells_x*count_cells_x, height/count_cells_y*count_cells_y}, FieldName)
+    , window(
+        {
+            static_cast<unsigned>(default_rectangle.getSize().x*count_cells_x),
+            static_cast<unsigned>(default_rectangle.getSize().y*count_cells_y)
+        },
+        FieldName
+      )
     , cells_pool(count_cells_x, count_cells_y, window, default_rectangle)
     , snake(cells_pool)
     { }

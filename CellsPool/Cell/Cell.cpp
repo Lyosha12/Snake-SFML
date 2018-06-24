@@ -7,7 +7,6 @@
 Cell::Cell(Cell&& cell)
     : coord(cell.coord)
     , filler(std::move(cell.filler))
-    , is_usable(cell.is_usable)
 { }
 
 void Cell::draw(sf::RenderTarget& target, sf::RenderStates states) const {

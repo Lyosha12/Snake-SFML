@@ -8,41 +8,13 @@
 #include <SFML/Graphics.hpp>
 
 #include "../../Coord/Coord.hpp"
+#include "Filler/Filler.hpp"
 
-// #include "../Snake/Snake.hpp"
 class Snake;
-
-class RequestedCell; // TODO: Maybe a circular dependency here - is that bad?
-
 class Cell: public sf::Drawable {
     // Представляет клетку на поле.
-    // Клетка имеет координаты, возможность
-    // быть использованной(usable) или нет.
-    // Имеет заполнитель - то, чем она является.
+    // Имеет заполнитель - то, чем она является для змейки.
     // Заполнитель контролирует бассейн клеток (cells_pool).
-    
-  public:
-    class Filler: public sf::Drawable {
-      // Заполнитель клетки - это некий спрайт.
-      // Его текстуру и форму определяет наследник этого класса.
-    
-      // Каждую клетку змейка может занять.
-      // И, в зависимости от реализации функции modify,
-      // змейка будет изменена так или иначе.
-      
-      // Так как заполнитель может быть пуст, то вызывать modify нельзя.
-      // Это контролирует вспомогательный класс RequestedCell.
-        friend RequestedCell;
-        
-      public:
-        Filler(sf::Sprite sprite);
-        virtual ~Filler() = default;
-        
-      private:
-        virtual void modify(Snake&) const;
-        sf::Sprite sprite;
-        void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-    };
   
   public:
     using FillerUPtr = std::unique_ptr<Filler>;
@@ -59,7 +31,6 @@ class Cell: public sf::Drawable {
     // текстура поля рассредоточена по нескольким клеткам
     // бесшовной повторяющейся текстурой.
     std::unique_ptr<Filler> filler = nullptr;
-    bool is_usable = true; // Изначально змейка может попасть в любую клетку.
     
   private:
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

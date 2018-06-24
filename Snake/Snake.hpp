@@ -16,35 +16,23 @@ using namespace std::chrono_literals;
 
 class Snake {
   private:
-    class SnakeFiller: public Cell::Filler {
+    class SnakeHead: public Filler {
       public:
-        SnakeFiller(
-            DefaultRectangle const& default_rectangle,
-            Cell& cell,
-            sf::Texture const& texture
-        );
-        
-        sf::Sprite createSprite(
-            DefaultRectangle const& default_rectangle,
-            Coord const& coord,
-            sf::Texture const& texture
-        ) const ;
-    };
-    class SnakeHead: public SnakeFiller {
-      public:
-        SnakeHead(DefaultRectangle const& default_rectangle, Cell& cell);
+        SnakeHead(DefaultRectangle const& default_rectangle, Coord const& coord);
       
       private:
-        inline static TextureStorage
-            texture = TextureStorage::LoadTextureParams{"Head.png", false};
+        inline static TextureStorage texture {
+            TextureStorage::LoadTextureParams{"Head.png", false}
+        };
     };
-    class SnakeBody: public SnakeFiller {
+    class SnakeBody: public Filler {
       public:
-        SnakeBody(DefaultRectangle const& default_rectangle, Cell& cell);
+        SnakeBody(DefaultRectangle const& default_rectangle, Coord const& coord);
       
       private:
-        inline static TextureStorage
-            texture = TextureStorage::LoadTextureParams{"Body.png", false};
+        inline static TextureStorage texture {
+            TextureStorage::LoadTextureParams{"Body.png", false}
+        };
     };
   
   public:
@@ -57,22 +45,27 @@ class Snake {
     void changeDirection(Direction direction);
     
   public:
-    // Добавить часть тела перед частью n (0 = голова).
+    // Добавить часть тела перед частью.
     template <class Filler>
-    void pushSnakeChapter(size_t n) {
+    void pushSnakeChapter(size_t chapter_index) {
     
     }
-    // Удалить заданную часть тела.
+    // Удалить часть тела перед заданной частью.
     template <class Filler>
-    void popSnakeChapter(size_t n) {
+    void popSnakeChapter(size_t chapter_index) {
     
     }
+    
     
     size_t bodyLength() const;
-    auto getMoveInterval() const;
-    void setMoveInterval(TimeCounter<>::IntervalType move_interval);
     
-  
+    
+    auto getMoveInterval() const;
+    template <class IntervalType>
+    void setMoveInterval(IntervalType move_interval) {
+        this->move_interval.setInterval(move_interval);
+    }
+    
   private:
     void addHead();
     void addBody();
