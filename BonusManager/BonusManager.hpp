@@ -11,6 +11,7 @@
 
 class BonusManager {
     // В отдельном потоке следит за появлением и удалением бонусов на поле.
+    
   public:
     BonusManager(CellsPool& cells_pool): cells_pool(cells_pool) { }
     

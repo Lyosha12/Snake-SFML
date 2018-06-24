@@ -86,7 +86,7 @@ class CellsPool: public sf::Drawable {
                 neighbors.erase(neighbors.begin() + rand_neighbor);
         }
         
-        throw NotFoundFreeCell(*target, "near");
+        throw NotFoundFreeCell(static_cast<Cell&&>(const_cast<Cell&>(*target)), "near");
     }
     template <class Filler>
     RequestedCell getCell(CellCPtr target, Coord direction) {
@@ -100,9 +100,9 @@ class CellsPool: public sf::Drawable {
                 findInAvailable(required_cell),
                 std::move(new_filler)
             );
-        } catch(NotFoundFreeCell const&) {
+        } catch(NotFoundFreeCell& e) {
             // Часть геймплея: клетка может занятой - всё равно вернём её.
-            return { required_cell, std::move(new_filler) };
+            return { required_cell, std::move(e.cell.filler) };
         }
     }
     

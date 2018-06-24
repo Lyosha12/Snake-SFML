@@ -4,7 +4,7 @@
 
 #include "NotFoundFreeCell.hpp"
 
-NotFoundFreeCell::NotFoundFreeCell(Cell const& cell, std::string explanation)
+NotFoundFreeCell::NotFoundFreeCell(Cell&& cell, std::string explanation)
 : cell(cell)
 , explanation(explanation)
 { }

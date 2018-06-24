@@ -92,7 +92,7 @@ CellsPool::AviablesIter CellsPool::findInAvailable(CellCPtr cell) {
     if(runner != available_cells.end())
         return runner;
     else
-        throw NotFoundFreeCell(*cell);
+        throw NotFoundFreeCell(static_cast<Cell&&>(const_cast<Cell&>(*cell)));
 }
 
 void CellsPool::draw(sf::RenderTarget& target, sf::RenderStates states) const {
