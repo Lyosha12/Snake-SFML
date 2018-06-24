@@ -13,27 +13,14 @@ using namespace std::chrono_literals;
 #include "../CellsPool/Cell/Cell.hpp"
 #include "../CellsPool/CellsPool.hpp"
 #include "../TimeCounter/TimeCounter.hpp"
+#include "../Utilites/ListRunner.hpp"
+#include "SnakeFillers/Body/Body.hpp"
+#include "SnakeFillers/Head/Head.hpp"
 
 class Snake {
+    using CellCPtr = Cell::CellCPtr;
+    
   private:
-    class SnakeHead: public Filler {
-      public:
-        SnakeHead(DefaultRectangle const& default_rectangle, Coord const& coord);
-      
-      private:
-        inline static TextureStorage texture {
-            TextureStorage::LoadTextureParams{"Head.png", false}
-        };
-    };
-    class SnakeBody: public Filler {
-      public:
-        SnakeBody(DefaultRectangle const& default_rectangle, Coord const& coord);
-      
-      private:
-        inline static TextureStorage texture {
-            TextureStorage::LoadTextureParams{"Body.png", false}
-        };
-    };
   
   public:
     enum class Direction { Up, Down, Left, Right };
@@ -45,21 +32,8 @@ class Snake {
     void changeDirection(Direction direction);
     
   public:
-    // Добавить часть тела перед частью.
-    template <class Filler>
-    void pushSnakeChapter(size_t chapter_index) {
-    
-    }
-    // Удалить часть тела перед заданной частью.
-    template <class Filler>
-    void popSnakeChapter(size_t chapter_index) {
-    
-    }
-    
-    
+    void popBodyChapter(size_t chapter_index);
     size_t bodyLength() const;
-    
-    
     auto getMoveInterval() const;
     template <class IntervalType>
     void setMoveInterval(IntervalType move_interval) {
@@ -73,7 +47,7 @@ class Snake {
     void tryChangeDirection();
   
   private:
-    std::list<Cell const*> body;
+    std::list<CellCPtr> body;
     Coord direction = {0, 0};
     TimeCounter<> move_interval = 150ms;
     std::queue<Coord> moves;

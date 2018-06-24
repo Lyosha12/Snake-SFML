@@ -4,15 +4,6 @@
 
 #include "Snake.hpp"
 
-Snake::SnakeHead::SnakeHead(DefaultRectangle const& default_rectangle, Coord const& coord)
-    : Filler(default_rectangle, coord, texture, false)
-{  }
-Snake::SnakeBody::SnakeBody(DefaultRectangle const& default_rectangle, Coord const& coord)
-    : Filler(default_rectangle, coord, texture, false)
-{  }
-
-
-
 Snake::Snake(CellsPool& cells_pool)
 : cells_pool(cells_pool)
 {
@@ -30,28 +21,21 @@ void Snake::move() {
     
     std::lock_guard<CellsPool> lock(cells_pool);
     // Получим новую голову по направлению движения относительно текущей головы.
-    RequestedCell new_head = cells_pool.getNearCell<SnakeHead>(body.front(), direction);
+    CellsPool::RequestedCell new_head = cells_pool.getCell<Head>(body.front(), direction);
     
     // Освободим клетку старой головы.
-    cells_pool.releaseCell(body.front());
-    // Удалим старую голову из списка.
-    body.pop_front();
+    popBodyChapter(0);
     
     // Добавим часть тела в список между новой головой и удалённой прошлой.
     // Т.к. бонус не мог появиться между удалением текущей головы и
     // добавлением части тела вместо неё,
     // будем игнорировать прошлый заполнитель клетки.
-    body.push_front(cells_pool.getNearCell<SnakeBody>(new_head.cell, -direction).cell);
+    body.push_front(cells_pool.getCell<Body>(new_head.cell, -direction).cell);
     // Добавим вслед за частью тела новую голову.
     body.push_front(new_head.cell);
     
-    // Освободим клетку хвоста.
-    cells_pool.releaseCell(body.back());
-    body.pop_back();
-    
-    // Дадим возможность потенциальному бонусу на клетке, где теперь
-    // нахдится голова змейки, изменить змейку.
-    new_head.modify(*this);
+    // Дадим возможность заполнителю клетки изменить змейку.
+    new_head.prev_filler->modify(*this);
 }
 void Snake::changeDirection(Direction direction) {
     // Внешнее управление змейкой посредством пользовательского ввода.
@@ -63,6 +47,14 @@ void Snake::changeDirection(Direction direction) {
     }
 }
 
+
+void Snake::popBodyChapter(size_t chapter_index) {
+    auto chapter = getListElement(body, chapter_index);
+    cells_pool.releaseCell(*chapter);
+    body.erase(chapter);
+}
+
+
 size_t Snake::bodyLength() const {
     return body.size();
 }
@@ -72,11 +64,8 @@ auto Snake::getMoveInterval() const {
 
 void Snake::addHead() {
     // Разместим голову в случайном месте поля.
-    // Потом, если попали на какую-то бонусную клетку,
-    // применим бонус с неё.
-    RequestedCell head = cells_pool.getRandCell<SnakeHead>();
+    CellsPool::RequestedCell head = cells_pool.getRandCell<Head>();
     body.push_back(head.cell);
-    head.modify(*this);
 }
 void Snake::addBody() {
     // Создадим параметры змейки.
@@ -88,12 +77,9 @@ void Snake::addBody() {
     // Сгенерируем остальное тело.
     try {
         while(start_parts--) {
-            // Полученная клетка может быть бонусной.
-            RequestedCell body_part = cells_pool.getNearCell<SnakeBody>(body.back());
-            
-            body.push_back(body_part.cell);
-            // Поэтому после присоединения её к телу дадим возможность бонусу изменить змейку.
-            body_part.modify(*this);
+            // Полученная клетка не может быть бонусной,
+            // т.к. ещё не запущен менеджер бонусов.
+            body.push_back(cells_pool.getNearCell<Body>(body.back()).cell);
         }
     } catch(NotFoundFreeCell const& e) {
         // Заканчиваем построение змеи - нет клеток для продолжения.

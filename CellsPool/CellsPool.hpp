@@ -13,8 +13,8 @@
 #include "Cell/Cell.hpp"
 #include "DefaultRectangle/DefaultRectangle.hpp"
 #include "../TextureStorage/TextureStorage.hpp"
-#include "RequestedCell/RequestedCell.hpp"
 #include "NotFoundFreeCell/NotFoundFreeCell.hpp"
+#include "../Utilites/ListRunner.hpp"
 
 class CellsPool: public sf::Drawable {
     // Класс отвечает за распределение клеток между
@@ -37,29 +37,34 @@ class CellsPool: public sf::Drawable {
         DefaultRectangle const& settings
     );
     
+    struct RequestedCell {
+        // Бассейн клеток отдаёт этот объект всякий раз,
+        // когда кто-то завладеет клеткой.
+    
+        Cell::CellCPtr cell;
+        Cell::FillerUPtr prev_filler;
+    };
+    
     template <class Filler>
     RequestedCell getRandCell() {
+        // Выбрав случайно число по размеру списка свободных клеток,
+        // вернём результирующую клетку, удалив её из доступных.
+        
         if(available_cells.empty()) {
             throw NotFoundFreeCell({}, "rand cell");
         }
         
-        size_t i = 0;
         size_t rand_cell = std::rand()%available_cells.size();
-        AviablesIter cells_runner = available_cells.begin();
-        while(i++ != rand_cell) // Пока не найдём выбранную случайную клетку.
-            ++cells_runner;
+        AviablesIter requested_cell = getListElement(available_cells, rand_cell);
         
-        // Удалим клетку из свободных,
-        // если новый её заполнитель недоступен для использования.
-        // Вернём клетку и её предыдущий заполнитель.
         std::unique_ptr<Filler> new_filler(
-            new Filler(default_rectangle, (*cells_runner)->coord)
+            new Filler(default_rectangle, (*requested_cell)->coord)
         );
-        return kickFromAvailable(cells_runner, std::move(new_filler));
+        return kickFromAvailable(requested_cell, std::move(new_filler));
     }
     template <class Filler>
     RequestedCell getNearCell(CellCPtr target) {
-        // Берём случайную клетку в радиусе одной от заданной.
+        // Берём случайную свободную клетку в радиусе одной от заданной.
         
         // Найдём её соседей
         CellCPtr up    = extractCell(target->coord + Coord{ 0, -1});
@@ -74,7 +79,7 @@ class CellsPool: public sf::Drawable {
             CellCPtr neighbor = neighbors[rand_neighbor];
             
             // ... доступную к использованию.
-            if(neighbor->filler == nullptr || neighbor->filler->isUsable()) {
+            if(neighbor->filler->isFree()) {
                 FillerUPtr new_filler(new Filler(default_rectangle, neighbor->coord));
                 return kickFromAvailable(findInAvailable(neighbor), std::move(new_filler));
             } else
@@ -84,13 +89,21 @@ class CellsPool: public sf::Drawable {
         throw NotFoundFreeCell(*target, "near");
     }
     template <class Filler>
-    RequestedCell getNearCell(CellCPtr target, Coord direction) {
+    RequestedCell getCell(CellCPtr target, Coord direction) {
         // Возьмём клетку по заданному направлению от текущей.
         CellPtr required_cell = extractCell(target->coord + direction);
         
         std::unique_ptr<Filler> new_filler(new Filler(default_rectangle, required_cell->coord));
 
-        return kickFromAvailable(findInAvailable(required_cell), std::move(new_filler));
+        try {
+            return kickFromAvailable(
+                findInAvailable(required_cell),
+                std::move(new_filler)
+            );
+        } catch(NotFoundFreeCell const&) {
+            // Часть геймплея: клетка может занятой - всё равно вернём её.
+            return { required_cell, std::move(new_filler) };
+        }
     }
     
     void releaseCell(CellCPtr cell);

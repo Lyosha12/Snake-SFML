@@ -3,6 +3,7 @@
 //
 
 #include "CellsPool.hpp"
+#include "Cell/FreeCellFiller/FreeCellFiller.hpp"
 
 CellsPool::CellsPool(
     size_t count_cells_x,
@@ -17,9 +18,10 @@ CellsPool::CellsPool(
     , background(background_texture)
     , window(window)
 {
-    
+    // Установим спрайту размер для замощённой текстуры.
     background.setTextureRect(sf::IntRect(0, 0, window.getSize().x, window.getSize().y));
     
+    // Т.к. unique_ptr копировать нельзя, то вот так вот получается.
     cells.resize(count_cells_y);
     for(auto& row: cells) {
         row = std::move(std::vector<Cell>(count_cells_x));
@@ -28,6 +30,9 @@ CellsPool::CellsPool(
     for(size_t y = 0; y != count_cells_y; ++y) {
         for(size_t x = 0; x != count_cells_x; ++x) {
             cells[y][x].coord = {x, y};
+            cells[y][x].filler.reset(
+                new FreeCellFiller(default_rectangle, cells[y][x].coord)
+            );
             available_cells.push_back(&cells[y][x]);
         }
     }
@@ -36,28 +41,30 @@ CellsPool::CellsPool(
 void CellsPool::releaseCell(CellCPtr cell) {
     CellPtr returned_cell = const_cast<CellPtr>(cell);
     
-    // Если клетка бонусная, то она уже была в списке доступных
-    // И её не нужно добавлять заново.
-    if(!returned_cell->filler->isUsable())
-        available_cells.push_front(returned_cell);
+    // Добавим вернувшуюся клетку в список доступных.
+    available_cells.push_front(returned_cell);
     
-    returned_cell->filler = nullptr;
+    returned_cell->filler.reset(new FreeCellFiller(default_rectangle, returned_cell->coord));
 }
+
 
 void CellsPool::lock()     { cells_mutex.lock();            }
 void CellsPool::unlock()   { cells_mutex.unlock();          }
 bool CellsPool::try_lock() { return cells_mutex.try_lock(); }
 
-RequestedCell CellsPool::kickFromAvailable(AviablesIter runner, FillerUPtr new_filler) {
-    CellPtr cell = const_cast<CellPtr>(*runner);
-    // Если клетка бонусная, то из доступных её удалять не нужно.
-    if(cell->filler == nullptr || !cell->filler->isUsable())
-        available_cells.erase(runner);
+
+CellsPool::RequestedCell CellsPool::kickFromAvailable(AviablesIter runner, FillerUPtr new_filler) {
+    CellPtr ordered_cell = const_cast<CellPtr>(*runner);
+    // Удалим запрошенную клетку из доступных к использованию.
+    available_cells.erase(runner);
     
-    std::unique_ptr<Filler> prev_filler(std::move(cell->filler));
-    cell->filler = std::move(new_filler);
-    return { cell, std::move(prev_filler) };
+    // Сохраним прошлый заполнитель и поместим новый.
+    std::unique_ptr<Filler> prev_filler(std::move(ordered_cell->filler));
+    ordered_cell->filler = std::move(new_filler);
+    return { ordered_cell, std::move(prev_filler) };
 }
+
+
 Coord CellsPool::normalize(Coord coord) const {
     // Обеспечивает перепрыгивание через границу
     // поля на противоположную часть.

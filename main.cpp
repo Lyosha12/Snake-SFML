@@ -100,7 +100,7 @@ class Game {
 int main() {
     // Настройка "окружения".
     ShowWindow(GetConsoleWindow(), SW_HIDE);
-    srand(static_cast<unsigned int>(time(0)));
+    // srand(static_cast<unsigned int>(time(0)));
     
     Game(800, 600, 20, 20, "Snake").mainLoop();
     

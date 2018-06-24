@@ -35,9 +35,6 @@ add_executable(${PROJECT_NAME}
         CellsPool/NotFoundFreeCell/NotFoundFreeCell.cpp
         CellsPool/NotFoundFreeCell/NotFoundFreeCell.hpp
 
-        CellsPool/RequestedCell/RequestedCell.hpp
-        CellsPool/RequestedCell/RequestedCell.cpp
-
         CellsPool/CellsPool.cpp
         CellsPool/CellsPool.hpp
 
@@ -53,7 +50,19 @@ add_executable(${PROJECT_NAME}
         BonusManager/Eat/Eat.cpp
         BonusManager/Eat/Eat.hpp
 
-        CellsPool/Cell/Filler/Filler.hpp)
+        CellsPool/Cell/Filler/Filler.hpp
+        CellsPool/Cell/FreeCellFiller/FreeCellFiller.cpp
+        CellsPool/Cell/FreeCellFiller/FreeCellFiller.hpp
+
+        Utilites/ListRunner.hpp
+
+        Snake/SnakeFillers/Head/Head.cpp
+        Snake/SnakeFillers/Head/Head.hpp
+
+        Snake/SnakeFillers/Body/Body.cpp
+        Snake/SnakeFillers/Body/Body.hpp
+
+        )
 if(SFML_FOUND)
     include_directories(${SFML_INCLUDE_DIR})
     target_link_libraries(${PROJECT_NAME} ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
