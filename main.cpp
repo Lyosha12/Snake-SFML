@@ -40,6 +40,7 @@ class Game {
         FieldName
       )
     , cells_pool(count_cells_x, count_cells_y, window, default_rectangle)
+    , bonus_manager(cells_pool)
     , snake(cells_pool)
     { }
     
@@ -93,6 +94,7 @@ class Game {
   private:
     DefaultRectangle default_rectangle;
     sf::RenderWindow window;
+    BonusManager bonus_manager;
     CellsPool cells_pool;
     Snake snake;
 };

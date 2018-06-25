@@ -3,3 +3,9 @@
 //
 
 #include "Bonus.hpp"
+
+void endGame() {
+    exit(0xE9D);
+}
+
+Bonus::Bonus(Snake& snake): snake(snake) { }

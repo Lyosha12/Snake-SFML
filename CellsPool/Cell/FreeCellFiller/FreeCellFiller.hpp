@@ -7,6 +7,7 @@
 
 #include "../../../Snake/Snake.hpp"
 #include "../Filler/Filler.hpp"
+#include "../../../BonusManager/Move/Move.hpp"
 
 class FreeCellFiller: public Filler {
     // * Заполнитель по-умолчанию. Это клетка,
@@ -15,11 +16,12 @@ class FreeCellFiller: public Filler {
     //   Текстура свободного поля определяется бассейном клеток.
     
   public:
-    FreeCellFiller(DefaultRectangle const& default_rectangle, Coord const& coord);
-    void modify(Snake& snake) const override;
+    FreeCellFiller(
+        DefaultRectangle const& default_rectangle, Coord const& coord,
+        std::function<std::unique_ptr<Bonus>(Snake&)> bonus_creator
+    );
     
-  private:
-
+    using BonusType = Move;
 };
 
 

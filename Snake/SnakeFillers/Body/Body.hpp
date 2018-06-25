@@ -7,16 +7,19 @@
 
 #include "../../../CellsPool/Cell/Filler/Filler.hpp"
 #include "../../../TextureStorage/TextureStorage.hpp"
+#include "../../../BonusManager/SteppedOnBody/SteppedOnBody.hpp"
 
 class Body: public Filler {
   public:
-    Body(DefaultRectangle const& default_rectangle, Coord const& coord);
-    void modify(Snake& snake) const override;
+    Body(DefaultRectangle const& default_rectangle, Coord const& coord,
+         std::function<std::unique_ptr<Bonus>(Snake&)> bonus_creator);
   
   private:
     inline static TextureStorage texture {
         TextureStorage::LoadTextureParams{"Body.png", false}
     };
+    
+    using BonusType = SteppedOnBody;
 };
 
 

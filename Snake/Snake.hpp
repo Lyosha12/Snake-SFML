@@ -16,6 +16,7 @@ using namespace std::chrono_literals;
 #include "../Utilites/ListRunner.hpp"
 #include "SnakeFillers/Body/Body.hpp"
 #include "SnakeFillers/Head/Head.hpp"
+#include "../BonusManager/Bonus/Bonus.hpp"
 
 class Snake {
     using CellCPtr = Cell::CellCPtr;
@@ -45,6 +46,7 @@ class Snake {
     void addBody();
     void findHeadDirection();
     void tryChangeDirection();
+    void applyEffects();
   
   private:
     std::list<CellCPtr> body;
@@ -53,6 +55,7 @@ class Snake {
     std::queue<Coord> moves;
     
     CellsPool& cells_pool;
+    std::list<std::unique_ptr<Bonus>> active_effects;
 };
 
 

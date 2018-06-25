@@ -45,24 +45,24 @@ class CellsPool: public sf::Drawable {
         Cell::FillerUPtr prev_filler;
     };
     
-    template <class Filler>
+    template <class IncomingFiller>
     RequestedCell getRandCell() {
         // Выбрав случайно число по размеру списка свободных клеток,
         // вернём результирующую клетку, удалив её из доступных.
         
         if(available_cells.empty()) {
-            throw NotFoundFreeCell({}, "rand cell");
+            throw NotFoundFreeCell({}, "rand free cell not exist");
         }
         
         size_t rand_cell = std::rand()%available_cells.size();
         AviablesIter requested_cell = getListElement(available_cells, rand_cell);
-        
-        std::unique_ptr<Filler> new_filler(
-            new Filler(default_rectangle, (*requested_cell)->coord)
+    
+        std::unique_ptr<Filler> new_filler = fillerCreator<IncomingFiller>(
+            (*requested_cell)->coord
         );
         return kickFromAvailable(requested_cell, std::move(new_filler));
     }
-    template <class Filler>
+    template <class IncomingFiller>
     RequestedCell getNearCell(CellCPtr target) {
         // Берём случайную свободную клетку в радиусе одной от заданной.
         
@@ -80,29 +80,34 @@ class CellsPool: public sf::Drawable {
             
             // ... доступную к использованию.
             if(neighbor->filler->isFree()) {
-                FillerUPtr new_filler(new Filler(default_rectangle, neighbor->coord));
+                std::unique_ptr<Filler> new_filler = fillerCreator<IncomingFiller>(
+                    neighbor->coord
+                );
                 return kickFromAvailable(findInAvailable(neighbor), std::move(new_filler));
             } else
                 neighbors.erase(neighbors.begin() + rand_neighbor);
         }
         
-        throw NotFoundFreeCell(static_cast<Cell&&>(const_cast<Cell&>(*target)), "near");
+        throw NotFoundFreeCell(target, "near free cell not exist");
     }
-    template <class Filler>
+    template <class IncomingFiller>
     RequestedCell getCell(CellCPtr target, Coord direction) {
-        // Возьмём клетку по заданному направлению от текущей.
-        CellPtr required_cell = extractCell(target->coord + direction);
+        // Возьмём клетку по заданному направлению относительно текущей.
+        CellPtr requested_cell = extractCell(target->coord + direction);
         
-        std::unique_ptr<Filler> new_filler(new Filler(default_rectangle, required_cell->coord));
+        std::unique_ptr<Filler> new_filler = fillerCreator<IncomingFiller>(
+            requested_cell->coord
+        );
 
         try {
             return kickFromAvailable(
-                findInAvailable(required_cell),
+                findInAvailable(requested_cell),
                 std::move(new_filler)
             );
         } catch(NotFoundFreeCell& e) {
-            // Часть геймплея: клетка может занятой - всё равно вернём её.
-            return { required_cell, std::move(e.cell.filler) };
+            // Часть геймплея: клетка может быть занятой -
+            // всё равно вернём её, но её заполнитель трогать не нужно.
+            return { requested_cell, nullptr };
         }
     }
     
@@ -114,6 +119,13 @@ class CellsPool: public sf::Drawable {
     bool try_lock();
   
   private:
+    template <class IncomingFiller>
+    std::unique_ptr<Filler> fillerCreator(Coord const& sprite_location) const {
+        return new IncomingFiller(
+            default_rectangle, sprite_location,
+            IncomingFiller::BonusType::leazy_creator
+        );
+    }
     RequestedCell kickFromAvailable(AviablesIter runner, FillerUPtr new_filler);
     Coord normalize(Coord coord) const;
     CellPtr extractCell(Coord coord);
@@ -128,6 +140,7 @@ class CellsPool: public sf::Drawable {
     size_t count_cells_y;
     
     std::vector<std::vector<Cell>> cells;
+    std::mutex cells_mutex;
     // Из этого списка раздаются указатели на клетки
     // для учёта их другими сущностями.
     // Изменять их может только внутренняя реализация
@@ -138,8 +151,6 @@ class CellsPool: public sf::Drawable {
     sf::Sprite background;
     
     sf::RenderWindow& window;
-    
-    std::mutex cells_mutex;
 };
 
 

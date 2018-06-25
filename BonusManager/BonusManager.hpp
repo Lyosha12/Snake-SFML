@@ -17,7 +17,7 @@ class BonusManager {
     
     void operator() (std::atomic<bool>& is_program_work) {
         while(is_program_work) {
-            trySetEat();
+        
         }
     }
     

@@ -10,11 +10,11 @@
 #include "../Cell/Cell.hpp"
 
 struct NotFoundFreeCell: public std::exception {
-    NotFoundFreeCell(Cell&& cell, std::string explanation = "not present");
+    NotFoundFreeCell(Cell::CellCPtr cell, std::string explanation = "not present");
     
     char const* what() const noexcept override;
     
-    Cell& cell;
+    Cell::CellCPtr cell;
     std::string explanation;
 };
 

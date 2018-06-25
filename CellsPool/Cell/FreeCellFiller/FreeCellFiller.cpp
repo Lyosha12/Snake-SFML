@@ -5,12 +5,7 @@
 #include "FreeCellFiller.hpp"
 
 FreeCellFiller::FreeCellFiller(
-    DefaultRectangle const& default_rectangle,
-    Coord const& coord
-) : Filler(default_rectangle, coord, sf::Texture(), true)
+    DefaultRectangle const& default_rectangle, Coord const& coord,
+    std::function<std::unique_ptr<Bonus>(Snake&)> bonus_creator
+) : Filler(default_rectangle, coord, sf::Texture(), true, std::move(bonus_creator))
 { }
-
-void FreeCellFiller::modify(Snake& snake) const {
-    // Змейка не может быть нулевой длины.
-    snake.popBodyChapter(snake.bodyLength() - 1);
-}

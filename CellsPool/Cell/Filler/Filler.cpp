@@ -3,16 +3,14 @@
 //
 
 #include "Filler.hpp"
-void endGame() {
-    exit(0xE8D);
-}
 
 Filler::Filler(
     DefaultRectangle const& default_rectangle,
     Coord const& coord,
     sf::Texture const& texture,
-    bool is_free
-): is_free(is_free)
+    bool is_free,
+    std::function<std::unique_ptr<Bonus>(Snake&)> bonus_creator
+): is_free(is_free), bonus_creator(std::move(bonus_creator))
 {
     this->sprite = default_rectangle.configure(
         DefaultRectangle::Configurator(coord, texture)
@@ -28,7 +26,9 @@ Filler::Filler(
     this->sprite.setScale(scale);
 }
 
-void Filler::modify(Snake&) const { }
+std::unique_ptr<Bonus> Filler::getBonus(Snake& snake) const {
+    return std::move(bonus_creator(snake));
+}
 
 void Filler::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(sprite, states);

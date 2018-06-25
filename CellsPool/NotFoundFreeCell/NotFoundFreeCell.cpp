@@ -4,7 +4,7 @@
 
 #include "NotFoundFreeCell.hpp"
 
-NotFoundFreeCell::NotFoundFreeCell(Cell&& cell, std::string explanation)
+NotFoundFreeCell::NotFoundFreeCell(Cell::CellCPtr cell, std::string explanation)
 : cell(cell)
 , explanation(explanation)
 { }
@@ -13,8 +13,8 @@ char const* NotFoundFreeCell::what() const noexcept {
     std::string reason = "Free cell not found. Params:\n";
     reason +=
         "  - Coords cell: (" +
-        std::to_string(cell.coord.x) + ", " +
-        std::to_string(cell.coord.y) + ").\n";
+        std::to_string(cell->coord.x) + ", " +
+        std::to_string(cell->coord.y) + ").\n";
     
     reason += "  - Other info: " + explanation + "\n";
     

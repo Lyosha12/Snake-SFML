@@ -30,9 +30,7 @@ CellsPool::CellsPool(
     for(size_t y = 0; y != count_cells_y; ++y) {
         for(size_t x = 0; x != count_cells_x; ++x) {
             cells[y][x].coord = {x, y};
-            cells[y][x].filler.reset(
-                new FreeCellFiller(default_rectangle, cells[y][x].coord)
-            );
+            cells[y][x].filler = fillerCreator<FreeCellFiller>(cells[y][x].coord);
             available_cells.push_back(&cells[y][x]);
         }
     }
@@ -43,8 +41,7 @@ void CellsPool::releaseCell(CellCPtr cell) {
     
     // Добавим вернувшуюся клетку в список доступных.
     available_cells.push_front(returned_cell);
-    
-    returned_cell->filler.reset(new FreeCellFiller(default_rectangle, returned_cell->coord));
+    returned_cell->filler = fillerCreator<FreeCellFiller>(returned_cell->coord);
 }
 
 
@@ -92,7 +89,7 @@ CellsPool::AviablesIter CellsPool::findInAvailable(CellCPtr cell) {
     if(runner != available_cells.end())
         return runner;
     else
-        throw NotFoundFreeCell(static_cast<Cell&&>(const_cast<Cell&>(*cell)));
+        throw NotFoundFreeCell(cell);
 }
 
 void CellsPool::draw(sf::RenderTarget& target, sf::RenderStates states) const {
