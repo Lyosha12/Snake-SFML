@@ -2,6 +2,7 @@
 // Created by Lyosha12 on 22.06.2018.
 //
 
+#include <iostream>
 #include "Snake.hpp"
 #include "SnakeFillers/Body/Body.hpp"
 #include "SnakeFillers/Head/Head.hpp"
@@ -17,8 +18,10 @@ Snake::Snake(CellsPool& cells_pool)
 }
 
 void Snake::move() {
-    if(!move_interval.isIntervalPassed())
+    if(!move_interval.isIntervalPassed()) {
         applyEffects(); // Если не время хода, выполним другую работу.
+        return;
+    }
     
     // Пока ещё не начали двигаться, посмотрим, нужно ли изменить направление.
     tryChangeDirection();
@@ -135,13 +138,11 @@ void Snake::tryChangeDirection() {
     }
 }
 void Snake::applyEffects() {
-    // Предположим, что эффекты не коммутативны.
-    // Тогда применять их нужно в порядке, обратном добавлению,
-    // чтобы, когда эффект уже недействителен, его можно было правильно удалить,
-    // не нарушив состояние змейки.
-    for(auto i = --active_effects.end(); i != --active_effects.begin(); --i) {
+    for(auto i = active_effects.begin(); i != active_effects.end(); ) {
         if(!(*i)->activate()) {
-            active_effects.erase(i);
+            i = active_effects.erase(i);
+        } else {
+            ++i;
         }
     }
 }
