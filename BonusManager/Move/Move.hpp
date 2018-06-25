@@ -12,11 +12,7 @@ class Move: public Bonus {
     Move(Snake& snake);
     bool activate() override;
     
-    inline static const
-    std::function<std::unique_ptr<Bonus>(Snake&)>
-    lazy_creator = [] (Snake& snake) {
-        return new Move(snake);
-    };
+    static const LazyCreator lazy_creator;
 };
 
 

@@ -3,6 +3,7 @@
 //
 
 #include "Body.hpp"
+#include "../../../CellsPool/Cell/Filler/Filler.hpp"
 
 Body::Body(DefaultRectangle const& default_rectangle, Coord const& coord,
            std::function<std::unique_ptr<Bonus>(Snake&)> bonus_creator)

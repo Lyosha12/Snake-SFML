@@ -3,6 +3,7 @@
 //
 
 #include "Move.hpp"
+#include "../../Snake/Snake.hpp"
 
 Move::Move(Snake& snake): Bonus(snake) {
     // Змейка не может быть нулевой длины.
@@ -15,3 +16,7 @@ bool Move::activate() {
     // зачем хранить ещё и флаг, применился ли бонус и окончательно ли?
     return false;
 }
+
+const Bonus::LazyCreator Move::lazy_creator = [] (Snake& snake) {
+    return std::unique_ptr<Bonus>(new Move(snake));
+};

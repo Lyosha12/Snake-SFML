@@ -6,7 +6,7 @@
 #define SNAKE_DEFAULTRECTANGLE_HPP
 
 #include <SFML/Graphics.hpp>
-#include "../../Coord/Coord.hpp"
+#include "../../Utilites/Coord/Coord.hpp"
 
 class DefaultRectangle {
     // Стандартный прямоугольник поля.

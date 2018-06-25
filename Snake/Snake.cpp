@@ -3,6 +3,9 @@
 //
 
 #include "Snake.hpp"
+#include "SnakeFillers/Body/Body.hpp"
+#include "SnakeFillers/Head/Head.hpp"
+#include "../CellsPool/CellsPool.hpp"
 
 Snake::Snake(CellsPool& cells_pool)
 : cells_pool(cells_pool)
@@ -52,7 +55,11 @@ void Snake::move() {
         // Тогда очевидно, что предыдущий заполнитель остался
         // в запрошенной клетке, которая не изменила состояния и
         // в которую змейка не перепестилась.
-        (new_head.prev_filler ? : new_head.cell->filler)->getBonus(*this)
+        (
+            new_head.prev_filler
+            ? new_head.prev_filler
+            : new_head.cell->filler
+        )->getBonus(*this)
         
         // При попытке хода в текущем интервале времени будет выполнен
         // проход по собранным бонусам. Тогда же змейка будет либо

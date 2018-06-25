@@ -13,11 +13,11 @@ find_package(SFML 2 REQUIRED graphics network audio window system)
 add_executable(${PROJECT_NAME}
         main.cpp
 
-        ErrorPrinter/ErrorPrinter.cpp
-        ErrorPrinter/ErrorPrinter.hpp
+        Utilites/ErrorPrinter/ErrorPrinter.cpp
+        Utilites/ErrorPrinter/ErrorPrinter.hpp
 
-        Coord/Coord.cpp
-        Coord/Coord.hpp
+        Utilites/Coord/Coord.cpp
+        Utilites/Coord/Coord.hpp
 
         CellsPool/DefaultRectangle/Configurator.cpp
         CellsPool/DefaultRectangle/DefaultRectangle.cpp
@@ -27,10 +27,10 @@ add_executable(${PROJECT_NAME}
         CellsPool/Cell/Cell.cpp
         CellsPool/Cell/Cell.hpp
 
-        TimeCounter/TimeCounter.hpp
+        Utilites/TimeCounter/TimeCounter.hpp
 
-        TextureStorage/TextureStorage.cpp
-        TextureStorage/TextureStorage.hpp
+        Utilites/TextureStorage/TextureStorage.cpp
+        Utilites/TextureStorage/TextureStorage.hpp
 
         CellsPool/NotFoundFreeCell/NotFoundFreeCell.cpp
         CellsPool/NotFoundFreeCell/NotFoundFreeCell.hpp

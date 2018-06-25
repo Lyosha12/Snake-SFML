@@ -3,6 +3,7 @@
 //
 
 #include "Cell.hpp"
+#include "Filler/Filler.hpp"
 
 Cell::Cell(Cell&& cell)
     : coord(cell.coord)

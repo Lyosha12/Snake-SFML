@@ -12,11 +12,7 @@ class SteppedOnHead: public Bonus {
     SteppedOnHead(Snake& snake);
     bool activate() override;
     
-    inline static const
-    std::function<std::unique_ptr<Bonus>(Snake&)>
-    lazy_creator = [] (Snake& snake) {
-        return new SteppedOnHead(snake);
-    };
+    static const LazyCreator lazy_creator;
 };
 
 

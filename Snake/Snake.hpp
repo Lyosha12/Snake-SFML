@@ -10,18 +10,16 @@
 #include <chrono>
 using namespace std::chrono_literals;
 
-#include "../CellsPool/Cell/Cell.hpp"
-#include "../CellsPool/CellsPool.hpp"
-#include "../TimeCounter/TimeCounter.hpp"
+#include "../Utilites/Coord/Coord.hpp"
+#include "../Utilites/TimeCounter/TimeCounter.hpp"
 #include "../Utilites/ListRunner.hpp"
-#include "SnakeFillers/Body/Body.hpp"
-#include "SnakeFillers/Head/Head.hpp"
+#include "../CellsPool/Cell/Cell.hpp"
 #include "../BonusManager/Bonus/Bonus.hpp"
+
+class CellsPool;
 
 class Snake {
     using CellCPtr = Cell::CellCPtr;
-    
-  private:
   
   public:
     enum class Direction { Up, Down, Left, Right };

@@ -4,6 +4,10 @@
 
 #include "Filler.hpp"
 
+#include "../../../Utilites/Coord/Coord.hpp"
+#include "../../DefaultRectangle/DefaultRectangle.hpp"
+#include "../../../BonusManager/Bonus/Bonus.hpp"
+
 Filler::Filler(
     DefaultRectangle const& default_rectangle,
     Coord const& coord,

@@ -6,9 +6,6 @@
 #define SNAKE_ERRORPRINTER_HPP
 
 #include <string>
-#include <iostream>
-#include <exception>
-#include <windows.h>
 
 class ErrorPrinter {
     // Реализует обработку фатального исключения.

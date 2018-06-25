@@ -8,11 +8,11 @@
 #include <functional>
 #include <SFML/Graphics.hpp>
 
-#include "../../../Coord/Coord.hpp"
-#include "../../DefaultRectangle/DefaultRectangle.hpp"
-#include "../../../BonusManager/Bonus/Bonus.hpp"
-
 class Snake;
+class DefaultRectangle;
+class Bonus;
+class Coord;
+
 class Filler: public sf::Drawable {
     // Заполнитель клетки - это некий спрайт.
     // Его текстуру и форму определяет наследник этого класса.

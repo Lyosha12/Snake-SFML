@@ -5,21 +5,27 @@
 #ifndef SNAKE_HEAD_HPP
 #define SNAKE_HEAD_HPP
 
-#include "../../../CellsPool/Cell/Filler/Filler.hpp"
-#include "../../../TextureStorage/TextureStorage.hpp"
+#include <functional>
+#include "../../../Utilites/TextureStorage/TextureStorage.hpp"
+#include "../../../Utilites/Coord/Coord.hpp"
 #include "../../../BonusManager/SteppedOnHead/SteppedOnHead.hpp"
+#include "../../../CellsPool/Cell/Filler/Filler.hpp"
+
+class DefaultRectangle;
+class Bonus;
+class Snake;
 
 class Head: public Filler {
   public:
     Head(DefaultRectangle const& default_rectangle, Coord const& coord,
          std::function<std::unique_ptr<Bonus>(Snake&)> bonus_creator);
-  
+    
+    using BonusType = SteppedOnHead;
+    
   private:
     inline static TextureStorage texture {
         TextureStorage::LoadTextureParams{"Head.png", false}
     };
-    
-    using BonusType = SteppedOnHead;
 };
 
 

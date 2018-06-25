@@ -3,6 +3,7 @@
 //
 
 #include "NotFoundFreeCell.hpp"
+#include "../Cell/Cell.hpp"
 
 NotFoundFreeCell::NotFoundFreeCell(Cell::CellCPtr cell, std::string explanation)
 : cell(cell)

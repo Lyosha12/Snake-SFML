@@ -11,10 +11,13 @@
 #include <SFML/Graphics.hpp>
 
 #include "Cell/Cell.hpp"
-#include "DefaultRectangle/DefaultRectangle.hpp"
-#include "../TextureStorage/TextureStorage.hpp"
 #include "NotFoundFreeCell/NotFoundFreeCell.hpp"
 #include "../Utilites/ListRunner.hpp"
+#include "Cell/Filler/Filler.hpp"
+#include "../Utilites/TextureStorage/TextureStorage.hpp"
+
+class DefaultRectangle;
+class TextureStorage;
 
 class CellsPool: public sf::Drawable {
     // Класс отвечает за распределение клеток между
@@ -121,9 +124,11 @@ class CellsPool: public sf::Drawable {
   private:
     template <class IncomingFiller>
     std::unique_ptr<Filler> fillerCreator(Coord const& sprite_location) const {
-        return new IncomingFiller(
-            default_rectangle, sprite_location,
-            IncomingFiller::BonusType::leazy_creator
+        return std::unique_ptr<Filler>(
+            new IncomingFiller(
+                default_rectangle, sprite_location,
+                IncomingFiller::BonusType::lazy_creator
+            )
         );
     }
     RequestedCell kickFromAvailable(AviablesIter runner, FillerUPtr new_filler);

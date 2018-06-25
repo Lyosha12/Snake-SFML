@@ -2,7 +2,7 @@
 // Created by Lyosha12 on 22.06.2018.
 //
 
-#include "../CellsPool.hpp"
+#include "DefaultRectangle.hpp"
 
 DefaultRectangle::Configurator::
 Configurator(Coord pos_on_field, sf::Texture const& texture)

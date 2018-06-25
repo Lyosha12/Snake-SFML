@@ -4,6 +4,7 @@
 
 #include "CellsPool.hpp"
 #include "Cell/FreeCellFiller/FreeCellFiller.hpp"
+#include "DefaultRectangle/DefaultRectangle.hpp"
 
 CellsPool::CellsPool(
     size_t count_cells_x,

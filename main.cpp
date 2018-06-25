@@ -19,11 +19,13 @@ using namespace std::chrono_literals;
 
 #include <SFML/Graphics.hpp>
 
-#include "ErrorPrinter/ErrorPrinter.hpp"
-#include "TimeCounter/TimeCounter.hpp"
+#include "Utilites/ErrorPrinter/ErrorPrinter.hpp"
+#include "Utilites/TimeCounter/TimeCounter.hpp"
+#include "CellsPool/DefaultRectangle/DefaultRectangle.hpp"
 #include "CellsPool/CellsPool.hpp"
 #include "Snake/Snake.hpp"
 #include "BonusManager/BonusManager.hpp"
+
 class Game {
     // Главный класс. Управляет игровым циклом и отрисовкой.
     
@@ -94,8 +96,8 @@ class Game {
   private:
     DefaultRectangle default_rectangle;
     sf::RenderWindow window;
-    BonusManager bonus_manager;
     CellsPool cells_pool;
+    BonusManager bonus_manager;
     Snake snake;
 };
 

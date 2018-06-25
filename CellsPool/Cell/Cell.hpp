@@ -6,11 +6,12 @@
 #define SNAKE_CELL_HPP
 
 #include <SFML/Graphics.hpp>
-
-#include "../../Coord/Coord.hpp"
+#include "../../Utilites/Coord/Coord.hpp"
 #include "Filler/Filler.hpp"
 
+
 class Snake;
+
 class Cell: public sf::Drawable {
     // Представляет клетку на поле.
     // Имеет заполнитель - то, чем она является для змейки.

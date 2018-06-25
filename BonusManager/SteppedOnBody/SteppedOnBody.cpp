@@ -11,3 +11,7 @@ bool SteppedOnBody::activate() {
     // Пока что нет функционала - игра завершится.
     return false;
 }
+
+const Bonus::LazyCreator SteppedOnBody::lazy_creator = [] (Snake& snake) {
+    return std::unique_ptr<Bonus>(new SteppedOnBody(snake));
+};

@@ -6,6 +6,7 @@
 #define LAB_3_TIMECONTROLLER_HPP
 
 #include <chrono>
+#include <stdexcept>
 
 template <class ClockType = std::chrono::steady_clock>
 class TimeCounter {
@@ -13,7 +14,7 @@ class TimeCounter {
     using IntervalType = std::chrono::nanoseconds;
     
   public:
-    template <class IntervalTypeIncoming = std::chrono::seconds>
+    template <class IntervalTypeIncoming>
     TimeCounter(IntervalTypeIncoming interval)
         : interval(std::chrono::duration_cast<IntervalType> (interval))
     { }
@@ -32,7 +33,7 @@ class TimeCounter {
     }
     
     
-    std::chrono::nanoseconds getInterval() const {
+    IntervalType getInterval() const {
         return interval;
     }
     void setInterval(IntervalType interval) {

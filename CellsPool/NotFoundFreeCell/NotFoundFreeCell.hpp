@@ -9,6 +9,7 @@
 #include <exception>
 #include "../Cell/Cell.hpp"
 
+
 struct NotFoundFreeCell: public std::exception {
     NotFoundFreeCell(Cell::CellCPtr cell, std::string explanation = "not present");
     

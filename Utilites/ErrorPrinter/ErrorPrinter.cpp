@@ -2,6 +2,9 @@
 // Created by Lyosha12 on 18.06.2018.
 //
 
+#include <iostream>
+#include <windows.h>
+
 #include "ErrorPrinter.hpp"
 
 ErrorPrinter::

@@ -13,11 +13,7 @@ class SteppedOnBody: public Bonus {
     SteppedOnBody(Snake& snake);
     bool activate() override;
     
-    inline static const
-    std::function<std::unique_ptr<Bonus>(Snake&)>
-    lazy_creator = [] (Snake& snake) {
-        return new SteppedOnBody(snake);
-    };
+    static const LazyCreator lazy_creator;
 };
 
 
