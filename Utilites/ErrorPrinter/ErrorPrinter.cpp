@@ -12,6 +12,8 @@ ErrorPrinter(std::string cause): cause(cause) { }
 
 void ErrorPrinter::
 print() {
+    std::lock_guard<std::mutex> lock(error_mutex);
+    
     ShowWindow(GetConsoleWindow(), SW_SHOW);
     std::cerr << "Program will stop. Error: \n   \'" << cause << '\'' << std::endl;
     system("PAUSE");

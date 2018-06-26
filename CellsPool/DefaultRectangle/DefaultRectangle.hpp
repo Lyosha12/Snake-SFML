@@ -17,12 +17,12 @@ class DefaultRectangle {
   public:
     DefaultRectangle(float cell_width, float cell_height);
     
-    class Configurator {
+    class TextureConfigurator {
         // Это вспомогательный класс. Является посредником между стандартным
         // прямоугольником и спрайтом, который на него натягивается.
       
       public:
-        Configurator(Coord pos_on_field, sf::Texture const& texture);
+        TextureConfigurator(Coord pos_on_field, sf::Texture const& texture);
       
       private:
         friend class DefaultRectangle;
@@ -35,7 +35,7 @@ class DefaultRectangle {
         sf::Texture const& texture;
     };
     
-    sf::Sprite configure(Configurator const& configurator) const;
+    sf::Sprite configureTexture(TextureConfigurator const& configurator) const;
     sf::Vector2f getSize() const;
   
   private:

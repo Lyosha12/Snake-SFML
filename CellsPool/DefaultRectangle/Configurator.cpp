@@ -4,13 +4,13 @@
 
 #include "DefaultRectangle.hpp"
 
-DefaultRectangle::Configurator::
-Configurator(Coord pos_on_field, sf::Texture const& texture)
+DefaultRectangle::TextureConfigurator::
+TextureConfigurator(Coord pos_on_field, sf::Texture const& texture)
     : pos_on_field(pos_on_field)
     , texture(texture)
 { }
 
-sf::Sprite DefaultRectangle::Configurator::
+sf::Sprite DefaultRectangle::TextureConfigurator::
 operator() (sf::RectangleShape const& default_rectangle) const {
     sf::Sprite sprite(texture);
     setPos(sprite, default_rectangle);
@@ -18,7 +18,7 @@ operator() (sf::RectangleShape const& default_rectangle) const {
     return sprite;
 }
 
-void DefaultRectangle::Configurator::
+void DefaultRectangle::TextureConfigurator::
 setPos(sf::Sprite& sprite, sf::RectangleShape const& default_rectangle) const {
     // В соответствии с текущими настройками
     // устанавливается позиция для переданного прямоугольника.

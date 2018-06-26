@@ -17,12 +17,19 @@ class Snake;
 class Bonus {
   public:
     Bonus(Snake& snake);
-    ~Bonus() = default;
+    virtual ~Bonus() = default;
     Bonus(Bonus const&) = delete;
     Bonus& operator= (Bonus const&) = delete;
     
     virtual bool activate() = 0;
     
+    // * Функция отложенного создания бонуса.
+    //   Бассейн клеток запрашивает бонус для заполнителя
+    //   и передаёт ему только змейку, т.к. только она и нужна бонусу.
+    // * Однако, специальные бонусы могут требовать уникальных аргументов
+    //   в своём конструкторе. Поэтому каждый бонус реализует эту функцию так,
+    //   чтобы его создание на вызывающей стороне прошло только с использованием
+    //   одного аргумента - Snake&.
     using LazyCreator = std::function<std::unique_ptr<Bonus>(Snake&)>;
     
   protected:

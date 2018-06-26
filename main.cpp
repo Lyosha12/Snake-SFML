@@ -25,14 +25,17 @@ using namespace std::chrono_literals;
 #include "CellsPool/CellsPool.hpp"
 #include "Snake/Snake.hpp"
 #include "BonusManager/BonusManager.hpp"
+#include "Utilites/ThreadGuard/ThreadGuard.hpp"
 
 class Game {
     // Главный класс. Управляет игровым циклом и отрисовкой.
     
   public:
-    Game(unsigned long width, unsigned long height,
-          size_t count_cells_x, size_t count_cells_y,
-          std::string FieldName)
+    Game(
+        unsigned long width, unsigned long height,
+        size_t count_cells_x, size_t count_cells_y,
+        std::string FieldName
+    )
     : default_rectangle(width/count_cells_x, height/count_cells_y)
     , window(
         {
@@ -42,8 +45,9 @@ class Game {
         FieldName
       )
     , cells_pool(count_cells_x, count_cells_y, window, default_rectangle)
+        , snake(cells_pool)
     , bonus_manager(cells_pool)
-    , snake(cells_pool)
+    , bonus_manager_thread(bonus_manager)
     { }
     
     void mainLoop() {
@@ -54,8 +58,7 @@ class Game {
                 handle_events();
                 snake.move(); // Двигаем змейку в соответствии с её направлением.
             }
-        } catch(NotFoundFreeCell const& e) {
-            // TODO: Реализовать показ завершения игры.
+            
         } catch(std::exception const& e) {
             ErrorPrinter(e.what()).print();
         }
@@ -97,8 +100,9 @@ class Game {
     DefaultRectangle default_rectangle;
     sf::RenderWindow window;
     CellsPool cells_pool;
-    BonusManager bonus_manager;
     Snake snake;
+    BonusManager bonus_manager;
+    ThreadGuard bonus_manager_thread;
 };
 
 int main() {

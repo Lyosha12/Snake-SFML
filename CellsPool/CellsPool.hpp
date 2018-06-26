@@ -114,7 +114,7 @@ class CellsPool: public sf::Drawable {
         }
     }
     
-    void releaseCell(CellCPtr cell);
+    void releaseCell(CellCPtr& cell_to_release);
   
   public:
     void lock()    ;

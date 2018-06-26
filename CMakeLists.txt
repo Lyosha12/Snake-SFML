@@ -77,7 +77,7 @@ add_executable(${PROJECT_NAME}
         BonusManager/SteppedOnHead/SteppedOnHead.cpp
         BonusManager/SteppedOnHead/SteppedOnHead.hpp
 
-        )
+        Utilites/ThreadGuard/ThreadGuard.hpp Utilites/ThreadGuard/ThreadGuard.cpp Utilites/ThreadGuard/LiveStorage/LiveStorage.cpp Utilites/ThreadGuard/LiveStorage/LiveStorage.hpp BonusManager/EatFiller/EatFiller.cpp BonusManager/EatFiller/EatFiller.hpp)
 if(SFML_FOUND)
     include_directories(${SFML_INCLUDE_DIR})
     target_link_libraries(${PROJECT_NAME} ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})

@@ -9,7 +9,7 @@ DefaultRectangle::DefaultRectangle(float cell_width, float cell_height)
 { }
 
 sf::Sprite DefaultRectangle::
-configure(Configurator const& configurator) const {
+configureTexture(TextureConfigurator const& configurator) const {
     // Создание по указанным настройкам прямоугольника для игрового поля.
     return configurator(default_rectangle);
 }

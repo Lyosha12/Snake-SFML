@@ -5,12 +5,21 @@
 #ifndef SNAKE_EAT_HPP
 #define SNAKE_EAT_HPP
 
+#include <atomic>
+#include "../Bonus/Bonus.hpp"
+#include "../../Utilites/ThreadGuard/LiveStorage/LiveStorage.hpp"
 
-class Eat {
+class Eat: public Bonus {
   public:
-  
-  private:
+    Eat(Snake& snake);
+    ~Eat();
+    bool activate() override;
+    static bool isExists();
     
+    static const LazyCreator lazy_creator;
+    
+  private:
+    inline static LiveStorage is_exist = false;
 };
 
 

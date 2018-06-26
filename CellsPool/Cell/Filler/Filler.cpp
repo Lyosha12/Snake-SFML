@@ -16,8 +16,9 @@ Filler::Filler(
     std::function<std::unique_ptr<Bonus>(Snake&)> bonus_creator
 ): is_free(is_free), bonus_creator(std::move(bonus_creator))
 {
-    this->sprite = default_rectangle.configure(
-        DefaultRectangle::Configurator(coord, texture)
+    // Установим переданную текстуру в спрайт, настроив её размер.
+    this->sprite = default_rectangle.configureTexture(
+        DefaultRectangle::TextureConfigurator(coord, texture)
     );
     
     // Позволяет узнать во сколько раз нужно уменьшить
