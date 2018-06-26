@@ -7,10 +7,10 @@
 
 #include <functional>
 #include <SFML/Graphics.hpp>
+#include "../../../BonusManager/Bonus/Bonus.hpp"
 
 class Snake;
 class DefaultRectangle;
-class Bonus;
 class Coord;
 
 class Filler: public sf::Drawable {
@@ -22,7 +22,7 @@ class Filler: public sf::Drawable {
            Coord const& coord,
            sf::Texture const& texture,
            bool is_free,
-           std::function<std::unique_ptr<Bonus>(Snake&)> bonus_creator
+           Bonus::LazyCreator const& bonus_creator
     );
     
     virtual ~Filler() = default;

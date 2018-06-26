@@ -12,6 +12,10 @@ bool SteppedOnBody::activate() {
     return false;
 }
 
+Bonus::LazyCreator const& SteppedOnBody::getBonusCreator() {
+    return lazy_creator;
+}
+
 const Bonus::LazyCreator SteppedOnBody::lazy_creator = [] (Snake& snake) {
     return std::unique_ptr<Bonus>(new SteppedOnBody(snake));
 };

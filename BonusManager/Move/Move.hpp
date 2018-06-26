@@ -12,6 +12,10 @@ class Move: public Bonus {
     Move(Snake& snake);
     bool activate() override;
     
+    // Обратившись к этой функции, можно считать, что бонус начал существовать.
+    static LazyCreator const& getBonusCreator();
+    
+  private:
     static const LazyCreator lazy_creator;
 };
 

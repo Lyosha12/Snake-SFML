@@ -22,19 +22,19 @@ void BonusManager::operator() (LiveStorage& live_storage) {
 }
 
 void BonusManager::trySetEat() {
-    if(Eat::isExists() && eat != nullptr) { // Normal program state.
+    if(eat != nullptr && Eat::isExists()) { // Normal program state.
         return;
     }
     
-    if(!Eat::isExists() && eat == nullptr) {
+    if(eat == nullptr && !Eat::isExists()) {
         std::lock_guard<CellsPool> lock(cells_pool);
         eat = cells_pool.getRandCell<EatFiller>().cell;
-        
-    } else if(!Eat::isExists() && eat != nullptr) {
+     
+    } else if(eat != nullptr && !Eat::isExists()) {
         std::lock_guard<CellsPool> lock(cells_pool);
         cells_pool.releaseCell(eat);
         
-    } else // if(Eat::isExists() && eat == nullptr) { // WTF-Branch
+    } else // if(eat == nullptr && Eat::isExists()) { // WTF-Branch
         throw std::logic_error(
             "Eat are exists on field, but pointer eat == nullptr.\n"
             "Cannot to release eat bonus"

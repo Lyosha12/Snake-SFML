@@ -11,15 +11,18 @@
 
 class Eat: public Bonus {
   public:
-    Eat(Snake& snake);
+    using Bonus::Bonus;
+    
     ~Eat();
     bool activate() override;
     static bool isExists();
     
-    static const LazyCreator lazy_creator;
+    // Обратившись к этой функции, можно считать, что бонус начал существовать.
+    static LazyCreator const& getBonusCreator();
     
   private:
     inline static LiveStorage is_exist = false;
+    static const LazyCreator lazy_creator;
 };
 
 

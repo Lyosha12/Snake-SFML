@@ -14,7 +14,7 @@ class LiveStorage {
     // https://habr.com/post/306332/
     
   public:
-    LiveStorage(bool is_alive = true);
+    LiveStorage(bool is_alive);
     LiveStorage(LiveStorage const&) = delete;
     LiveStorage& operator= (LiveStorage const&) = delete;
     LiveStorage& operator= (bool value);

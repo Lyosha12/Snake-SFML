@@ -25,7 +25,7 @@ class ThreadGuard {
     
   private:
     std::thread thread;
-    LiveStorage live_controller;
+    LiveStorage live_controller = true;
 };
 
 #endif //SNAKE_THREADGUARD_HPP

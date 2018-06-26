@@ -6,15 +6,14 @@
 
 #include "../../../Utilites/Coord/Coord.hpp"
 #include "../../DefaultRectangle/DefaultRectangle.hpp"
-#include "../../../BonusManager/Bonus/Bonus.hpp"
 
 Filler::Filler(
     DefaultRectangle const& default_rectangle,
     Coord const& coord,
     sf::Texture const& texture,
     bool is_free,
-    std::function<std::unique_ptr<Bonus>(Snake&)> bonus_creator
-): is_free(is_free), bonus_creator(std::move(bonus_creator))
+    Bonus::LazyCreator const& bonus_creator
+): is_free(is_free), bonus_creator(bonus_creator)
 {
     // Установим переданную текстуру в спрайт, настроив её размер.
     this->sprite = default_rectangle.configureTexture(

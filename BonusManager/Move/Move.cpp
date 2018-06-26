@@ -17,6 +17,10 @@ bool Move::activate() {
     return false;
 }
 
+Bonus::LazyCreator const& Move::getBonusCreator() {
+    return lazy_creator;
+}
+
 const Bonus::LazyCreator Move::lazy_creator = [] (Snake& snake) {
     return std::unique_ptr<Bonus>(new Move(snake));
 };

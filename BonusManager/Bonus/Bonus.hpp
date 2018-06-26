@@ -34,6 +34,7 @@ class Bonus {
     
   protected:
     Snake& snake;
+    
 };
 
 

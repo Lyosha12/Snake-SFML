@@ -117,9 +117,9 @@ class CellsPool: public sf::Drawable {
     void releaseCell(CellCPtr& cell_to_release);
   
   public:
-    void lock()    ;
-    void unlock()  ;
-    bool try_lock();
+    void lock()     const;
+    void unlock()   const;
+    bool try_lock() const;
   
   private:
     template <class IncomingFiller>
@@ -127,7 +127,7 @@ class CellsPool: public sf::Drawable {
         return std::unique_ptr<Filler>(
             new IncomingFiller(
                 default_rectangle, sprite_location,
-                IncomingFiller::BonusType::lazy_creator
+                IncomingFiller::BonusType::getBonusCreator()
             )
         );
     }
@@ -145,7 +145,7 @@ class CellsPool: public sf::Drawable {
     size_t count_cells_y;
     
     std::vector<std::vector<Cell>> cells;
-    std::mutex cells_mutex;
+    mutable std::mutex cells_mutex;
     // Из этого списка раздаются указатели на клетки
     // для учёта их другими сущностями.
     // Изменять их может только внутренняя реализация

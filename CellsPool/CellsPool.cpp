@@ -47,9 +47,9 @@ void CellsPool::releaseCell(CellCPtr& cell_to_release) {
 }
 
 
-void CellsPool::lock()     { cells_mutex.lock();            }
-void CellsPool::unlock()   { cells_mutex.unlock();          }
-bool CellsPool::try_lock() { return cells_mutex.try_lock(); }
+void CellsPool::lock()     const { cells_mutex.lock();            }
+void CellsPool::unlock()   const { cells_mutex.unlock();          }
+bool CellsPool::try_lock() const { return cells_mutex.try_lock(); }
 
 
 CellsPool::RequestedCell CellsPool::kickFromAvailable(AviablesIter runner, FillerUPtr new_filler) {
@@ -96,6 +96,8 @@ CellsPool::AviablesIter CellsPool::findInAvailable(CellCPtr cell) {
 
 void CellsPool::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(background);
+    std::lock_guard<std::mutex> lock(cells_mutex);
+    
     for(auto const& row: cells)
         for(auto const& cell: row)
             target.draw(cell, states);
