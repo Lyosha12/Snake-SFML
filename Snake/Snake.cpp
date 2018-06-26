@@ -2,7 +2,6 @@
 // Created by Lyosha12 on 22.06.2018.
 //
 
-#include <iostream>
 #include "Snake.hpp"
 #include "SnakeFillers/Body/Body.hpp"
 #include "SnakeFillers/Head/Head.hpp"

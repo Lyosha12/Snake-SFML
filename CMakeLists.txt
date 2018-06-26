@@ -62,7 +62,22 @@ add_executable(${PROJECT_NAME}
         Snake/SnakeFillers/Body/Body.cpp
         Snake/SnakeFillers/Body/Body.hpp
 
-        BonusManager/SteppedOnBody/SteppedOnBody.cpp BonusManager/SteppedOnBody/SteppedOnBody.hpp BonusManager/SteppedOnHead/SteppedOnHead.cpp BonusManager/SteppedOnHead/SteppedOnHead.hpp BonusManager/Move/Move.cpp BonusManager/Move/Move.hpp BonusManager/SteppedOnBody/SteppedOnBody.cpp BonusManager/SteppedOnBody/SteppedOnBody.hpp BonusManager/SteppedOnHead/SteppedOnHead.cpp BonusManager/SteppedOnHead/SteppedOnHead.hpp)
+        BonusManager/SteppedOnBody/SteppedOnBody.cpp
+        BonusManager/SteppedOnBody/SteppedOnBody.hpp
+
+        BonusManager/SteppedOnHead/SteppedOnHead.cpp
+        BonusManager/SteppedOnHead/SteppedOnHead.hpp
+
+        BonusManager/Move/Move.cpp
+        BonusManager/Move/Move.hpp
+
+        BonusManager/SteppedOnBody/SteppedOnBody.cpp
+        BonusManager/SteppedOnBody/SteppedOnBody.hpp
+
+        BonusManager/SteppedOnHead/SteppedOnHead.cpp
+        BonusManager/SteppedOnHead/SteppedOnHead.hpp
+
+        )
 if(SFML_FOUND)
     include_directories(${SFML_INCLUDE_DIR})
     target_link_libraries(${PROJECT_NAME} ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
