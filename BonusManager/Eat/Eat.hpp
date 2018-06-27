@@ -13,7 +13,6 @@ class Eat: public Bonus {
   public:
     using Bonus::Bonus;
     
-    ~Eat();
     bool activate() override;
     static bool isExists();
     

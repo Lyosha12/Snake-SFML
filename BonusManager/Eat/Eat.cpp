@@ -5,11 +5,6 @@
 #include "Eat.hpp"
 #include "../EatFiller/EatFiller.hpp"
 
-Eat::~Eat() {
-    // Согласно RAII, тут бонус прекращает своё существование на поле.
-    is_exist = false;
-}
-
 bool Eat::activate() {
     // Активация не нужна.
     // Бонус уже "подействовал", не удаляя хвост змейки.
@@ -27,5 +22,6 @@ bool Eat::isExists() {
 }
 
 const Bonus::LazyCreator Eat::lazy_creator = [] (Snake& snake) {
+    is_exist = false;
     return std::unique_ptr<Bonus>(new Eat(snake));
 };

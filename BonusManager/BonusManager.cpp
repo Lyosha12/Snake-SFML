@@ -22,22 +22,34 @@ void BonusManager::operator() (LiveStorage& live_storage) {
 }
 
 void BonusManager::trySetEat() {
+    // Бонус существует на поле и менеджер бонусов им владеет.
     if(eat != nullptr && Eat::isExists()) { // Normal program state.
         return;
     }
     
+    // Бонуса на поле нет и мы им не владеем.
     if(eat == nullptr && !Eat::isExists()) {
+        // Тогда создадим бонус и будем им владеть.
         std::lock_guard<CellsPool> lock(cells_pool);
         eat = cells_pool.getRandCell<EatFiller>().cell;
-     
-    } else if(eat != nullptr && !Eat::isExists()) {
+        return;
+    }
+    // Если бонусом менеджер владеет и бонус не существует на поле,
+    // то нужно освободить клетку.
+    // Произойдёт, когда время существования бонуса, если оно есть, пройдёт.
+    // TODO: Нельзя определить принадлежит ли нам клетка или нет только по наличию бонуса на поле.
+     if(eat != nullptr && !Eat::isExists()) {
         std::lock_guard<CellsPool> lock(cells_pool);
         cells_pool.releaseCell(eat);
         
-    } else // if(eat == nullptr && Eat::isExists()) { // WTF-Branch
+        return;
+    }
+    
+    if(eat == nullptr && Eat::isExists()) { // WTF-Branch
         throw std::logic_error(
             "Eat are exists on field, but pointer eat == nullptr.\n"
             "Cannot to release eat bonus"
         );
+    }
 }
     
