@@ -3,8 +3,8 @@
 //
 
 #include "CellsPool.hpp"
-#include "Cell/FreeCellFiller/FreeCellFiller.hpp"
 #include "DefaultRectangle/DefaultRectangle.hpp"
+#include "Cell/Fillers/FreeCellFiller.hpp"
 
 CellsPool::CellsPool(
     size_t count_cells_x,
@@ -52,15 +52,22 @@ void CellsPool::unlock()   const { cells_mutex.unlock();          }
 bool CellsPool::try_lock() const { return cells_mutex.try_lock(); }
 
 
-CellsPool::RequestedCell CellsPool::kickFromAvailable(AviablesIter runner, FillerUPtr new_filler) {
-    CellPtr ordered_cell = const_cast<CellPtr>(*runner);
+
+CellsPool::RequestedCell CellsPool::replaceFiller(CellPtr target, FillerUPtr new_filler) {
+    // Заменяем заполнитель переданным
+    std::unique_ptr<Filler> prev_filler(std::move(target->filler));
+    target->filler = std::move(new_filler);
+    
+    // и возвращаем клетку со старым заполнителем.
+    return { target, std::move(prev_filler) };
+}
+CellsPool::RequestedCell CellsPool::kickFromAvailable(AviablesIter target, FillerUPtr new_filler) {
+    CellPtr ordered_cell = const_cast<CellPtr>(*target);
     // Удалим запрошенную клетку из доступных к использованию.
-    available_cells.erase(runner);
+    available_cells.erase(target);
     
     // Сохраним прошлый заполнитель и поместим новый.
-    std::unique_ptr<Filler> prev_filler(std::move(ordered_cell->filler));
-    ordered_cell->filler = std::move(new_filler);
-    return { ordered_cell, std::move(prev_filler) };
+    return replaceFiller(ordered_cell, std::move(new_filler));
 }
 
 
@@ -84,12 +91,12 @@ CellsPool::AviablesIter CellsPool::findInAvailable(CellCPtr cell) {
     // она может быть недоступна. Если так, то данная функция
     // выбросит исключение NotFoundFreeCell.
     
-    auto runner = available_cells.begin();
-    while(runner != available_cells.end() && *runner != cell)
-        ++runner;
+    auto cur_cell = available_cells.begin();
+    while(cur_cell != available_cells.end() && *cur_cell != cell)
+        ++cur_cell;
     
-    if(runner != available_cells.end())
-        return runner;
+    if(cur_cell != available_cells.end())
+        return cur_cell;
     else
         throw NotFoundFreeCell(cell);
 }

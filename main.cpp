@@ -45,10 +45,10 @@ class Game {
         FieldName
       )
     , cells_pool(count_cells_x, count_cells_y, window, default_rectangle)
-        , snake(cells_pool)
+    , snake(cells_pool)
     , bonus_manager(cells_pool)
     , bonus_manager_thread(bonus_manager)
-    { }
+    { window.setFramerateLimit(30); }
     
     void mainLoop() {
         try {

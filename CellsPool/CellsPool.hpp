@@ -21,8 +21,7 @@ class TextureStorage;
 
 class CellsPool: public sf::Drawable {
     // Класс отвечает за распределение клеток между
-    // объектами на поле. Между змейкой,
-    // бонусами и другими сущностями типа барьеров.
+    // объектами на поле. Между змейкой, бонусами.
     
     // Это разделяемый ресурс. Прежде, чем обратиться к нему,
     // сначала нужно захватить его мьютекс.
@@ -49,70 +48,15 @@ class CellsPool: public sf::Drawable {
     };
     
     template <class IncomingFiller>
-    RequestedCell getRandCell() {
-        // Выбрав случайно число по размеру списка свободных клеток,
-        // вернём результирующую клетку, удалив её из доступных.
-        
-        if(available_cells.empty()) {
-            throw NotFoundFreeCell({}, "rand free cell not exist");
-        }
-        
-        size_t rand_cell = std::rand()%available_cells.size();
-        AviablesIter requested_cell = getListElement(available_cells, rand_cell);
+    RequestedCell getRandCell();
+    template <class IncomingFiller>
+    RequestedCell getNearCell(CellCPtr target);
+    template <class IncomingFiller> // Клетка, по направлению от заданной.
+    RequestedCell getCell(CellCPtr target, Coord direction);
     
-        std::unique_ptr<Filler> new_filler = fillerCreator<IncomingFiller>(
-            (*requested_cell)->coord
-        );
-        return kickFromAvailable(requested_cell, std::move(new_filler));
-    }
+    // Выбросить старый заполнитель и создать новый.
     template <class IncomingFiller>
-    RequestedCell getNearCell(CellCPtr target) {
-        // Берём случайную свободную клетку в радиусе одной от заданной.
-        
-        // Найдём её соседей
-        CellCPtr up    = extractCell(target->coord + Coord{ 0, -1});
-        CellCPtr down  = extractCell(target->coord + Coord{ 0,  1});
-        CellCPtr right = extractCell(target->coord + Coord{ 1,  0});
-        CellCPtr left  = extractCell(target->coord + Coord{-1,  0});
-        std::vector<CellCPtr> neighbors = {up, down, right, left};
-        
-        // Выберем случайную клетку...
-        while(!neighbors.empty()) {
-            size_t rand_neighbor = std::rand()%neighbors.size();
-            CellCPtr neighbor = neighbors[rand_neighbor];
-            
-            // ... доступную к использованию.
-            if(neighbor->filler->isFree()) {
-                std::unique_ptr<Filler> new_filler = fillerCreator<IncomingFiller>(
-                    neighbor->coord
-                );
-                return kickFromAvailable(findInAvailable(neighbor), std::move(new_filler));
-            } else
-                neighbors.erase(neighbors.begin() + rand_neighbor);
-        }
-        
-        throw NotFoundFreeCell(target, "near free cell not exist");
-    }
-    template <class IncomingFiller>
-    RequestedCell getCell(CellCPtr target, Coord direction) {
-        // Возьмём клетку по заданному направлению относительно текущей.
-        CellPtr requested_cell = extractCell(target->coord + direction);
-        
-        std::unique_ptr<Filler> new_filler = fillerCreator<IncomingFiller>(
-            requested_cell->coord
-        );
-
-        try {
-            return kickFromAvailable(
-                findInAvailable(requested_cell),
-                std::move(new_filler)
-            );
-        } catch(NotFoundFreeCell& e) {
-            // Часть геймплея: клетка может быть занятой -
-            // всё равно вернём её, но её заполнитель трогать не нужно.
-            return { requested_cell, nullptr };
-        }
-    }
+    void replaceFiller(CellCPtr target);
     
     void releaseCell(CellCPtr& cell_to_release);
   
@@ -123,15 +67,10 @@ class CellsPool: public sf::Drawable {
   
   private:
     template <class IncomingFiller>
-    std::unique_ptr<Filler> fillerCreator(Coord const& sprite_location) const {
-        return std::unique_ptr<Filler>(
-            new IncomingFiller(
-                default_rectangle, sprite_location,
-                IncomingFiller::BonusType::getBonusCreator()
-            )
-        );
-    }
-    RequestedCell kickFromAvailable(AviablesIter runner, FillerUPtr new_filler);
+    std::unique_ptr<Filler> fillerCreator(Coord const& sprite_location) const;
+    RequestedCell replaceFiller(CellPtr target, FillerUPtr new_filler);
+    RequestedCell kickFromAvailable(AviablesIter target, FillerUPtr new_filler);
+    
     Coord normalize(Coord coord) const;
     CellPtr extractCell(Coord coord);
     AviablesIter findInAvailable(CellCPtr cell);
@@ -158,7 +97,7 @@ class CellsPool: public sf::Drawable {
     sf::RenderWindow& window;
 };
 
-
+#include "CellsPool.tpl.cpp"
 
 
 #endif //SNAKE_CELLSPOOL_HPP

@@ -15,8 +15,7 @@ using namespace std::chrono_literals;
 #include "../Utilites/ListRunner.hpp"
 #include "../CellsPool/Cell/Cell.hpp"
 #include "../BonusManager/Bonus/Bonus.hpp"
-
-class CellsPool;
+#include "../CellsPool/CellsPool.hpp"
 
 class Snake {
     using CellCPtr = Cell::CellCPtr;
@@ -31,13 +30,23 @@ class Snake {
     void changeDirection(Direction direction);
     
   public:
-    void popBodyChapter(size_t chapter_index);
+    // Считая с головы-нуля, удаляет запрошенный элемент змейки.
+    void popChapter(size_t chapter_index);
+    
+    // Вставить переданный заполнитель (обычно тело, если вызывает бонус движения)
+    // перед указанным элементом змейки, считая с нуля.
+    // Так, можно сделать телом змейки и заполнитель-бонус.
+    // Получаются интересные варианты геймплея.
+    template <class FillerType>
+    void pushChapter(size_t chapter_index);
+    
+    template <class InputFiller>
+    void replaceChapter(size_t chapter_index);
+    
     size_t bodyLength() const;
     auto getMoveInterval() const;
     template <class IntervalType>
-    void setMoveInterval(IntervalType move_interval) {
-        this->move_interval.setInterval(move_interval);
-    }
+    void setMoveInterval(IntervalType move_interval);
     
   private:
     void addHead();
@@ -49,12 +58,14 @@ class Snake {
   private:
     std::list<CellCPtr> body;
     Coord direction = {0, 0};
-    TimeCounter<> move_interval = 150ms;
+    TimeCounter<> move_interval = 650ms;
     std::queue<Coord> moves;
     
     CellsPool& cells_pool;
     std::list<std::unique_ptr<Bonus>> active_effects;
 };
+
+#include "Snake.tpl.cpp"
 
 
 #endif //SNAKE_SNAKE_HPP

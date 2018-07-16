@@ -9,7 +9,7 @@
 #include "../../../Utilites/Coord/Coord.hpp"
 #include "../../../Utilites/TextureStorage/TextureStorage.hpp"
 #include "../../../BonusManager/SteppedOnBody/SteppedOnBody.hpp"
-#include "../../../CellsPool/Cell/Filler/Filler.hpp"
+#include "../Filler/Filler.hpp"
 
 class DefaultRectangle;
 class Bonus;
@@ -17,10 +17,14 @@ class Snake;
 
 class Body: public Filler {
   public:
-    Body(DefaultRectangle const& default_rectangle, Coord const& coord,
-         std::function<std::unique_ptr<Bonus>(Snake&)> bonus_creator);
+    template <class BonusType = SteppedOnBody>
+    Body(DefaultRectangle const& default_rectangle, Coord const& coord)
+    : Filler(
+          default_rectangle, coord, texture, CanBeTake::No,
+          BonusType::getBonusCreator(), BonusType::getBonusDestroyer()
+      )
+    { }
     
-    using BonusType = SteppedOnBody;
   
   private:
     inline static TextureStorage texture {

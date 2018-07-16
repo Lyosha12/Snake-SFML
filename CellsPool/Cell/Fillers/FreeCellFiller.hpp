@@ -5,9 +5,10 @@
 #ifndef SNAKE_FREECELLFILLER_HPP
 #define SNAKE_FREECELLFILLER_HPP
 
-#include "../../../Snake/Snake.hpp"
 #include "../Filler/Filler.hpp"
 #include "../../../BonusManager/Move/Move.hpp"
+
+class Snake;
 
 class FreeCellFiller: public Filler {
     // * Заполнитель по-умолчанию. Это клетка,
@@ -16,12 +17,14 @@ class FreeCellFiller: public Filler {
     //   Текстура свободного поля определяется бассейном клеток.
     
   public:
+    template <class BonusType = Move>
     FreeCellFiller(
-        DefaultRectangle const& default_rectangle, Coord const& coord,
-        std::function<std::unique_ptr<Bonus>(Snake&)> bonus_creator
-    );
-    
-    using BonusType = Move;
+        DefaultRectangle const& default_rectangle, Coord const& coord
+    ): Filler(
+          default_rectangle, coord, sf::Texture() /* Пустая */, CanBeTake::Yes,
+          BonusType::getBonusCreator(), BonusType::getBonusDestroyer()
+       )
+    { }
 };
 
 

@@ -3,8 +3,8 @@
 //
 
 #include "Snake.hpp"
-#include "SnakeFillers/Body/Body.hpp"
-#include "SnakeFillers/Head/Head.hpp"
+#include "../CellsPool/Cell/Fillers/Body.hpp"
+#include "../CellsPool/Cell/Fillers/Head.hpp"
 #include "../CellsPool/CellsPool.hpp"
 
 Snake::Snake(CellsPool& cells_pool)
@@ -16,13 +16,18 @@ Snake::Snake(CellsPool& cells_pool)
     Snake::findHeadDirection();
 }
 
+
+
+
+
+
 void Snake::move() {
     if(!move_interval.isIntervalPassed()) {
         applyEffects(); // Если не время хода, выполним другую работу.
         return;
     }
     
-    // Пока ещё не начали двигаться, посмотрим, нужно ли изменить направление.
+    // Пока ещё не начали двигаться, попробуем изменить направление.
     tryChangeDirection();
     
     std::lock_guard<CellsPool> lock(cells_pool);
@@ -30,44 +35,22 @@ void Snake::move() {
     // Получим новую голову по направлению движения относительно текущей головы.
     CellsPool::RequestedCell new_head = cells_pool.getCell<Head>(body.front(), direction);
     
-    // Указатель тогда nullptr, когда клеткой уже кто-то владел -
-    // нельзя просто взять и удалить чужой заполнитель.
-    // Получив уже занятую клетку, переместиться в неё нельзя.
+    // Добавим новую голову к телу, если эта клетка свободна.
+    // Предыдущий заполнитель клетки должен быть перемещён в член prev_filler.
     if(new_head.prev_filler != nullptr) {
-    
-        // Освободим клетку старой головы.
-        // Было: { HB};
-        popBodyChapter(0);
-        // Теперь: { B};
-    
-        // * Добавим часть тела в список между новой головой и удалённой прошлой.
-        // * Ингорируем бонус - клеткой только что владела старая голова.
-        body.push_front(cells_pool.getCell<Body>(new_head.cell, -direction).cell);
-        // Теперь: { BB};
-        
-        // Добавим вслед за частью тела новую голову.
         body.push_front(new_head.cell);
-        // Теперь: {HBB}.
     }
     
     // Добавим бонус с этой клетки в список активных бонусов змейки.
     this->active_effects.push_back(
         // Учитывая, что предыдущий заполнитель может остаться на месте,
         // указатель может быть нулевым.
-        // Тогда очевидно, что предыдущий заполнитель остался
-        // в запрошенной клетке, которая не изменила состояния и
-        // в которую змейка не перепестилась.
+        // Тогда предыдущий заполнитель остаётся в запрошенной клетке.
         (
             new_head.prev_filler
             ? new_head.prev_filler
             : new_head.cell->filler
         )->getBonus(*this)
-        
-        // При попытке хода в текущем интервале времени будет выполнен
-        // проход по собранным бонусам. Тогда же змейка будет либо
-        // укорочена {HB } - бонус свободной клетки,
-        // либо останется прежней {HBB} - бонус еды.
-        // Другой бонус может изменить змейку как-то ещё через её интерфейс.
     );
 }
 void Snake::changeDirection(Direction direction) {
@@ -81,7 +64,7 @@ void Snake::changeDirection(Direction direction) {
 }
 
 
-void Snake::popBodyChapter(size_t chapter_index) {
+void Snake::popChapter(size_t chapter_index) {
     auto chapter = getListElement(body, chapter_index);
     cells_pool.releaseCell(*chapter);
     body.erase(chapter);

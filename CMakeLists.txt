@@ -1,23 +1,18 @@
 cmake_minimum_required(VERSION 3.6)
 project(Snake)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++17 -pedantic -Wall -Wextra")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++17 -pedantic -Wall -Wextra ")
 set(CMAKE_EXE_LINKER_FLAGS "-static -static-libgcc")
 set(SFML_STATIC_LIBRARIES TRUE)
 
 
-set(SFML_ROOT "W:/Programs/Programming environment/Librares/SFML-2.4.2")
+set(SFML_ROOT "D:/Programs/ProgrammingEnvironment/Librares/SFML-2.4.2")
 set(CMAKE_MODULE_PATH "${SFML_ROOT}/cmake/Modules" ${CMAKE_MODULE_PATH})
 find_package(SFML 2 REQUIRED graphics network audio window system)
 
 add_executable(${PROJECT_NAME}
         main.cpp
 
-        Utilites/ErrorPrinter/ErrorPrinter.cpp
-        Utilites/ErrorPrinter/ErrorPrinter.hpp
-
-        Utilites/Coord/Coord.cpp
-        Utilites/Coord/Coord.hpp
 
         CellsPool/DefaultRectangle/Configurator.cpp
         CellsPool/DefaultRectangle/DefaultRectangle.cpp
@@ -27,19 +22,24 @@ add_executable(${PROJECT_NAME}
         CellsPool/Cell/Cell.cpp
         CellsPool/Cell/Cell.hpp
 
-        Utilites/TimeCounter/TimeCounter.hpp
-
-        Utilites/TextureStorage/TextureStorage.cpp
-        Utilites/TextureStorage/TextureStorage.hpp
-
         CellsPool/NotFoundFreeCell/NotFoundFreeCell.cpp
         CellsPool/NotFoundFreeCell/NotFoundFreeCell.hpp
 
         CellsPool/CellsPool.cpp
         CellsPool/CellsPool.hpp
 
+        CellsPool/Cell/Filler/Filler.hpp
+        CellsPool/Cell/Fillers/FreeCellFiller.hpp
+
+       # CellsPool/CellsPool.tpl.cpp
+
         Snake/Snake.cpp
         Snake/Snake.hpp
+
+        CellsPool/Cell/Fillers/Head.hpp
+
+        CellsPool/Cell/Fillers/Body.hpp
+
 
         BonusManager/BonusManager.cpp
         BonusManager/BonusManager.hpp
@@ -49,18 +49,6 @@ add_executable(${PROJECT_NAME}
 
         BonusManager/Eat/Eat.cpp
         BonusManager/Eat/Eat.hpp
-
-        CellsPool/Cell/Filler/Filler.hpp
-        CellsPool/Cell/FreeCellFiller/FreeCellFiller.cpp
-        CellsPool/Cell/FreeCellFiller/FreeCellFiller.hpp
-
-        Utilites/ListRunner.hpp
-
-        Snake/SnakeFillers/Head/Head.cpp
-        Snake/SnakeFillers/Head/Head.hpp
-
-        Snake/SnakeFillers/Body/Body.cpp
-        Snake/SnakeFillers/Body/Body.hpp
 
         BonusManager/SteppedOnBody/SteppedOnBody.cpp
         BonusManager/SteppedOnBody/SteppedOnBody.hpp
@@ -77,7 +65,31 @@ add_executable(${PROJECT_NAME}
         BonusManager/SteppedOnHead/SteppedOnHead.cpp
         BonusManager/SteppedOnHead/SteppedOnHead.hpp
 
-        Utilites/ThreadGuard/ThreadGuard.hpp Utilites/ThreadGuard/ThreadGuard.cpp Utilites/ThreadGuard/LiveStorage/LiveStorage.cpp Utilites/ThreadGuard/LiveStorage/LiveStorage.hpp BonusManager/EatFiller/EatFiller.cpp BonusManager/EatFiller/EatFiller.hpp)
+        CellsPool/Cell/Fillers/EatFiller.hpp
+
+
+        Utilites/TextureStorage/TextureStorage.cpp
+        Utilites/TextureStorage/TextureStorage.hpp
+
+        Utilites/TimeCounter/TimeCounter.hpp
+
+        Utilites/ErrorPrinter/ErrorPrinter.cpp
+        Utilites/ErrorPrinter/ErrorPrinter.hpp
+
+        Utilites/Coord/Coord.cpp
+        Utilites/Coord/Coord.hpp
+
+        Utilites/ListRunner.hpp
+
+        Utilites/ThreadGuard/ThreadGuard.hpp
+        Utilites/ThreadGuard/ThreadGuard.cpp
+
+        Utilites/ThreadGuard/LiveStorage/LiveStorage.cpp
+        Utilites/ThreadGuard/LiveStorage/LiveStorage.hpp
+
+
+
+        )
 if(SFML_FOUND)
     include_directories(${SFML_INCLUDE_DIR})
     target_link_libraries(${PROJECT_NAME} ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})

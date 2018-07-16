@@ -5,9 +5,8 @@
 #include "BonusManager.hpp"
 #include "../CellsPool/CellsPool.hpp"
 #include "../Utilites/ThreadGuard/LiveStorage/LiveStorage.hpp"
-#include "Eat/Eat.hpp"
 #include "../Utilites/ErrorPrinter/ErrorPrinter.hpp"
-#include "EatFiller/EatFiller.hpp"
+#include "../CellsPool/Cell/Fillers/EatFiller.hpp"
 
 BonusManager::BonusManager(CellsPool& cells_pool): cells_pool(cells_pool) { }
 

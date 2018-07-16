@@ -12,11 +12,12 @@ class SteppedOnHead: public Bonus {
     SteppedOnHead(Snake& snake);
     bool activate() override;
     
-    // Обратившись к этой функции, можно считать, что бонус начал существовать.
     static LazyCreator const& getBonusCreator();
+    static LazyDestroyer const& getBonusDestroyer();
     
   private:
     static const LazyCreator lazy_creator;
+    static const Bonus::LazyDestroyer bonus_destroy_notify;
 };
 
 
