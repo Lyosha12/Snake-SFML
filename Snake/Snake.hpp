@@ -11,7 +11,7 @@
 using namespace std::chrono_literals;
 
 #include "../Utilites/Coord/Coord.hpp"
-#include "../Utilites/TimeCounter/TimeCounter.hpp"
+#include "../Utilites/TimeCounter/IntervalChecker.hpp"
 #include "../Utilites/ListRunner.hpp"
 #include "../CellsPool/Cell/Cell.hpp"
 #include "../BonusManager/Bonus/Bonus.hpp"
@@ -58,7 +58,7 @@ class Snake {
   private:
     std::list<CellCPtr> body;
     Coord direction = {0, 0};
-    TimeCounter<> move_interval = 650ms;
+    IntervalChecker<> move_interval = 150ms;
     std::queue<Coord> moves;
     
     CellsPool& cells_pool;

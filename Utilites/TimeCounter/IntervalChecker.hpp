@@ -2,26 +2,31 @@
 // Created by Lyosha12 on 30.04.2018.
 //
 
-#ifndef LAB_3_TIMECONTROLLER_HPP
-#define LAB_3_TIMECONTROLLER_HPP
+#ifndef LYOSHA12_INTERVALCHECKER_HPP
+#define LYOSHA12_INTERVALCHECKER_HPP
 
 #include <chrono>
 #include <stdexcept>
 
 template <class ClockType = std::chrono::steady_clock>
-class TimeCounter {
+class IntervalChecker {
+    /* Классу задаётся некоторый интервал времени,
+     * после чего вызывающая сторона проверяет не прошёл ли он.
+     * Как только интервал прошёл, точкой отсчёта нового становится время,
+     * когда была вызвана последняя проверка.
+     */
   public:
     using IntervalType = std::chrono::nanoseconds;
     
   public:
     template <class IntervalTypeIncoming>
-    TimeCounter(IntervalTypeIncoming interval)
-        : interval(std::chrono::duration_cast<IntervalType> (interval))
+    IntervalChecker(IntervalTypeIncoming interval)
+    : interval(std::chrono::duration_cast<IntervalType> (interval))
     { }
     
     bool isIntervalPassed(float interval_multipler = 1) {
         if(is_paused)
-            throw std::logic_error("Trying to check TimeCounter when it has paused.");
+            throw std::logic_error("Trying to check IntervalChecker when it has paused.");
         
         if(ClockType::now() - last_moment < interval * interval_multipler) {
             return false;
@@ -58,4 +63,4 @@ class TimeCounter {
 };
 
 
-#endif //LAB_3_TIMECONTROLLER_HPP
+#endif // LYOSHA12_INTERVALCHECKER_HPP

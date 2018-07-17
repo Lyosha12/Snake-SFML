@@ -25,7 +25,6 @@ Bonus::LazyCreator const& Eat::getBonusCreator() {
     is_exist = true;
     return lazy_creator;
 }
-
 Bonus::LazyDestroyer const& Eat::getBonusDestroyer() {
     return bonus_destroy_notify;
 }
@@ -33,7 +32,6 @@ Bonus::LazyDestroyer const& Eat::getBonusDestroyer() {
 bool Eat::isExists() {
     return is_exist;
 }
-
 
 
 const Bonus::LazyCreator Eat::lazy_creator = [] (Snake& snake) {

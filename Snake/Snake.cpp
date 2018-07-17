@@ -6,6 +6,7 @@
 #include "../CellsPool/Cell/Fillers/Body.hpp"
 #include "../CellsPool/Cell/Fillers/Head.hpp"
 #include "../CellsPool/CellsPool.hpp"
+#include "../Utilites/TimeProfiler/TimeProfiler.hpp"
 
 Snake::Snake(CellsPool& cells_pool)
 : cells_pool(cells_pool)
@@ -15,11 +16,6 @@ Snake::Snake(CellsPool& cells_pool)
     Snake::addBody();
     Snake::findHeadDirection();
 }
-
-
-
-
-
 
 void Snake::move() {
     if(!move_interval.isIntervalPassed()) {

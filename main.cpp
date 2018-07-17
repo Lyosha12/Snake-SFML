@@ -20,7 +20,7 @@ using namespace std::chrono_literals;
 #include <SFML/Graphics.hpp>
 
 #include "Utilites/ErrorPrinter/ErrorPrinter.hpp"
-#include "Utilites/TimeCounter/TimeCounter.hpp"
+#include "Utilites/TimeCounter/IntervalChecker.hpp"
 #include "CellsPool/DefaultRectangle/DefaultRectangle.hpp"
 #include "CellsPool/CellsPool.hpp"
 #include "Snake/Snake.hpp"

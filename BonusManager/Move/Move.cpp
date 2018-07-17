@@ -16,8 +16,7 @@ Move::Move(Snake& snake): Bonus(snake) {
 
 bool Move::activate() {
     // Перемещение змейки уже было в конструкторе бонуса.
-    // Здесь просто скажем о том, что он уже не нужен -
-    // зачем хранить ещё и флаг, применился ли бонус и окончательно ли?
+    // Здесь просто скажем о том, что он уже не нужен.
     return false;
 }
 
@@ -27,6 +26,9 @@ Bonus::LazyCreator const& Move::getBonusCreator() {
 Bonus::LazyDestroyer const& Move::getBonusDestroyer() {
     return bonus_destroy_notify;
 }
+
+
+
 
 const Bonus::LazyCreator Move::lazy_creator = [] (Snake& snake) {
     return std::unique_ptr<Bonus>(new Move(snake));

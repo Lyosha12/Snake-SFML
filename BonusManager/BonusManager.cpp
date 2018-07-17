@@ -29,7 +29,12 @@ void BonusManager::trySetEat() {
     // Бонуса на поле нет и мы им не владеем.
     if(eat == nullptr && !Eat::isExists()) {
         // Тогда создадим бонус и будем им владеть.
-        std::lock_guard<CellsPool> lock(cells_pool);
+        // Но, т.к. создать бонус - это не срочно,
+        // то можно пару циклов и потерпеть.
+        
+        std::unique_lock<CellsPool> lock(cells_pool, std::defer_lock);
+        while(!lock.try_lock())
+            ;
         eat = cells_pool.getRandCell<EatFiller>().cell;
         return;
     }
