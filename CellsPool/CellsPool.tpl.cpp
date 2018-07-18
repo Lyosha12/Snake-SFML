@@ -13,7 +13,7 @@ CellsPool::RequestedCell CellsPool::getRandCell() {
     }
     
     size_t rand_cell = std::rand()%available_cells.size();
-    AviablesIter requested_cell = getListElement(available_cells, rand_cell);
+    AvailablesIter requested_cell = getListElement(available_cells, rand_cell);
     
     std::unique_ptr<Filler> new_filler = fillerCreator<IncomingFiller>(
         (*requested_cell)->coord
@@ -61,10 +61,8 @@ CellsPool::RequestedCell CellsPool::getCell(CellCPtr target, Coord direction) {
     );
     
     try {
-        return kickFromAvailable(
-            findInAvailable(requested_cell),
-            std::move(new_filler)
-        );
+        AvailablesIter available_cell = findInAvailable(requested_cell);
+        return kickFromAvailable(available_cell, std::move(new_filler));
     } catch(NotFoundFreeCell& e) {
         // * Здесь запрошенная клетка однозначно занята.
         // * Вернём заполнитель клетки, если она доступна для посещения.

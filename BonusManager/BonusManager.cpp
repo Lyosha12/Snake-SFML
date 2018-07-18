@@ -43,8 +43,8 @@ void BonusManager::trySetEat() {
     // Произойдёт, когда время существования бонуса, если оно есть, пройдёт.
     // TODO: Нельзя определить принадлежит ли нам клетка или нет только по наличию бонуса на поле.
      if(eat != nullptr && !Eat::isExists()) {
-        std::lock_guard<CellsPool> lock(cells_pool);
-        cells_pool.releaseCell(eat);
+     //   std::lock_guard<CellsPool> lock(cells_pool);
+     //   cells_pool.releaseCell(eat);
         
         return;
     }

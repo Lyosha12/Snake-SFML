@@ -29,7 +29,7 @@ class CellsPool: public sf::Drawable {
     using FillerUPtr   = Cell::FillerUPtr;
     using CellCPtr     = Cell::CellCPtr  ;
     using CellPtr      = Cell::CellPtr   ;
-    using AviablesIter = std::list<CellCPtr>::const_iterator;
+    using AvailablesIter = std::list<CellCPtr>::const_iterator;
     
   public:
     CellsPool(
@@ -69,11 +69,11 @@ class CellsPool: public sf::Drawable {
     template <class IncomingFiller>
     std::unique_ptr<Filler> fillerCreator(Coord const& sprite_location) const;
     RequestedCell replaceFiller(CellPtr target, FillerUPtr new_filler);
-    RequestedCell kickFromAvailable(AviablesIter target, FillerUPtr new_filler);
+    RequestedCell kickFromAvailable(AvailablesIter target, FillerUPtr new_filler);
     
     Coord normalize(Coord coord) const;
     CellPtr extractCell(Coord coord);
-    AviablesIter findInAvailable(CellCPtr cell);
+    AvailablesIter findInAvailable(CellCPtr cell);
     
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     

@@ -61,7 +61,7 @@ CellsPool::RequestedCell CellsPool::replaceFiller(CellPtr target, FillerUPtr new
     // и возвращаем клетку со старым заполнителем.
     return { target, std::move(prev_filler) };
 }
-CellsPool::RequestedCell CellsPool::kickFromAvailable(AviablesIter target, FillerUPtr new_filler) {
+CellsPool::RequestedCell CellsPool::kickFromAvailable(AvailablesIter target, FillerUPtr new_filler) {
     CellPtr ordered_cell = const_cast<CellPtr>(*target);
     // Удалим запрошенную клетку из доступных к использованию.
     available_cells.erase(target);
@@ -86,7 +86,7 @@ CellsPool::CellPtr CellsPool::extractCell(Coord coord) {
     coord = normalize(coord);
     return &cells[coord.y][coord.x];
 }
-CellsPool::AviablesIter CellsPool::findInAvailable(CellCPtr cell) {
+CellsPool::AvailablesIter CellsPool::findInAvailable(CellCPtr cell) {
     // При попытке получить клетку по направлению или соседнюю к заданной
     // она может быть недоступна. Если так, то данная функция
     // выбросит исключение NotFoundFreeCell.
@@ -102,8 +102,8 @@ CellsPool::AviablesIter CellsPool::findInAvailable(CellCPtr cell) {
 }
 
 void CellsPool::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-    target.draw(background);
-    std::lock_guard<std::mutex> lock(cells_mutex);
+  //  std::lock_guard<std::mutex> lock(cells_mutex);
+    target.draw(background, states);
     
     for(auto const& row: cells)
         for(auto const& cell: row)

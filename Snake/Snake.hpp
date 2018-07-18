@@ -58,7 +58,7 @@ class Snake {
   private:
     std::list<CellCPtr> body;
     Coord direction = {0, 0};
-    IntervalChecker<> move_interval = 150ms;
+    IntervalChecker<> move_interval = 650ms;
     std::queue<Coord> moves;
     
     CellsPool& cells_pool;

@@ -87,8 +87,17 @@ add_executable(${PROJECT_NAME}
         Utilites/ThreadGuard/LiveStorage/LiveStorage.cpp
         Utilites/ThreadGuard/LiveStorage/LiveStorage.hpp
 
+        Utilites/TimeProfiler/TimeProfiler.cpp
+        Utilites/TimeProfiler/TimeProfiler.hpp
 
-        Utilites/TimeProfiler/TimeProfiler.cpp Utilites/TimeProfiler/TimeProfiler.hpp Utilites/Timer/Timer.cpp Utilites/Timer/Timer.hpp)
+        Utilites/Timer/Timer.cpp
+        Utilites/Timer/Timer.hpp
+
+        Utilites/WindowForTests/WindowForTests.cpp
+        Utilites/WindowForTests/WindowForTests.hpp
+
+
+        )
 if(SFML_FOUND)
     include_directories(${SFML_INCLUDE_DIR})
     target_link_libraries(${PROJECT_NAME} ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
