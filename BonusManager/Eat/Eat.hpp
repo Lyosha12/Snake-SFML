@@ -7,22 +7,25 @@
 
 #include <atomic>
 #include "../Bonus/Bonus.hpp"
-#include "../../Utilites/ThreadGuard/LiveStorage/LiveStorage.hpp"
+#include "../../Utilites/Timer.hpp"
 
 class Eat: public Bonus {
   public:
     Eat(Snake& snake);
     
     bool activate() override;
-    static bool isExists();
+    static bool isExist();
+    static bool isTacked();
     
     static LazyCreator const& getBonusCreator();
     static LazyDestroyer const& getBonusDestroyer();
     
   private:
-    inline static LiveStorage is_exist = false;
     static const LazyCreator lazy_creator;
     static const LazyDestroyer bonus_destroy_notify;
+    
+    inline static Timer<> existence_timer = { Timer<>::maxInterval() };
+    inline static std::atomic<bool> is_tacked = true;
 };
 
 

@@ -6,7 +6,6 @@
 #include "../CellsPool/Cell/Fillers/Body.hpp"
 #include "../CellsPool/Cell/Fillers/Head.hpp"
 #include "../CellsPool/CellsPool.hpp"
-#include "../Utilites/WindowForTests/WindowForTests.hpp"
 
 Snake::Snake(CellsPool& cells_pool)
 : cells_pool(cells_pool)
@@ -18,10 +17,12 @@ Snake::Snake(CellsPool& cells_pool)
 }
 
 void Snake::move() {
-    if(!move_interval.isIntervalPassed()) {
+    if(!move_interval.isIntervalExpire()) {
         applyEffects(); // Если не время хода, выполним другую работу.
         return;
     }
+    
+    move_interval.reset();
     
     // Пока ещё не начали двигаться, попробуем изменить направление.
     tryChangeDirection();
@@ -31,15 +32,11 @@ void Snake::move() {
     // Получим новую голову по направлению движения относительно текущей головы.
     CellsPool::RequestedCell new_head = cells_pool.getCell<Head>(body.front(), direction);
     
-  //  WindowForTests({800, 600}, *new_head.cell).run();
-    
     // Добавим новую голову к телу, если эта клетка свободна.
     // Предыдущий заполнитель клетки должен быть перемещён в член prev_filler.
     if(new_head.prev_filler != nullptr) {
         body.push_front(new_head.cell);
     }
-    
-  //  WindowForTests({800, 600}, cells_pool).run();
     
     // Добавим бонус с этой клетки в список активных бонусов змейки.
     this->active_effects.push_back(
@@ -53,7 +50,6 @@ void Snake::move() {
         )->getBonus(*this)
     );
     
-  //  WindowForTests({800, 600}, cells_pool).run();
 }
 void Snake::changeDirection(Direction direction) {
     // Внешнее управление змейкой посредством пользовательского ввода.

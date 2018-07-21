@@ -58,7 +58,7 @@ class CellsPool: public sf::Drawable {
     template <class IncomingFiller>
     void replaceFiller(CellCPtr target);
     
-    void releaseCell(CellCPtr& cell_to_release);
+    void releaseCell(CellCPtr cell_to_release);
   
   public:
     void lock()     const;

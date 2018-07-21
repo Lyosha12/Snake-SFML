@@ -20,8 +20,10 @@ class Head: public Filler {
     template <class BonusType = SteppedOnHead>
     Head(DefaultRectangle const& default_rectangle, Coord const& coord)
     : Filler(
-        default_rectangle, coord, texture, CanBeTake::No,
-        BonusType::getBonusCreator(), BonusType::getBonusDestroyer()
+        default_rectangle, coord, texture,
+        BonusType::getBonusCreator(),
+        BonusType::getBonusDestroyer(),
+        CanBeTake::No
     )
     { }
     

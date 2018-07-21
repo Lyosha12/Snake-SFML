@@ -2,14 +2,16 @@
 // Created by Lyosha12 on 30.04.2018.
 //
 
-#ifndef LYOSHA12_INTERVALCHECKER_HPP
-#define LYOSHA12_INTERVALCHECKER_HPP
+#ifndef LYOSHA12_TIMER_HPP
+#define LYOSHA12_TIMER_HPP
 
-#include <chrono>
 #include <stdexcept>
+#include <iostream>
+#include <chrono>
+using namespace std::chrono_literals;
 
 template <class ClockType = std::chrono::steady_clock>
-class IntervalChecker {
+class Timer {
     /* Классу задаётся некоторый интервал времени,
      * после чего вызывающая сторона проверяет не прошёл ли он.
      * Как только интервал прошёл, точкой отсчёта нового становится время,
@@ -19,22 +21,25 @@ class IntervalChecker {
     using IntervalType = std::chrono::nanoseconds;
     
   public:
-    template <class IntervalTypeIncoming>
-    IntervalChecker(IntervalTypeIncoming interval)
+    template <class IntervalTypeIncoming = IntervalType>
+    Timer(IntervalTypeIncoming interval = IntervalTypeIncoming(0))
     : interval(std::chrono::duration_cast<IntervalType> (interval))
     { }
     
-    bool isIntervalPassed(float interval_multipler = 1) {
-        if(is_paused)
-            throw std::logic_error("Trying to check IntervalChecker when it has paused.");
+    bool isIntervalExpire() const {
+        if(interval == IntervalType(0)) {
+            std::cerr << "Warning: check to expire zero interval\n";
+        }
         
-        if(ClockType::now() - last_moment < interval * interval_multipler) {
-            return false;
+        if(is_paused) {
+            std::cerr << "Trying to check Timer when it has paused.";
         }
-        else {
-            last_moment = ClockType::now();
-            return true;
-        }
+    
+        return ClockType::now() - last_moment > interval;
+    }
+    
+    void reset() {
+        last_moment = ClockType::now();
     }
     
     
@@ -54,6 +59,10 @@ class IntervalChecker {
         is_paused = false;
     }
     
+    static IntervalType maxInterval() {
+        return IntervalType::max();
+    }
+    
   private:
     typename ClockType::time_point last_moment = ClockType::now();
     IntervalType interval;
@@ -63,4 +72,4 @@ class IntervalChecker {
 };
 
 
-#endif // LYOSHA12_INTERVALCHECKER_HPP
+#endif // LYOSHA12_TIMER_HPP

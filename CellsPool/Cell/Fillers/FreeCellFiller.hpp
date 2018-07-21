@@ -13,7 +13,7 @@ class Snake;
 class FreeCellFiller: public Filler {
     // * Заполнитель по-умолчанию. Это клетка,
     //   доступная к перемещению на неё.
-    // * Текстуру поля в одну клетку не засунешь, тут она отсутствует.
+    // * Текстуру поля в одну клетку не засунешь - в пустой клетке отсутствует.
     //   Текстура свободного поля определяется бассейном клеток.
     
   public:
@@ -21,8 +21,10 @@ class FreeCellFiller: public Filler {
     FreeCellFiller(
         DefaultRectangle const& default_rectangle, Coord const& coord
     ): Filler(
-          default_rectangle, coord, sf::Texture() /* Пустая */, CanBeTake::Yes,
-          BonusType::getBonusCreator(), BonusType::getBonusDestroyer()
+        default_rectangle, coord, sf::Texture() /* Пустая */,
+        BonusType::getBonusCreator(),
+        BonusType::getBonusDestroyer(),
+        CanBeTake::Yes
        )
     { }
 };

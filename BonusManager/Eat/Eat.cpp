@@ -22,23 +22,29 @@ bool Eat::activate() {
 }
 
 Bonus::LazyCreator const& Eat::getBonusCreator() {
-    is_exist = true;
-    return lazy_creator;
+    Eat::existence_timer.reset();
+    Eat::is_tacked = false;
+    
+    return Eat::lazy_creator;
 }
 Bonus::LazyDestroyer const& Eat::getBonusDestroyer() {
     return bonus_destroy_notify;
 }
 
-bool Eat::isExists() {
-    return is_exist;
+bool Eat::isExist() {
+    return !Eat::existence_timer.isIntervalExpire() && !Eat::is_tacked;
+}
+bool Eat::isTacked() {
+    return Eat::is_tacked;
 }
 
 
 const Bonus::LazyCreator Eat::lazy_creator = [] (Snake& snake) {
+    Eat::is_tacked = true;
     return std::unique_ptr<Bonus>(new Eat(snake));
 };
 
 const Bonus::LazyDestroyer Eat::bonus_destroy_notify = [] {
-    is_exist = false;
+    Eat::existence_timer.reset();
 };
 

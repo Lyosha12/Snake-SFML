@@ -5,16 +5,15 @@
 #ifndef SNAKE_TIMER_HPP
 #define SNAKE_TIMER_HPP
 
-#include <chrono>
 #include <string>
 #include <type_traits>
 #include <stdexcept>
-
+#include <chrono>
 using namespace std::chrono_literals;
 
 template <class Clock = std::chrono::steady_clock>
-class Timer {
-    /* Всего лишь таймер. Фиксирует отрезок времени между запуском и остановкой.
+class Stopwatch {
+    /* Всего лишь таймер - сколько прошло времени от и до заданной точки.
      */
     
   public:

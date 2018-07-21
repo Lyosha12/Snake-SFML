@@ -7,15 +7,13 @@
 
 #include <queue>
 #include <vector>
-#include <chrono>
-using namespace std::chrono_literals;
 
 #include "../Utilites/Coord/Coord.hpp"
-#include "../Utilites/TimeCounter/IntervalChecker.hpp"
 #include "../Utilites/ListRunner.hpp"
 #include "../CellsPool/Cell/Cell.hpp"
 #include "../BonusManager/Bonus/Bonus.hpp"
 #include "../CellsPool/CellsPool.hpp"
+#include "../Utilites/Timer.hpp"
 
 class Snake {
     using CellCPtr = Cell::CellCPtr;
@@ -58,7 +56,7 @@ class Snake {
   private:
     std::list<CellCPtr> body;
     Coord direction = {0, 0};
-    IntervalChecker<> move_interval = 650ms;
+    Timer<> move_interval = 150ms;
     std::queue<Coord> moves;
     
     CellsPool& cells_pool;

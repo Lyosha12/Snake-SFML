@@ -20,8 +20,10 @@ class Body: public Filler {
     template <class BonusType = SteppedOnBody>
     Body(DefaultRectangle const& default_rectangle, Coord const& coord)
     : Filler(
-          default_rectangle, coord, texture, CanBeTake::No,
-          BonusType::getBonusCreator(), BonusType::getBonusDestroyer()
+          default_rectangle, coord, texture,
+          BonusType::getBonusCreator(),
+          BonusType::getBonusDestroyer(),
+          CanBeTake::No
       )
     { }
     

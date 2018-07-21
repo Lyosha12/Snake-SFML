@@ -37,9 +37,12 @@ CellsPool::CellsPool(
     }
 }
 
-void CellsPool::releaseCell(CellCPtr& cell_to_release) {
+void CellsPool::releaseCell(CellCPtr cell_to_release) {
+    if(!cell_to_release) {
+        return;
+    }
+    
     CellPtr returned_cell = const_cast<CellPtr>(cell_to_release);
-    cell_to_release = nullptr;
     
     // Добавим вернувшуюся клетку в список доступных.
     available_cells.push_front(returned_cell);

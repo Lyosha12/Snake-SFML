@@ -3,8 +3,6 @@
 //
 
 #include <thread>
-#include <chrono>
-using namespace std::chrono_literals;
 
 #include "WindowForTests.hpp"
 
@@ -19,7 +17,6 @@ run() {
     while(window.isOpen()) {
         handling_events();
         draw();
-        std::this_thread::sleep_for(50ms);
     }
 }
 

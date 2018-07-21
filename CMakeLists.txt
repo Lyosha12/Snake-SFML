@@ -71,7 +71,7 @@ add_executable(${PROJECT_NAME}
         Utilites/TextureStorage/TextureStorage.cpp
         Utilites/TextureStorage/TextureStorage.hpp
 
-        Utilites/TimeCounter/IntervalChecker.hpp
+        Utilites/Timer.hpp
 
         Utilites/ErrorPrinter/ErrorPrinter.cpp
         Utilites/ErrorPrinter/ErrorPrinter.hpp
@@ -90,8 +90,8 @@ add_executable(${PROJECT_NAME}
         Utilites/TimeProfiler/TimeProfiler.cpp
         Utilites/TimeProfiler/TimeProfiler.hpp
 
-        Utilites/Timer/Timer.cpp
-        Utilites/Timer/Timer.hpp
+        Utilites/Stopwatch/Stopwatch.cpp
+        Utilites/Stopwatch/Stopwatch.hpp
 
         Utilites/WindowForTests/WindowForTests.cpp
         Utilites/WindowForTests/WindowForTests.hpp

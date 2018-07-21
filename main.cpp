@@ -1,26 +1,10 @@
-#include <ctime>
-#include <cmath>
 #include <exception>
 #include <string>
-#include <list>
-#include <queue>
-#include <chrono>
-#include <memory>
-#include <algorithm>
-#include <iostream>
-#include <iomanip>
-#include <functional>
-#include <cstdlib>
-#include <thread>
-#include <atomic>
-#include <mutex>
 #include <windows.h>
-using namespace std::chrono_literals;
 
 #include <SFML/Graphics.hpp>
 
 #include "Utilites/ErrorPrinter/ErrorPrinter.hpp"
-#include "Utilites/TimeCounter/IntervalChecker.hpp"
 #include "CellsPool/DefaultRectangle/DefaultRectangle.hpp"
 #include "CellsPool/CellsPool.hpp"
 #include "Snake/Snake.hpp"

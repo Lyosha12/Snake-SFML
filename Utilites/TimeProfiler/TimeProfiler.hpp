@@ -6,7 +6,7 @@
 #define SNAKE_TIMEPROFILER_HPP
 
 #include <iostream>
-#include "../Timer/Timer.hpp"
+#include "../Stopwatch/Stopwatch.hpp"
 
 #define START_TIME_PROFILER(what_testing) \
 std::string explanation = what_testing; \

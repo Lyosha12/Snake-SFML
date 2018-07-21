@@ -6,8 +6,10 @@
 #define SNAKE_FILLER_HPP
 
 #include <functional>
+
 #include <SFML/Graphics.hpp>
 #include "../../../BonusManager/Bonus/Bonus.hpp"
+#include "../../../Utilites/Timer.hpp"
 
 class Snake;
 class DefaultRectangle;
@@ -18,12 +20,8 @@ class Filler: public sf::Drawable {
       * Заполнитель клетки - это некий спрайт.
         Его текстуру и форму определяет наследник этого класса.
       * Кроме того, что это спрайт, заполнитель ещё определяет доступность
-        клетки: можно ли её посетить (CanBeTake). Это нужно для того, чтобы
-        бассейн клеток вдруг не забрал заполнитель, скажем, у
-        блока змейки другого игрока.
-      * Заполнитель - читай бонус - также имеет время своего существования.
-      * Если оно прекращается, то он косвенно уведомит об этом BonusManager
-      * вызовом bonus_destroy_notify.
+        клетки: можно ли её посетить (CanBeTake). Например, чтобы клетку
+        змейки одного игрока не забрал другой без "последствий".
     */
   
   protected:
@@ -35,14 +33,14 @@ class Filler: public sf::Drawable {
     Filler(DefaultRectangle const& default_rectangle,
            Coord const& coord,
            sf::Texture const& texture,
-           CanBeTake can_be_take,
            Bonus::LazyCreator const& bonus_creator,
-           Bonus::LazyDestroyer const& bonus_destroy_notify
+           Bonus::LazyDestroyer const& bonus_destroy_notify,
+           CanBeTake can_be_take
     );
     
     virtual ~Filler();
     
-    // Клетку змейка может занять, тогда ей будет
+    // Клетку змейка может занять - тогда ей будет
     // возвращён сконструированный бонус, за который отвечает BonusManager.
     //
     // При такой организации любой заполнитель может содержать любой бонус.
@@ -58,12 +56,13 @@ class Filler: public sf::Drawable {
   private:
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     sf::Sprite sprite;
-    CanBeTake const can_be_take;
     
     // Задаётся каждым бонусом отдельно.
     // Отвечает за отложенное создание бонуса в стиле RAII.
     Bonus::LazyCreator bonus_creator;
     Bonus::LazyDestroyer const& bonus_destroy_notify;
+    
+    CanBeTake const can_be_take;
 };
 
 #endif //SNAKE_FILLER_HPP
