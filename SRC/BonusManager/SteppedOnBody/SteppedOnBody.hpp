@@ -1,0 +1,25 @@
+//
+// Created by Lyosha12 on 25.06.2018.
+//
+
+#ifndef SNAKE_STEPPEDONBODY_HPP
+#define SNAKE_STEPPEDONBODY_HPP
+
+
+#include "../Bonus/Bonus.hpp"
+
+class SteppedOnBody: public Bonus {
+  public:
+    SteppedOnBody(Snake& snake);
+    bool activate() override;
+    
+    static LazyCreator const& getBonusCreator();
+    static LazyDestroyer const& getBonusDestroyer();
+    
+  private:
+    static const LazyCreator lazy_creator;
+    static const LazyDestroyer bonus_destroy_notify;
+};
+
+
+#endif //SNAKE_STEPPEDONBODY_HPP
