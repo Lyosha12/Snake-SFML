@@ -25,12 +25,10 @@ class MusicPlayer {
     }
     
     void play_rand() {
-        time_t cur_update_directory = fs::last_write_time(music_dir);
-        if(cur_update_directory != last_update_directory) {
-            loadNames(music_dir);
+        if(preparePlay(randMusic())) {
+            cur_music.play();
+            music_timer.reset();
         }
-        
-        cur_music.openFromFile(music_dir.string() + music_names[rand() % music_names.size()]);
     }
     
   private:
@@ -40,6 +38,35 @@ class MusicPlayer {
                 music_names.push_back(file.path().filename().string());
         }
     }
+    void tryUpdatePlaylist() {
+        time_t cur_update_directory = fs::last_write_time(music_dir);
+        if(cur_update_directory != last_update_directory) {
+            loadNames(music_dir);
+            last_update_directory = cur_update_directory;
+        }
+    }
+    bool openMusic(std::string const& music_name) {
+        bool isOpen = cur_music.openFromFile(music_dir.string() + music_name);
+        music_timer.setInterval<std::chrono::microseconds>(
+            cur_music.getDuration().asMicroseconds()
+        );
+        
+        return isOpen;
+    }
+    bool preparePlay(std::string const& music_name) {
+        if(!music_timer.isIntervalExpire()){
+            return false;
+        }
+    
+        tryUpdatePlaylist();
+        return openMusic(music_name);
+    }
+    
+    std::string const& randMusic() {
+        size_t rand_music_number = rand() % music_names.size();
+        return music_names[rand_music_number];
+    }
+    
   
   private:
     std::vector<std::string> music_names;
@@ -47,7 +74,7 @@ class MusicPlayer {
     time_t last_update_directory = fs::last_write_time(music_dir);
     
     sf::Music cur_music;
-    Timer<> music_time;
+    Timer<> music_timer;
 };
 
 
