@@ -13,15 +13,8 @@
 class AudioController {
     // Управляет всеми звуками игры.
   public:
-    AudioController()
-    : cur_music(new MusicPlayer("Resources/Audio/Music/"))
-    , thread([this](LiveStorage& alive) { run(alive); })
-    { }
-    void run(LiveStorage& alive) {
-        while(alive) {
-            cur_music->playUniqueRand();
-        }
-    }
+    AudioController();
+    void run(LiveStorage& alive);
     
   private:
     std::unique_ptr<MusicPlayer> cur_music;
