@@ -15,6 +15,7 @@
 #include "Cell/Filler/Filler.hpp"
 #include "Utility/ListRunner.hpp"
 #include "Utility/TextureStorage/TextureStorage.hpp"
+#include "Utility/RandomGenerator/RandomGenerator.hpp"
 
 class DefaultRectangle;
 class TextureStorage;

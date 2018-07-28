@@ -18,14 +18,14 @@ class ThreadGuard {
   public:
     template <class Function, class... Params>
     ThreadGuard(Function&& function, Params&&... args)
-    : thread(function, std::ref(live_controller), std::forward<Params>(args)...)
+    : thread(function, std::ref(alive), std::forward<Params>(args)...)
     { }
     
     ~ThreadGuard();
     
   private:
     std::thread thread;
-    LiveStorage live_controller = true;
+    LiveStorage alive = true;
 };
 
 #endif //SNAKE_THREADGUARD_HPP

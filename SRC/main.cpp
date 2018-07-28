@@ -3,6 +3,7 @@
 #include <windows.h>
 
 #include <SFML/Graphics.hpp>
+#include <Snake/GameEnd.hpp>
 
 #include "Utility/ErrorPrinter/ErrorPrinter.hpp"
 #include "CellsPool/DefaultRectangle/DefaultRectangle.hpp"
@@ -10,7 +11,7 @@
 #include "Snake/Snake.hpp"
 #include "BonusManager/BonusManager.hpp"
 #include "Utility/ThreadGuard/ThreadGuard.hpp"
-#include "AudioPlayer/AudioPlayer.hpp"
+#include "AudioPlayer/AudioController.hpp"
 
 class Game {
     // Главный класс. Управляет игровым циклом и отрисовкой.
@@ -42,7 +43,12 @@ class Game {
                 snake.move(); // Двигаем змейку в соответствии с её направлением.
             }
             
-        } catch(std::exception const& e) {
+        }
+        catch(GameEnd const&) {
+            // TODO: нарисовать "you lose".
+        }
+        
+        catch(std::exception const& e) {
             ErrorPrinter(e.what()).print();
         }
     }
@@ -85,13 +91,11 @@ class Game {
     CellsPool cells_pool;
     Snake snake;
     BonusManager bonus_manager;
-    AudioPlayer audio_player;
+    AudioController audio_player;
 };
 
 int main() {
-    // Настройка "окружения".
     ShowWindow(GetConsoleWindow(), SW_HIDE);
-    srand(static_cast<unsigned int>(time(0)));
     
     Game(800, 800, 20, 20).mainLoop();
     

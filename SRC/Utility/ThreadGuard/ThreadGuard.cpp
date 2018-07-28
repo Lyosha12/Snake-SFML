@@ -6,7 +6,7 @@
 
 ThreadGuard::~ThreadGuard() {
     if(thread.joinable()) {
-        live_controller = false;
+        alive = false;
         thread.join();
     }
 }

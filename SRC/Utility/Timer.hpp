@@ -34,10 +34,6 @@ class Timer {
         return interval;
     }
     bool             isIntervalExpire()                     const {
-        if(interval == InternalTimeUnit(0)) {
-            std::cerr << "Warning: check to expire zero interval\n";
-        }
-        
         if(is_paused) {
             std::cerr << "Trying to check Timer when it has paused.";
         }

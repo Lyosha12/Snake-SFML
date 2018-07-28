@@ -12,7 +12,7 @@ CellsPool::RequestedCell CellsPool::getRandCell() {
         throw NotFoundFreeCell({}, "rand free cell not exist");
     }
     
-    size_t rand_cell = std::rand()%available_cells.size();
+    size_t rand_cell = random() % available_cells.size();
     AvailablesIter requested_cell = getListElement(available_cells, rand_cell);
     
     std::unique_ptr<Filler> new_filler = fillerCreator<IncomingFiller>(

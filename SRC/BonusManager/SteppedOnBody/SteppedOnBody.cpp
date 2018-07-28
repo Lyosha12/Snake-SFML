@@ -2,9 +2,10 @@
 // Created by Lyosha12 on 25.06.2018.
 //
 
+#include "Snake/GameEnd.hpp"
 #include "SteppedOnBody.hpp"
 SteppedOnBody::SteppedOnBody(Snake& snake): Bonus(snake) {
-    endGame();
+    throw GameEnd("Game is end");
 }
 
 bool SteppedOnBody::activate() {
