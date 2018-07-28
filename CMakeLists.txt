@@ -4,93 +4,101 @@ project(Snake)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++17 -pedantic -Wall -Wextra")
 set(CMAKE_EXE_LINKER_FLAGS "-static -static-libgcc")
 
-set(SRT_ROOT "SRC")
-
 add_executable(${PROJECT_NAME}
-        ${SRT_ROOT}/main.cpp
-
-        ${SRT_ROOT}/CellsPool/DefaultRectangle/Configurator.cpp
-        ${SRT_ROOT}/CellsPool/DefaultRectangle/DefaultRectangle.cpp
-        ${SRT_ROOT}/CellsPool/DefaultRectangle/DefaultRectangle.hpp
-
-        ${SRT_ROOT}/CellsPool/Cell/Filler/Filler.cpp
-        ${SRT_ROOT}/CellsPool/Cell/Cell.cpp
-        ${SRT_ROOT}/CellsPool/Cell/Cell.hpp
-
-        ${SRT_ROOT}/CellsPool/NotFoundFreeCell/NotFoundFreeCell.cpp
-        ${SRT_ROOT}/CellsPool/NotFoundFreeCell/NotFoundFreeCell.hpp
-
-        ${SRT_ROOT}/CellsPool/CellsPool.cpp
-        ${SRT_ROOT}/CellsPool/CellsPool.hpp
-
-        ${SRT_ROOT}/CellsPool/Cell/Filler/Filler.hpp
-        ${SRT_ROOT}/CellsPool/Cell/Fillers/FreeCellFiller.hpp
-
-        ${SRT_ROOT}/Snake/Snake.cpp
-        ${SRT_ROOT}/Snake/Snake.hpp
-
-        ${SRT_ROOT}/CellsPool/Cell/Fillers/Head.hpp
-
-        ${SRT_ROOT}/CellsPool/Cell/Fillers/Body.hpp
+        SRC/main.cpp
 
 
-        ${SRT_ROOT}/BonusManager/BonusManager.cpp
-        ${SRT_ROOT}/BonusManager/BonusManager.hpp
+        SRC/Utility/TextureStorage/TextureStorage.cpp
+        SRC/Utility/TextureStorage/TextureStorage.hpp
 
-        ${SRT_ROOT}/BonusManager/Bonus/Bonus.cpp
-        ${SRT_ROOT}/BonusManager/Bonus/Bonus.hpp
+        SRC/Utility/ErrorPrinter/ErrorPrinter.cpp
+        SRC/Utility/ErrorPrinter/ErrorPrinter.hpp
 
-        ${SRT_ROOT}/BonusManager/Eat/Eat.cpp
-        ${SRT_ROOT}/BonusManager/Eat/Eat.hpp
+        SRC/Utility/Coord/Coord.cpp
+        SRC/Utility/Coord/Coord.hpp
 
-        ${SRT_ROOT}/BonusManager/SteppedOnBody/SteppedOnBody.cpp
-        ${SRT_ROOT}/BonusManager/SteppedOnBody/SteppedOnBody.hpp
+        SRC/Utility/ThreadGuard/ThreadGuard.hpp
+        SRC/Utility/ThreadGuard/ThreadGuard.cpp
 
-        ${SRT_ROOT}/BonusManager/SteppedOnHead/SteppedOnHead.cpp
-        ${SRT_ROOT}/BonusManager/SteppedOnHead/SteppedOnHead.hpp
+        SRC/Utility/ThreadGuard/LiveStorage/LiveStorage.cpp
+        SRC/Utility/ThreadGuard/LiveStorage/LiveStorage.hpp
 
-        ${SRT_ROOT}/BonusManager/Move/Move.cpp
-        ${SRT_ROOT}/BonusManager/Move/Move.hpp
+        SRC/Utility/ListRunner.hpp
+        SRC/Utility/Stopwatch.hpp
+        SRC/Utility/TimeProfiler.hpp
+        SRC/Utility/Timer.hpp
 
-        ${SRT_ROOT}/BonusManager/SteppedOnBody/SteppedOnBody.cpp
-        ${SRT_ROOT}/BonusManager/SteppedOnBody/SteppedOnBody.hpp
-
-        ${SRT_ROOT}/BonusManager/SteppedOnHead/SteppedOnHead.cpp
-        ${SRT_ROOT}/BonusManager/SteppedOnHead/SteppedOnHead.hpp
-
-        ${SRT_ROOT}/CellsPool/Cell/Fillers/EatFiller.hpp
+        SRC/Utility/WindowForTests/WindowForTests.cpp
+        SRC/Utility/WindowForTests/WindowForTests.hpp
 
 
-        ${SRT_ROOT}/Utilites/TextureStorage/TextureStorage.cpp
-        ${SRT_ROOT}/Utilites/TextureStorage/TextureStorage.hpp
 
-        ${SRT_ROOT}/Utilites/Timer.hpp
+        SRC/CellsPool/DefaultRectangle/Configurator.cpp
+        SRC/CellsPool/DefaultRectangle/DefaultRectangle.cpp
+        SRC/CellsPool/DefaultRectangle/DefaultRectangle.hpp
 
-        ${SRT_ROOT}/Utilites/ErrorPrinter/ErrorPrinter.cpp
-        ${SRT_ROOT}/Utilites/ErrorPrinter/ErrorPrinter.hpp
+        SRC/CellsPool/Cell/Filler/Filler.cpp
+        SRC/CellsPool/Cell/Cell.cpp
+        SRC/CellsPool/Cell/Cell.hpp
 
-        ${SRT_ROOT}/Utilites/Coord/Coord.cpp
-        ${SRT_ROOT}/Utilites/Coord/Coord.hpp
+        SRC/CellsPool/NotFoundFreeCell/NotFoundFreeCell.cpp
+        SRC/CellsPool/NotFoundFreeCell/NotFoundFreeCell.hpp
 
-        ${SRT_ROOT}/Utilites/ListRunner.hpp
+        SRC/CellsPool/Cell/Fillers/FreeCellFiller.hpp
+        SRC/CellsPool/Cell/Fillers/EatFiller.hpp
+        SRC/CellsPool/Cell/Fillers/Head.hpp
+        SRC/CellsPool/Cell/Fillers/Body.hpp
 
-        ${SRT_ROOT}/Utilites/ThreadGuard/ThreadGuard.hpp
-        ${SRT_ROOT}/Utilites/ThreadGuard/ThreadGuard.cpp
+        SRC/CellsPool/CellsPool.cpp
+        SRC/CellsPool/CellsPool.hpp
 
-        ${SRT_ROOT}/Utilites/ThreadGuard/LiveStorage/LiveStorage.cpp
-        ${SRT_ROOT}/Utilites/ThreadGuard/LiveStorage/LiveStorage.hpp
-
-        ${SRT_ROOT}/Utilites/TimeProfiler/TimeProfiler.cpp
-        ${SRT_ROOT}/Utilites/TimeProfiler/TimeProfiler.hpp
-
-        ${SRT_ROOT}/Utilites/Stopwatch/Stopwatch.cpp
-        ${SRT_ROOT}/Utilites/Stopwatch/Stopwatch.hpp
-
-        ${SRT_ROOT}/Utilites/WindowForTests/WindowForTests.cpp
-        ${SRT_ROOT}/Utilites/WindowForTests/WindowForTests.hpp
+        SRC/CellsPool/Cell/Filler/Filler.hpp
 
 
-        )
+
+        SRC/Snake/Snake.cpp
+        SRC/Snake/Snake.hpp
+
+
+
+        SRC/BonusManager/BonusManager.cpp
+        SRC/BonusManager/BonusManager.hpp
+
+        SRC/BonusManager/Bonus/Bonus.cpp
+        SRC/BonusManager/Bonus/Bonus.hpp
+
+        SRC/BonusManager/Eat/Eat.cpp
+        SRC/BonusManager/Eat/Eat.hpp
+
+        SRC/BonusManager/SteppedOnBody/SteppedOnBody.cpp
+        SRC/BonusManager/SteppedOnBody/SteppedOnBody.hpp
+
+        SRC/BonusManager/SteppedOnHead/SteppedOnHead.cpp
+        SRC/BonusManager/SteppedOnHead/SteppedOnHead.hpp
+
+        SRC/BonusManager/Move/Move.cpp
+        SRC/BonusManager/Move/Move.hpp
+
+        SRC/BonusManager/SteppedOnBody/SteppedOnBody.cpp
+        SRC/BonusManager/SteppedOnBody/SteppedOnBody.hpp
+
+        SRC/BonusManager/SteppedOnHead/SteppedOnHead.cpp
+        SRC/BonusManager/SteppedOnHead/SteppedOnHead.hpp
+
+
+
+        SRC/AudioPlayer/AudioPlayer.cpp
+        SRC/AudioPlayer/AudioPlayer.hpp
+
+        SRC/AudioPlayer/MusicPlayer/MusicPlayer.cpp
+        SRC/AudioPlayer/MusicPlayer/MusicPlayer.hpp
+
+        SRC/AudioPlayer/SoundPlayer/SoundPlayer.cpp
+        SRC/AudioPlayer/SoundPlayer/SoundPlayer.hpp
+
+)
+
+include_directories(SRC)
 
 
 set(SFML_STATIC_LIBRARIES TRUE)
@@ -116,3 +124,4 @@ if(Boost_FOUND)
     include_directories(SYSTEM ${Boost_INCLUDE_DIRS})
     target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})
 endif()
+

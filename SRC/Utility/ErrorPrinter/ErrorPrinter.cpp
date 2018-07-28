@@ -3,9 +3,12 @@
 //
 
 #include <iostream>
+#include <mutex>
 #include <windows.h>
 
 #include "ErrorPrinter.hpp"
+
+static std::mutex error_mutex;
 
 ErrorPrinter::
 ErrorPrinter(std::string cause): cause(cause) { }

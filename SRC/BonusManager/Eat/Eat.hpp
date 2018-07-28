@@ -6,8 +6,8 @@
 #define SNAKE_EAT_HPP
 
 #include <atomic>
-#include "../Bonus/Bonus.hpp"
-#include "../../Utilites/Timer.hpp"
+#include "BonusManager/Bonus/Bonus.hpp"
+#include "Utility/Timer.hpp"
 
 class Eat: public Bonus {
   public:

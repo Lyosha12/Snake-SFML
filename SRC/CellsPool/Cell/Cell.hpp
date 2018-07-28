@@ -6,7 +6,7 @@
 #define SNAKE_CELL_HPP
 
 #include <SFML/Graphics.hpp>
-#include "../../Utilites/Coord/Coord.hpp"
+#include "Utility/Coord/Coord.hpp"
 #include "Filler/Filler.hpp"
 
 

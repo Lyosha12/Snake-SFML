@@ -4,12 +4,13 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Utilites/ErrorPrinter/ErrorPrinter.hpp"
+#include "Utility/ErrorPrinter/ErrorPrinter.hpp"
 #include "CellsPool/DefaultRectangle/DefaultRectangle.hpp"
 #include "CellsPool/CellsPool.hpp"
 #include "Snake/Snake.hpp"
 #include "BonusManager/BonusManager.hpp"
-#include "Utilites/ThreadGuard/ThreadGuard.hpp"
+#include "Utility/ThreadGuard/ThreadGuard.hpp"
+#include "AudioPlayer/AudioPlayer.hpp"
 
 class Game {
     // Главный класс. Управляет игровым циклом и отрисовкой.
@@ -30,7 +31,6 @@ class Game {
     , cells_pool(count_cells_x, count_cells_y, window, default_rectangle)
     , snake(cells_pool)
     , bonus_manager(cells_pool)
-    , bonus_manager_thread(bonus_manager)
     { window.setFramerateLimit(30); }
     
     void mainLoop() {
@@ -85,7 +85,7 @@ class Game {
     CellsPool cells_pool;
     Snake snake;
     BonusManager bonus_manager;
-    ThreadGuard bonus_manager_thread;
+    AudioPlayer audio_player;
 };
 
 int main() {

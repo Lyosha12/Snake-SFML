@@ -2,15 +2,21 @@
 // Created by Lyosha12 on 23.06.2018.
 //
 
+#include "CellsPool/CellsPool.hpp"
+#include "Utility/ThreadGuard/LiveStorage/LiveStorage.hpp"
+#include "Utility/ErrorPrinter/ErrorPrinter.hpp"
+#include "CellsPool/Cell/Fillers/EatFiller.hpp"
+
 #include "BonusManager.hpp"
-#include "../CellsPool/CellsPool.hpp"
-#include "../Utilites/ThreadGuard/LiveStorage/LiveStorage.hpp"
-#include "../Utilites/ErrorPrinter/ErrorPrinter.hpp"
-#include "../CellsPool/Cell/Fillers/EatFiller.hpp"
 
-BonusManager::BonusManager(CellsPool& cells_pool): cells_pool(cells_pool) { }
+BonusManager::BonusManager(CellsPool& cells_pool)
+: cells_pool(cells_pool)
+    // Не знаю почему, но передача *this как функтора не работает
+    // в конструкторе, хотя работает вне конструктора.
+, t([this] (LiveStorage& live_storage) { run(live_storage); })
+{ }
 
-void BonusManager::operator() (LiveStorage& live_storage) {
+void BonusManager::run(LiveStorage& live_storage) {
     try {
         while(live_storage) {
             trySetEat();

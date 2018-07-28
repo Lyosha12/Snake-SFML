@@ -5,8 +5,8 @@
 #ifndef SNAKE_FREECELLFILLER_HPP
 #define SNAKE_FREECELLFILLER_HPP
 
-#include "../Filler/Filler.hpp"
-#include "../../../BonusManager/Move/Move.hpp"
+#include "CellsPool/Cell/Filler/Filler.hpp"
+#include "BonusManager/Move/Move.hpp"
 
 class Snake;
 

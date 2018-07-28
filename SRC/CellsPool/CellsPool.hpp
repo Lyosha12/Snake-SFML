@@ -10,11 +10,11 @@
 #include <vector>
 #include <SFML/Graphics.hpp>
 
-#include "Cell/Cell.hpp"
 #include "NotFoundFreeCell/NotFoundFreeCell.hpp"
-#include "../Utilites/ListRunner.hpp"
+#include "Cell/Cell.hpp"
 #include "Cell/Filler/Filler.hpp"
-#include "../Utilites/TextureStorage/TextureStorage.hpp"
+#include "Utility/ListRunner.hpp"
+#include "Utility/TextureStorage/TextureStorage.hpp"
 
 class DefaultRectangle;
 class TextureStorage;

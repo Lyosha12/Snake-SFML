@@ -5,7 +5,7 @@
 #ifndef SNAKE_MOVE_HPP
 #define SNAKE_MOVE_HPP
 
-#include "../Bonus/Bonus.hpp"
+#include "BonusManager/Bonus/Bonus.hpp"
 
 class Move: public Bonus {
   public:

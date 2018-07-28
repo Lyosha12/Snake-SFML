@@ -8,12 +8,12 @@
 #include <queue>
 #include <vector>
 
-#include "../Utilites/Coord/Coord.hpp"
-#include "../Utilites/ListRunner.hpp"
-#include "../CellsPool/Cell/Cell.hpp"
-#include "../BonusManager/Bonus/Bonus.hpp"
-#include "../CellsPool/CellsPool.hpp"
-#include "../Utilites/Timer.hpp"
+#include "Utility/Coord/Coord.hpp"
+#include "Utility/ListRunner.hpp"
+#include "CellsPool/Cell/Cell.hpp"
+#include "BonusManager/Bonus/Bonus.hpp"
+#include "CellsPool/CellsPool.hpp"
+#include "Utility/Timer.hpp"
 
 class Snake {
     using CellCPtr = Cell::CellCPtr;

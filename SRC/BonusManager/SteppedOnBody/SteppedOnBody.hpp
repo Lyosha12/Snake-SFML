@@ -6,7 +6,7 @@
 #define SNAKE_STEPPEDONBODY_HPP
 
 
-#include "../Bonus/Bonus.hpp"
+#include "BonusManager/Bonus/Bonus.hpp"
 
 class SteppedOnBody: public Bonus {
   public:

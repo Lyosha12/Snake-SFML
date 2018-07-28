@@ -6,10 +6,8 @@
 #define SNAKE_BODY_HPP
 
 #include <functional>
-#include "../../../Utilites/Coord/Coord.hpp"
-#include "../../../Utilites/TextureStorage/TextureStorage.hpp"
-#include "../../../BonusManager/SteppedOnBody/SteppedOnBody.hpp"
-#include "../Filler/Filler.hpp"
+#include "BonusManager/SteppedOnBody/SteppedOnBody.hpp"
+#include "CellsPool/Cell/Filler/Filler.hpp"
 
 class DefaultRectangle;
 class Bonus;

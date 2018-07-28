@@ -5,7 +5,7 @@
 #ifndef SNAKE_STEPPEDONHEAD_HPP
 #define SNAKE_STEPPEDONHEAD_HPP
 
-#include "../Bonus/Bonus.hpp"
+#include "BonusManager/Bonus/Bonus.hpp"
 
 class SteppedOnHead: public Bonus {
   public:

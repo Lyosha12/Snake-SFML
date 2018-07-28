@@ -6,10 +6,8 @@
 #define SNAKE_HEAD_HPP
 
 #include <functional>
-#include "../../../Utilites/TextureStorage/TextureStorage.hpp"
-#include "../../../Utilites/Coord/Coord.hpp"
-#include "../../../BonusManager/SteppedOnHead/SteppedOnHead.hpp"
-#include "../Filler/Filler.hpp"
+#include "BonusManager/SteppedOnHead/SteppedOnHead.hpp"
+#include "CellsPool/Cell/Filler/Filler.hpp"
 
 class DefaultRectangle;
 class Bonus;

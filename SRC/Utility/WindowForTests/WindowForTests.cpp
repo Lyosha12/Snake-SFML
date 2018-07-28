@@ -8,7 +8,11 @@
 
 WindowForTests::
 WindowForTests(sf::VideoMode screen, sf::Drawable const& drawable)
-: window({screen.width*1.15, screen.height*1.15}, "Test Window")
+: mode_for_test(
+    static_cast<unsigned>(screen.width*scale_input),
+    static_cast<unsigned>(screen.height*scale_input)
+  )
+, window(mode_for_test, "Test Window")
 , drawable(drawable)
 { window.setFramerateLimit(30); }
 

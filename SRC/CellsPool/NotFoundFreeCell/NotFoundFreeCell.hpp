@@ -7,7 +7,7 @@
 
 #include <string>
 #include <exception>
-#include "../Cell/Cell.hpp"
+#include "CellsPool/Cell/Cell.hpp"
 
 
 struct NotFoundFreeCell: public std::exception {

@@ -3,8 +3,8 @@
 //
 
 #include "Move.hpp"
-#include "../../Snake/Snake.hpp"
-#include "../../CellsPool/Cell/Fillers/Body.hpp"
+#include "Snake/Snake.hpp"
+#include "CellsPool/Cell/Fillers/Body.hpp"
 
 Move::Move(Snake& snake): Bonus(snake) {
     // Заменим предыдущую голову змейки на часть тела.

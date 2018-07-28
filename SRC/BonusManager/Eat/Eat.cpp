@@ -3,8 +3,8 @@
 //
 
 #include "Eat.hpp"
-#include "../../Snake/Snake.hpp"
-#include "../../CellsPool/Cell/Fillers/Body.hpp"
+#include "Snake/Snake.hpp"
+#include "CellsPool/Cell/Fillers/Body.hpp"
 
 Eat::Eat(Snake& snake): Bonus(snake) {
     // Поменяем старую голову на часть тела, как при перемещении.

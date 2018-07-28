@@ -8,12 +8,15 @@
 #include <functional>
 
 #include <SFML/Graphics.hpp>
-#include "../../../BonusManager/Bonus/Bonus.hpp"
-#include "../../../Utilites/Timer.hpp"
+
+#include "CellsPool/DefaultRectangle/DefaultRectangle.hpp"
+#include "BonusManager/Bonus/Bonus.hpp"
+#include "Utility/Timer.hpp"
+#include "Utility/Coord/Coord.hpp"
+#include "Utility/TextureStorage/TextureStorage.hpp"
 
 class Snake;
 class DefaultRectangle;
-class Coord;
 
 class Filler: public sf::Drawable {
     /*

@@ -17,9 +17,10 @@ class WindowForTests {
     void draw();
   
   private:
+    double scale_input = 1.15;
+    sf::VideoMode mode_for_test;
     sf::RenderWindow window;
     sf::Drawable const& drawable;
-    
 };
 
 

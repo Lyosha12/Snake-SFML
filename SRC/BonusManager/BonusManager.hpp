@@ -6,7 +6,8 @@
 #define SNAKE_BONUSMANAGER_HPP
 
 #include <atomic>
-#include "../CellsPool/Cell/Cell.hpp"
+#include "CellsPool/Cell/Cell.hpp"
+#include "Utility/ThreadGuard/ThreadGuard.hpp"
 
 
 class CellsPool;
@@ -16,14 +17,15 @@ class BonusManager {
     
   public:
     BonusManager(CellsPool& cells_pool);
-    void operator() (LiveStorage& live_storage);
     
   private:
+    void run(LiveStorage& live_storage);
     void trySetEat();
     
   private:
     CellsPool& cells_pool;
     Cell::CellCPtr eat = nullptr; // Отвечает за хранение и возврат клетки с бонусом Eat.
+    ThreadGuard t;
 };
 
 

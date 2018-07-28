@@ -3,9 +3,9 @@
 //
 
 #include "Snake.hpp"
-#include "../CellsPool/Cell/Fillers/Body.hpp"
-#include "../CellsPool/Cell/Fillers/Head.hpp"
-#include "../CellsPool/CellsPool.hpp"
+#include "CellsPool/Cell/Fillers/Body.hpp"
+#include "CellsPool/Cell/Fillers/Head.hpp"
+#include "CellsPool/CellsPool.hpp"
 
 Snake::Snake(CellsPool& cells_pool)
 : cells_pool(cells_pool)

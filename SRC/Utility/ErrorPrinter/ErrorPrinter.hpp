@@ -6,7 +6,6 @@
 #define SNAKE_ERRORPRINTER_HPP
 
 #include <string>
-#include <mutex>
 
 class ErrorPrinter {
     // Реализует обработку фатального исключения.
@@ -17,7 +16,6 @@ class ErrorPrinter {
   
   private:
     std::string cause;
-    std::mutex error_mutex;
 };
 
 

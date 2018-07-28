@@ -6,11 +6,8 @@
 #define SNAKE_EATFILLER_HPP
 
 #include <functional>
-#include "../../../Utilites/TextureStorage/TextureStorage.hpp"
-#include "../../../Utilites/Coord/Coord.hpp"
-#include "../../../BonusManager/SteppedOnHead/SteppedOnHead.hpp"
-#include "../Filler/Filler.hpp"
-#include "../../../BonusManager/Eat/Eat.hpp"
+#include "CellsPool/Cell/Filler/Filler.hpp"
+#include "BonusManager/Eat/Eat.hpp"
 
 class DefaultRectangle;
 class Bonus;
