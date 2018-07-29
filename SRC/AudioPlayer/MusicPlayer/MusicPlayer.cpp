@@ -30,10 +30,6 @@ void MusicPlayer::playUniqueRand() {
 }
 
 void MusicPlayer::loadNames(fs::path music_dir) {
-    if(!boost::filesystem::exists(music_dir)) {
-        return; // Музыка полностью опциональна.
-    }
-    
     for(fs::directory_entry& file: fs::directory_iterator(music_dir)) {
         if(fs::is_regular_file(file) && fs::extension(file) == ".wav") {
             music_names.push_back(file.path().filename().string());
@@ -41,6 +37,10 @@ void MusicPlayer::loadNames(fs::path music_dir) {
     }
 }
 bool MusicPlayer::tryUpdatePlaylist() {
+    if(!boost::filesystem::exists(music_dir)) {
+        return false; // Музыка полностью опциональна.
+    }
+    
     time_t cur_update_directory = fs::last_write_time(music_dir);
     if(cur_update_directory != last_update_directory) {
         last_update_directory = cur_update_directory;

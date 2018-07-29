@@ -100,7 +100,11 @@ CellsPool::AvailablesIter CellsPool::findInAvailable(CellCPtr cell) {
     
     if(cur_cell != available_cells.end())
         return cur_cell;
-    else
+    else // TODO: Переделать. Взятие еды - это не исключительная ситуация.
+         // А ещё это мешает отладке.
+         // Возвращаем итератор конца, если клетки нет.
+         // Получив итератор конца, в RequestedCell поместим нулевой указатель.
+         // А со змейкой и движением уже потом разберёмся...
         throw NotFoundFreeCell(cell);
 }
 
