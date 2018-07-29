@@ -12,6 +12,7 @@
 #include "BonusManager/BonusManager.hpp"
 #include "Utility/ThreadGuard/ThreadGuard.hpp"
 #include "AudioPlayer/AudioController.hpp"
+#include "Resources/Icon/snake_128.h"
 
 class Game {
     // Главный класс. Управляет игровым циклом и отрисовкой.
@@ -32,7 +33,10 @@ class Game {
     , cells_pool(count_cells_x, count_cells_y, window, default_rectangle)
     , snake(cells_pool)
     , bonus_manager(cells_pool)
-    { window.setFramerateLimit(30); }
+    {
+        window.setFramerateLimit(30);
+        window.setIcon(snake_icon.width, snake_icon.height, snake_icon.pixel_data);
+    }
     
     void mainLoop() {
         try {

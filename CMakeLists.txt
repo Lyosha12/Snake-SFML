@@ -7,8 +7,9 @@ if(CMAKE_BUILD_TYPE MATCHES Release)
 endif()
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/Executable/bin)
-include_directories(SRC)
 
+include_directories(SRC)
+include_directories(Executable)
 
 # Magic for add ico to exe
 if(MINGW)
@@ -20,6 +21,9 @@ endif(MINGW)
 
 add_executable(${PROJECT_NAME}
         config.rc # Add ico to exe
+        Executable/Resources/Icon/snake_128.h # Icon for OpenGL window
+        Executable/Resources/Icon/snake_128.c
+
         SRC/main.cpp
 
         SRC/Utility/TextureStorage/TextureStorage.cpp
@@ -113,7 +117,6 @@ add_executable(${PROJECT_NAME}
 
         SRC/AudioPlayer/SoundPlayer/SoundPlayer.cpp
         SRC/AudioPlayer/SoundPlayer/SoundPlayer.hpp
-
 
         )
 
