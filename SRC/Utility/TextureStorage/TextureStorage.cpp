@@ -2,18 +2,18 @@
 // Created by Lyosha12 on 20.06.2018.
 //
 
+#include <boost/filesystem.hpp>
 #include "TextureStorage.hpp"
 
 TextureStorage::TextureStorage(std::vector<TextureParams> params) {
     for(auto const& param: params) {
         textures.push_back({});
-        if(!textures.back().loadFromFile("Resources/Textures/" + param.name)) {
+        boost::filesystem::path texture_path("../Resources/Textures/" + param.name);
+        bool is_valid_path = boost::filesystem::exists(texture_path);
+        
+        if(!is_valid_path || !textures.back().loadFromFile(texture_path.string())) {
             textures.pop_back();
-            throw std::runtime_error(
-                "Texture " +
-                param.name +
-                " was not loaded from Resources/Textures/"
-            );
+            throw std::runtime_error("Could not found " + texture_path.string());
         }
         
         textures.back().setRepeated(param.is_repeated);

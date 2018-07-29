@@ -63,7 +63,7 @@ CellsPool::RequestedCell CellsPool::getCell(CellCPtr target, Coord direction) {
     try {
         AvailablesIter available_cell = findInAvailable(requested_cell);
         return kickFromAvailable(available_cell, std::move(new_filler));
-    } catch(NotFoundFreeCell& e) {
+    } catch(NotFoundFreeCell const& e) {
         // * Здесь запрошенная клетка однозначно занята.
         // * Вернём заполнитель клетки, если она доступна для посещения.
         // * Иначе заполнитель остаётся,

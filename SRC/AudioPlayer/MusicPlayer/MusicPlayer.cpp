@@ -2,9 +2,14 @@
 // Created by Lyosha12 on 27.07.2018.
 //
 
+#include <boost/filesystem.hpp>
 #include "MusicPlayer.hpp"
 
 MusicPlayer::MusicPlayer(fs::path music_dir): music_dir(music_dir) {
+    
+    if(!boost::filesystem::exists(music_dir)) {
+        throw std::runtime_error(("Could not found " + music_dir.string()));
+    }
     loadNames(music_dir);
 }
 

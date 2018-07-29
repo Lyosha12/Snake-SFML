@@ -2,13 +2,25 @@ cmake_minimum_required(VERSION 3.12)
 project(Snake)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++17 -pedantic -Wall -Wextra")
-set(CMAKE_EXE_LINKER_FLAGS "-static -static-libgcc")
+if(CMAKE_BUILD_TYPE MATCHES Debug)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
+endif()
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/Executable/bin)
+include_directories(SRC)
+
+
+# Magic for add ico to exe
+if(MINGW)
+set(CMAKE_RC_COMPILER_INIT windres)
+ENABLE_LANGUAGE(RC)
+SET(CMAKE_RC_COMPILE_OBJECT
+        "<CMAKE_RC_COMPILER> <FLAGS> <DEFINES> -o <OBJECT> <SOURCE>")
+endif(MINGW)
 
 add_executable(${PROJECT_NAME}
+        config.rc # Add ico to exe
         SRC/main.cpp
-
 
         SRC/Utility/TextureStorage/TextureStorage.cpp
         SRC/Utility/TextureStorage/TextureStorage.hpp
@@ -35,6 +47,7 @@ add_executable(${PROJECT_NAME}
         SRC/Utility/Stopwatch.hpp
         SRC/Utility/TimeProfiler.hpp
         SRC/Utility/Timer.hpp
+        SRC/Utility/RandomSort.hpp
 
 
 
@@ -63,6 +76,7 @@ add_executable(${PROJECT_NAME}
 
         SRC/Snake/Snake.cpp
         SRC/Snake/Snake.hpp
+        SRC/Snake/GameEnd.hpp
 
 
 
@@ -100,14 +114,14 @@ add_executable(${PROJECT_NAME}
         SRC/AudioPlayer/SoundPlayer/SoundPlayer.cpp
         SRC/AudioPlayer/SoundPlayer/SoundPlayer.hpp
 
-        SRC/Snake/GameEnd.hpp SRC/Utility/RandomSort.hpp)
 
-include_directories(SRC)
+        )
 
 
-set(SFML_STATIC_LIBRARIES TRUE)
 set(SFML_ROOT "D:/Programs/ProgrammingEnvironment/Librares/SFML-2.4.2")
 set(CMAKE_MODULE_PATH "${SFML_ROOT}/cmake/Modules" ${CMAKE_MODULE_PATH})
+set(SFML_STATIC_LIBRARIES FALSE)
+
 find_package(SFML 2 REQUIRED graphics network audio window system)
 if(SFML_FOUND)
     include_directories(${SFML_INCLUDE_DIR})
@@ -116,14 +130,11 @@ endif()
 
 
 
-set (Boost_USE_MULTITHREADED  ON)
-set (Boost_USE_STATIC_LIBS    ON)
-set (Boost_USE_STATIC_RUNTIME ON)
-set (BOOST_ALL_DYN_LINK       OFF)
+
 
 set(BOOST_ROOT "D:/Programs/ProgrammingEnvironment/Librares/boost_1_67_0/Build")
+set (Boost_USE_STATIC_LIBS    OFF)
 find_package(Boost 1.67.0 REQUIRED filesystem system)
-
 if(Boost_FOUND)
     include_directories(SYSTEM ${Boost_INCLUDE_DIRS})
     target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})
