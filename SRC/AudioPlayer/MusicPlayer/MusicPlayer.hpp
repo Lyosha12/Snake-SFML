@@ -32,7 +32,7 @@ class MusicPlayer {
     void loadNames(fs::path music_dir);
     bool tryUpdatePlaylist();
     bool openMusic(NameIterator name_iterator);
-    bool isMusicPlay();
+    bool isMusicReadyToPlay();
     
     void fillUniquePlaylist();
   
@@ -40,7 +40,7 @@ class MusicPlayer {
     std::vector<std::string> music_names;
     std::vector<NameIterator> not_played_yet;
     fs::path music_dir;
-    time_t last_update_directory = fs::last_write_time(music_dir);
+    time_t last_update_directory = 0;
     
     sf::Music cur_music;
 };
