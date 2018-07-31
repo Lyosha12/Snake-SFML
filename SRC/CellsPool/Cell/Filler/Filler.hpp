@@ -19,12 +19,11 @@ class Snake;
 class DefaultRectangle;
 
 class Filler: public sf::Drawable {
-    /*
-      * Заполнитель клетки - это некий спрайт.
-        Его текстуру и форму определяет наследник этого класса.
-      * Кроме того, что это спрайт, заполнитель ещё определяет доступность
-        клетки: можно ли её посетить (CanBeTake). Например, чтобы клетку
-        змейки одного игрока не забрал другой без "последствий".
+    /* * Заполнитель клетки - это некий спрайт.
+         Его текстуру и форму определяет наследник этого класса.
+       * Кроме того, что это спрайт, заполнитель ещё определяет доступность
+         клетки: можно ли её посетить (CanBeTake). Например, чтобы клетку
+         змейки одного игрока не забрал другой без "последствий".
     */
   
   protected:
@@ -51,10 +50,8 @@ class Filler: public sf::Drawable {
     // можно было бы определить массив бонусов на конкретной клетке.
     std::unique_ptr<Bonus> getBonus(Snake&) const;
     
-    // Можно ли этой (или любой другой) змейке
-    // занять клетку с таким заполнителем.
+    // Можно ли змейке занять клетку с таким заполнителем.
     bool isCanBeTake() const;
-  
     
   private:
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
@@ -62,7 +59,7 @@ class Filler: public sf::Drawable {
     
     // Задаётся каждым бонусом отдельно.
     // Отвечает за отложенное создание бонуса в стиле RAII.
-    Bonus::LazyCreator bonus_creator;
+    Bonus::LazyCreator const& bonus_creator;
     Bonus::LazyDestroyer const& bonus_destroy_notify;
     
     CanBeTake const can_be_take;

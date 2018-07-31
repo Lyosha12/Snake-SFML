@@ -19,7 +19,9 @@ TextureStorage::TextureStorage(std::vector<TextureParams> params) {
         textures.back().setRepeated(param.is_repeated);
     }
 }
-TextureStorage::TextureStorage(TextureParams params): TextureStorage(std::vector{params}) { }
+TextureStorage::TextureStorage(TextureParams params)
+: TextureStorage(std::vector{params})
+{ }
 
 sf::Texture const& TextureStorage::operator[] (size_t texture_index) const {
     if(texture_index < textures.size())

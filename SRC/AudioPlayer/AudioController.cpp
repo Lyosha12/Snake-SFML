@@ -2,7 +2,7 @@
 // Created by Lyosha12 on 27.07.2018.
 //
 
-#include <Utility/ErrorPrinter/ErrorPrinter.hpp>
+#include <Utility/FatalError/FatalError.hpp>
 #include "AudioController.hpp"
 
 AudioController::AudioController()
@@ -12,15 +12,19 @@ AudioController::AudioController()
 void AudioController::run(LiveStorage& alive) {
     try {
         while(alive) {
+            // TODO: Тут бы обработку сообщений из внешнего источника.
             cur_music->playUniqueRand();
         }
     }
     
+    // Ошибки, не совместимые с жизнью приложения.
     catch(fs::filesystem_error const& e) {
-        ErrorPrinter(e.what()).print();
+        FatalError(e.what()).print();
     }
-    
     catch(std::exception const& e) {
-        ErrorPrinter(e.what()).print();
+        FatalError(e.what()).print();
+    }
+    catch(...) {
+        FatalError("Audio controller throws unexpected exception").print();
     }
 }

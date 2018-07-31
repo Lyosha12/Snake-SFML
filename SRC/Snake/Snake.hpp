@@ -31,14 +31,7 @@ class Snake {
     // Считая с головы-нуля, удаляет запрошенный элемент змейки.
     void popChapter(size_t chapter_index);
     
-    // Вставить переданный заполнитель (обычно тело, если вызывает бонус движения)
-    // перед указанным элементом змейки, считая с нуля.
-    // Так, можно сделать телом змейки и заполнитель-бонус.
-    // Получаются интересные варианты геймплея.
-    template <class FillerType>
-    void pushChapter(size_t chapter_index);
-    
-    template <class InputFiller>
+    template <class InputFiller> // Заменить заполнитель в клетке змейки на что-то другое.
     void replaceChapter(size_t chapter_index);
     
     size_t bodyLength() const;

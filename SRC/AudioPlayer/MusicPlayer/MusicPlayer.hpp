@@ -22,11 +22,17 @@ namespace fs = boost::filesystem;
 class MusicPlayer {
     // Проигрывает длительную wav-музыку.
     
-    using NameIterator = std::vector<std::string>::iterator;
+    using NameIterator = std::vector<std::string>::const_iterator;
   public:
     MusicPlayer(fs::path music_dir);
     
+    // * Из существующей директории с музыкой загружаются имена файлов,
+    //   случайно сортируются и проигрываются по одному файлу.
+    // * При исчерпании этого случайно отсортированного списка повторяем.
+    // * FIXME: Без существования директории часто проверяем её наличие.
     void playUniqueRand();
+    
+    // TODO: Добавить возможность паузы, остановки
     
   private:
     void loadNames(fs::path music_dir);
@@ -37,10 +43,10 @@ class MusicPlayer {
     void fillUniquePlaylist();
   
   private:
-    std::vector<std::string> music_names;
+    fs::path const music_dir;
+    std::vector<std::string> music_names;     // Имена файлов из music_dir.
     std::vector<NameIterator> not_played_yet;
-    fs::path music_dir;
-    time_t last_update_directory = 0;
+    time_t last_update_music_dir = 0;
     
     sf::Music cur_music;
 };

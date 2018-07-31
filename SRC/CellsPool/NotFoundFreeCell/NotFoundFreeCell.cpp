@@ -12,7 +12,7 @@ NotFoundFreeCell::NotFoundFreeCell(Cell::CellCPtr cell, std::string explanation)
 char const* NotFoundFreeCell::what() const noexcept {
     std::string reason = "Free cell not found. Params:\n";
     reason +=
-        "  - Coords cell: (" +
+        "  - Cell coord: (" +
         std::to_string(cell->coord.x) + ", " +
         std::to_string(cell->coord.y) + ").\n";
     

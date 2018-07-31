@@ -4,13 +4,9 @@
 
 #include "Snake/GameEnd.hpp"
 #include "SteppedOnHead.hpp"
-SteppedOnHead::SteppedOnHead(Snake& snake): Bonus(snake) {
-    throw GameEnd("Game is end");
-}
 
 bool SteppedOnHead::activate() {
-    // Пока что нет функционала - игра завершится.
-    return false;
+    throw GameEnd("Game is end");
 }
 
 Bonus::LazyCreator const& SteppedOnHead::getBonusCreator() {

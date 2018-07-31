@@ -17,11 +17,12 @@ Filler::Filler(
     , can_be_take(can_be_take)
 {
     // Установим переданную текстуру в спрайт, настроив её размер.
+    // TODO: Слишком сложно. Переписать (?).
     this->sprite = default_rectangle.configureTexture(
         DefaultRectangle::TextureConfigurator(coord, texture)
     );
     
-    // Позволяет узнать во сколько раз нужно уменьшить
+    // Позволяет узнать во сколько раз нужно изменить
     // текстуру по отношению к размеру клетки.
     sf::Vector2f scale = {
         default_rectangle.getSize().x / texture.getSize().x,
@@ -36,6 +37,8 @@ Filler::~Filler() {
 }
 
 std::unique_ptr<Bonus> Filler::getBonus(Snake& snake) const {
+    // Бонус получе - бонуса нет на поле.
+    // bonus_creator сообщит об этом и создаст бонус с привязкой к змейке.
     return std::move(bonus_creator(snake));
 }
 

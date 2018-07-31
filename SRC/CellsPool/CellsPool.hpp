@@ -41,8 +41,8 @@ class CellsPool: public sf::Drawable {
     );
     
     struct RequestedCell {
-        // Бассейн клеток отдаёт этот объект всякий раз,
-        // когда кто-то завладеет клеткой.
+        // Бассейн клеток отдаёт этот объект всякому,
+        // кто захотел владеть клеткой.
     
         Cell::CellCPtr cell;
         Cell::FillerUPtr prev_filler;
@@ -54,11 +54,14 @@ class CellsPool: public sf::Drawable {
     RequestedCell getNearCell(CellCPtr target);
     template <class IncomingFiller> // Клетка, по направлению от заданной.
     RequestedCell getCell(CellCPtr target, Coord direction);
+    template <class IncomingFiller>
+    RequestedCell getCell(Coord coord);
     
     // Выбросить старый заполнитель и создать новый.
     template <class IncomingFiller>
     void replaceFiller(CellCPtr target);
     
+    // Установить стандартный FreeCell заполнитель.
     void releaseCell(CellCPtr cell_to_release);
   
   public:
@@ -68,7 +71,7 @@ class CellsPool: public sf::Drawable {
   
   private:
     template <class IncomingFiller>
-    std::unique_ptr<Filler> fillerCreator(Coord const& sprite_location) const;
+    std::unique_ptr<Filler> createFiller(Coord const& sprite_location) const;
     RequestedCell replaceFiller(CellPtr target, FillerUPtr new_filler);
     RequestedCell kickFromAvailable(AvailablesIter target, FillerUPtr new_filler);
     

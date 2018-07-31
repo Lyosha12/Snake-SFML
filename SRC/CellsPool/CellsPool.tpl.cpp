@@ -15,7 +15,7 @@ CellsPool::RequestedCell CellsPool::getRandCell() {
     size_t rand_cell = random() % available_cells.size();
     AvailablesIter requested_cell = getListElement(available_cells, rand_cell);
     
-    std::unique_ptr<Filler> new_filler = fillerCreator<IncomingFiller>(
+    std::unique_ptr<Filler> new_filler = createFiller<IncomingFiller>(
         (*requested_cell)->coord
     );
     return kickFromAvailable(requested_cell, std::move(new_filler));
@@ -39,7 +39,7 @@ CellsPool::RequestedCell CellsPool::getNearCell(CellCPtr target) {
         
         // ... доступную к использованию.
         if(neighbor->filler->isCanBeTake()) {
-            std::unique_ptr<Filler> new_filler = fillerCreator<IncomingFiller>(
+            std::unique_ptr<Filler> new_filler = createFiller<IncomingFiller>(
                 neighbor->coord
             );
             return kickFromAvailable(findInAvailable(neighbor), std::move(new_filler));
@@ -53,10 +53,16 @@ CellsPool::RequestedCell CellsPool::getNearCell(CellCPtr target) {
 
 template <class IncomingFiller>
 CellsPool::RequestedCell CellsPool::getCell(CellCPtr target, Coord direction) {
+    // FIXME: CLion, ну вот зачем тебе нужен тут 'CellsPool::'?
+    return CellsPool::getCell<IncomingFiller>(target->coord + direction);
+}
+
+template <class IncomingFiller>
+CellsPool::RequestedCell CellsPool::getCell(Coord coord) {
     // Возьмём клетку по заданному направлению относительно текущей.
-    CellPtr requested_cell = extractCell(target->coord + direction);
+    CellPtr requested_cell = extractCell(coord);
     
-    std::unique_ptr<Filler> new_filler = fillerCreator<IncomingFiller>(
+    std::unique_ptr<Filler> new_filler = createFiller<IncomingFiller>(
         requested_cell->coord
     );
     
@@ -64,6 +70,7 @@ CellsPool::RequestedCell CellsPool::getCell(CellCPtr target, Coord direction) {
         AvailablesIter available_cell = findInAvailable(requested_cell);
         return kickFromAvailable(available_cell, std::move(new_filler));
     } catch(NotFoundFreeCell const& e) {
+        // TODO: Переписать без исплючений.
         // * Здесь запрошенная клетка однозначно занята.
         // * Вернём заполнитель клетки, если она доступна для посещения.
         // * Иначе заполнитель остаётся,
@@ -77,14 +84,14 @@ CellsPool::RequestedCell CellsPool::getCell(CellCPtr target, Coord direction) {
 
 template <class IncomingFiller>
 void CellsPool::replaceFiller(CellCPtr target) {
-    // Старый заполнитель вызывает также и деструктор бонуса.
-    fillerCreator<IncomingFiller>(target->coord).swap(const_cast<CellPtr>(target)->filler);
+    
+    createFiller<IncomingFiller>(target->coord).swap(const_cast<CellPtr>(target)->filler);
 }
 
 
 
 
 template <class IncomingFiller>
-std::unique_ptr<Filler> CellsPool::fillerCreator(Coord const& sprite_location) const {
+std::unique_ptr<Filler> CellsPool::createFiller(Coord const& sprite_location) const {
     return std::unique_ptr<Filler>(new IncomingFiller(default_rectangle, sprite_location));
 }

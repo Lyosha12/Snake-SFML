@@ -13,7 +13,7 @@ using namespace std::chrono_literals;
 
 template <class Clock = std::chrono::steady_clock>
 class Stopwatch {
-    /* Всего лишь таймер - сколько прошло времени от и до заданной точки.
+    /* Секундомер - сколько прошло времени от и до заданной точки.
      */
     
   public:

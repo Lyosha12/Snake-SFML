@@ -21,16 +21,16 @@ endif(MINGW)
 
 add_executable(${PROJECT_NAME}
         config.rc # Add ico to exe
-        Executable/Resources/Icon/snake_128.h # Icon for OpenGL window
-        Executable/Resources/Icon/snake_128.c
+        SRC/Icon/snake_128.h # Icon for OpenGL window
+        SRC/Icon/snake_128.c
 
         SRC/main.cpp
 
         SRC/Utility/TextureStorage/TextureStorage.cpp
         SRC/Utility/TextureStorage/TextureStorage.hpp
 
-        SRC/Utility/ErrorPrinter/ErrorPrinter.cpp
-        SRC/Utility/ErrorPrinter/ErrorPrinter.hpp
+        SRC/Utility/FatalError/FatalError.cpp
+        SRC/Utility/FatalError/FatalError.hpp
 
         SRC/Utility/Coord/Coord.cpp
         SRC/Utility/Coord/Coord.hpp
@@ -66,8 +66,8 @@ add_executable(${PROJECT_NAME}
         SRC/CellsPool/NotFoundFreeCell/NotFoundFreeCell.cpp
         SRC/CellsPool/NotFoundFreeCell/NotFoundFreeCell.hpp
 
-        SRC/CellsPool/Cell/Fillers/FreeCellFiller.hpp
-        SRC/CellsPool/Cell/Fillers/EatFiller.hpp
+        SRC/CellsPool/Cell/Fillers/FreeCell.hpp
+        SRC/CellsPool/Cell/Fillers/Eat.hpp
         SRC/CellsPool/Cell/Fillers/Head.hpp
         SRC/CellsPool/Cell/Fillers/Body.hpp
 
@@ -90,8 +90,8 @@ add_executable(${PROJECT_NAME}
         SRC/BonusManager/Bonus/Bonus.cpp
         SRC/BonusManager/Bonus/Bonus.hpp
 
-        SRC/BonusManager/Eat/Eat.cpp
-        SRC/BonusManager/Eat/Eat.hpp
+        SRC/BonusManager/AddChapter/AddChapter.cpp
+        SRC/BonusManager/AddChapter/AddChapter.hpp
 
         SRC/BonusManager/SteppedOnBody/SteppedOnBody.cpp
         SRC/BonusManager/SteppedOnBody/SteppedOnBody.hpp

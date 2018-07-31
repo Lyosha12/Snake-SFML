@@ -14,8 +14,9 @@ class Snake;
 
 class Cell: public sf::Drawable {
     // Представляет клетку на поле.
-    // Имеет заполнитель - то, чем она является для змейки.
-    // Заполнитель контролирует бассейн клеток (cells_pool).
+    // Клетка содержит заполнитель (filler).
+    // Filler - это еда, препятствие, блок змейки и т.д.
+    // Какой заполнитель установить и как решает бассейн клеток (CellsPool).
   
   public:
     using FillerUPtr = std::unique_ptr<Filler>;
@@ -25,11 +26,9 @@ class Cell: public sf::Drawable {
   public:
     Cell() = default;
     Cell(Cell&& cell);
+    Cell(Cell const&) = delete;
     
     Coord coord = {-1, -1};
-    // Задаётся в конструкторе бассейна клеток,
-    // Т.к. только бассейну известна координата клетки и её размер,
-    // чтобы разместить там спрайт.
     std::unique_ptr<Filler> filler = nullptr;
     
   private:

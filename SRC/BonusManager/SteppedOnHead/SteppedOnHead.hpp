@@ -8,8 +8,11 @@
 #include "BonusManager/Bonus/Bonus.hpp"
 
 class SteppedOnHead: public Bonus {
+    // Делает что-то, если змейка взяла блок головы (чужой змейки, конечно).
+    
   public:
-    SteppedOnHead(Snake& snake);
+    using Bonus::Bonus;
+    
     bool activate() override;
     
     static LazyCreator const& getBonusCreator();

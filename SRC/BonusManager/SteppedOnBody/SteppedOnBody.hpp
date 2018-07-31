@@ -9,8 +9,11 @@
 #include "BonusManager/Bonus/Bonus.hpp"
 
 class SteppedOnBody: public Bonus {
+    // Делает что-то, если змейка взяла блок своего тела (или чужого).
+    
   public:
-    SteppedOnBody(Snake& snake);
+    using Bonus::Bonus;
+    
     bool activate() override;
     
     static LazyCreator const& getBonusCreator();

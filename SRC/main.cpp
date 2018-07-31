@@ -5,14 +5,14 @@
 #include <SFML/Graphics.hpp>
 #include <Snake/GameEnd.hpp>
 
-#include "Utility/ErrorPrinter/ErrorPrinter.hpp"
+#include "Utility/FatalError/FatalError.hpp"
 #include "CellsPool/DefaultRectangle/DefaultRectangle.hpp"
 #include "CellsPool/CellsPool.hpp"
 #include "Snake/Snake.hpp"
 #include "BonusManager/BonusManager.hpp"
 #include "Utility/ThreadGuard/ThreadGuard.hpp"
 #include "AudioPlayer/AudioController.hpp"
-#include "Resources/Icon/snake_128.h"
+#include "Icon/snake_128.h"
 
 class Game {
     // Главный класс. Управляет игровым циклом и отрисовкой.
@@ -53,7 +53,7 @@ class Game {
         }
         
         catch(std::exception const& e) {
-            ErrorPrinter(e.what()).print();
+            FatalError(e.what()).print();
         }
     }
     void handle_events() {

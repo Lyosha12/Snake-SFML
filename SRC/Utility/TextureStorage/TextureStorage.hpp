@@ -17,6 +17,7 @@ class TextureStorage {
     struct TextureParams {
         std::string name;
         bool is_repeated;
+        // TODO: Трансформации, необходимые для нормальных текстур змейки.
     };
     
     

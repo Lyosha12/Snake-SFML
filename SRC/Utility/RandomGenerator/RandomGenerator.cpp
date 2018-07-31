@@ -8,6 +8,7 @@
 #include "RandomGenerator.hpp"
 
 thread_local std::minstd_rand0 generator (
+    // Инициализируем уникальным временем.
     static_cast<unsigned>(
         std::chrono::system_clock::now().time_since_epoch().count()
     )

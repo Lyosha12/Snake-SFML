@@ -4,8 +4,8 @@
 
 #include "CellsPool/CellsPool.hpp"
 #include "Utility/ThreadGuard/LiveStorage/LiveStorage.hpp"
-#include "Utility/ErrorPrinter/ErrorPrinter.hpp"
-#include "CellsPool/Cell/Fillers/EatFiller.hpp"
+#include "Utility/FatalError/FatalError.hpp"
+#include "CellsPool/Cell/Fillers/Eat.hpp"
 
 #include "BonusManager.hpp"
 
@@ -13,7 +13,7 @@ BonusManager::BonusManager(CellsPool& cells_pool)
 : cells_pool(cells_pool)
     // Не знаю почему, но передача *this как функтора не работает
     // в конструкторе, хотя работает вне конструктора.
-, t([this] (LiveStorage& live_storage) { run(live_storage); })
+, thread([this] (LiveStorage& live_storage) { run(live_storage); })
 { }
 
 void BonusManager::run(LiveStorage& live_storage) {
@@ -21,14 +21,15 @@ void BonusManager::run(LiveStorage& live_storage) {
         while(live_storage) {
             trySetEat();
         }
+        
     } catch(std::exception const& e) {
-        ErrorPrinter(e.what()).print();
+        FatalError(e.what()).print();
     }
 }
 
 void BonusManager::trySetEat() {
     // Установим новую еду, если её нет на поле.
-    bool x = !Eat::isExist();
+    bool x = !AddChapter::isExist();
     if(x) {
         // Это не срочно. Можно подождать пару циклов
         // и установить в период бездействия змейки.
@@ -38,11 +39,11 @@ void BonusManager::trySetEat() {
         
         // Клетка принадлежит менеджеру бонусов, если бонус исчез
         // и клеткой никто не завладел.
-        if(!Eat::isTacked()) {
+        if(!AddChapter::isTacked()) {
             cells_pool.releaseCell(eat);
         }
         
-        eat = cells_pool.getRandCell<EatFiller>().cell;
+        eat = cells_pool.getRandCell<Eat>().cell;
     }
 }
     

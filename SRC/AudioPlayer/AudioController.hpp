@@ -12,12 +12,18 @@
 
 class AudioController {
     // Управляет всеми звуками игры.
+    
   public:
     AudioController();
+    
+    // Запускается в отдельном потоке.
     void run(LiveStorage& alive);
     
   private:
+    // TODO: Потом можно сделать массив проигрывателей для разных меню.
     std::unique_ptr<MusicPlayer> cur_music;
+    
+    // TODO: Т.к. работает в отдельном потоке, нужна очередь для общения.
     ThreadGuard thread;
 };
 

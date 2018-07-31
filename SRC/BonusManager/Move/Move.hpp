@@ -8,8 +8,11 @@
 #include "BonusManager/Bonus/Bonus.hpp"
 
 class Move: public Bonus {
+    // По задумке, бонус движения хранит каждая свободная клетка.
+    
   public:
-    Move(Snake& snake);
+    using Bonus::Bonus;
+    
     bool activate() override;
     
     static LazyCreator const& getBonusCreator();

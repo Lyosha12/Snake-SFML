@@ -6,17 +6,12 @@
 #include "Snake/Snake.hpp"
 #include "CellsPool/Cell/Fillers/Body.hpp"
 
-Move::Move(Snake& snake): Bonus(snake) {
+bool Move::activate() {
     // Заменим предыдущую голову змейки на часть тела.
     snake.replaceChapter<Body>(1);
     
     // Змейка не может быть нулевой длины. Удалим хвост.
     snake.popChapter(snake.bodyLength() - 1);
-}
-
-bool Move::activate() {
-    // Перемещение змейки уже было в конструкторе бонуса.
-    // Здесь просто скажем о том, что он уже не нужен.
     return false;
 }
 
@@ -26,8 +21,6 @@ Bonus::LazyCreator const& Move::getBonusCreator() {
 Bonus::LazyDestroyer const& Move::getBonusDestroyer() {
     return bonus_destroy_notify;
 }
-
-
 
 
 const Bonus::LazyCreator Move::lazy_creator = [] (Snake& snake) {
