@@ -12,7 +12,7 @@
 #include "BonusManager/BonusManager.hpp"
 #include "Utility/ThreadGuard/ThreadGuard.hpp"
 #include "AudioPlayer/AudioController.hpp"
-#include "Icon/snake_128.h"
+#include "Icon/IconOpenGL.h"
 
 class Game {
     // Главный класс. Управляет игровым циклом и отрисовкой.

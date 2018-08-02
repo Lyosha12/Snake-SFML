@@ -21,8 +21,8 @@ endif(MINGW)
 
 add_executable(${PROJECT_NAME}
         config.rc # Add ico to exe
-        SRC/Icon/snake_128.h # Icon for OpenGL window
-        SRC/Icon/snake_128.c
+        SRC/Icon/IconOpenGL.h # Icon for OpenGL window
+        SRC/Icon/IconOpenGL.c
 
         SRC/main.cpp
 
@@ -117,8 +117,7 @@ add_executable(${PROJECT_NAME}
 
         SRC/AudioPlayer/SoundPlayer/SoundPlayer.cpp
         SRC/AudioPlayer/SoundPlayer/SoundPlayer.hpp
-
-        )
+)
 
 
 set(SFML_ROOT "D:/Programs/ProgrammingEnvironment/Librares/SFML-2.4.2")
