@@ -3,3 +3,4 @@ cmake-build-release/
 .idea/
 Snake.exe
 Snake.exe*
+Executable/Resources/Audio/Music/
