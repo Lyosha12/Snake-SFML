@@ -1,3 +1,5 @@
+// This is an open source non-commercial project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 //
 // Created by Lyosha12 on 22.06.2018.
 //
@@ -16,7 +18,7 @@ char const* NotFoundFreeCell::what() const noexcept {
         std::to_string(cell->coord.x) + ", " +
         std::to_string(cell->coord.y) + ").\n";
     
-    reason += "  - Other info: " + explanation + "\n";
+    explanation = reason += "  - Other info: " + explanation + "\n";
     
-    return reason.c_str();
+    return explanation.c_str();
 }

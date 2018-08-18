@@ -16,7 +16,7 @@ struct NotFoundFreeCell: public std::exception {
     char const* what() const noexcept override;
     
     Cell::CellCPtr cell;
-    std::string explanation;
+    mutable std::string explanation;
 };
 
 

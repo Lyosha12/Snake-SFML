@@ -1,3 +1,5 @@
+// This is an open source non-commercial project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 //
 // Created by Lyosha12 on 22.06.2018.
 //
@@ -27,7 +29,7 @@ std::unique_ptr<Bonus> Filler::getBonus(Snake& snake) const {
     return std::move(bonus_creator(snake));
 }
 
-void Filler::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+void Filler::draw(sf::RenderTarget& target, sf::RenderStates states) const { //-V813
     target.draw(sprite, states);
 }
 

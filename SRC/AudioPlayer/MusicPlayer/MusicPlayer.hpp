@@ -11,7 +11,8 @@
 
 #include <SFML/Audio.hpp>
 #include <boost/filesystem.hpp>
-#include <Utility/RandomSort.hpp>
+
+#include "Utility/RandomSort.hpp"
 
 #include "Utility/RandomGenerator/RandomGenerator.hpp"
 
@@ -35,7 +36,7 @@ class MusicPlayer {
     // TODO: Добавить возможность паузы, остановки
     
   private:
-    void loadNames(fs::path music_dir);
+    void loadNames();
     bool tryUpdatePlaylist();
     bool openMusic(NameIterator name_iterator);
     bool isMusicReadyToPlay();
@@ -46,7 +47,7 @@ class MusicPlayer {
     fs::path const music_dir;
     std::vector<std::string> music_names;     // Имена файлов из music_dir.
     std::vector<NameIterator> not_played_yet;
-    time_t last_update_music_dir = 0;
+    time_t last_update_music_dir = 0; //-V795
     
     sf::Music cur_music;
 };

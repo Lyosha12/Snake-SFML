@@ -1,3 +1,5 @@
+// This is an open source non-commercial project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 //
 // Created by Lyosha12 on 22.06.2018.
 //
@@ -70,9 +72,9 @@ void Snake::move() {
     );
     
 }
-void Snake::changeDirection(Direction direction) {
+void Snake::changeDirection(Direction incoming_direction) {
     // Внешнее управление змейкой посредством пользовательского ввода.
-    switch(direction) {
+    switch(incoming_direction) {
         case Direction::Up   : moves.push({ 0, -1}); break;
         case Direction::Down : moves.push({ 0,  1}); break;
         case Direction::Left : moves.push({-1,  0}); break;
@@ -81,7 +83,7 @@ void Snake::changeDirection(Direction direction) {
 }
 
 static void normalize_invert (Coord& vector) {
-    static double constexpr simple_square_diagonal = 1.41421 + 0.5; // sqrt(2)
+    static double constexpr simple_square_diagonal = M_SQRT2 + 0.5;
     if((simple_square_diagonal < vector.length())) {
         vector *= -1;
         vector.x = sign(vector.x);
@@ -157,7 +159,8 @@ Coord Snake::redefineBodySprite(size_t chapter_index) const {
     
     
     // Есть две части тела - прямая и изгиб.
-    if(Coord diagonal = a + b; !isCollinear(a, b)) { // Это изгиб.
+    if(!isCollinear(a, b)) { // Это изгиб.
+        Coord diagonal = a + b;
         cells_pool.replaceFiller(
             *i,
             Filler::makeFillerCreator<BodyAngle>(
@@ -227,7 +230,7 @@ void Snake::emptyInitialize() {
     size_t guaranteed_parts = 2;
     size_t max_parts = 4;
     size_t additional_parts = random()%(max_parts - guaranteed_parts);
-    size_t missing_parts = guaranteed_parts + additional_parts - 1;
+    size_t missing_parts = guaranteed_parts + additional_parts;
     
     // Игнорируем любые возможные бонусы.
     // Добавим голову и остальные части.

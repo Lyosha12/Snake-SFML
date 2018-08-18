@@ -1,3 +1,5 @@
+// This is an open source non-commercial project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 //
 // Created by Lyosha12 on 22.06.2018.
 //
@@ -150,7 +152,7 @@ CellsPool::RequestedCell CellsPool::kickFromAvailable(AvailablesIter target, Fil
 
 Coord CellsPool::normalize(Coord coord) const {
     // Обеспечивает перепрыгивание через границу поля на противоположную часть.
-    auto normalize_component = [] (int component, int max) {
+    auto normalize_component = [] (int component, size_t max) {
         if(component >= 0) {
             return component % max;
         } else {
@@ -167,7 +169,7 @@ Coord CellsPool::normalize(Coord coord) const {
 }
 CellsPool::CellPtr CellsPool::extractCell(Coord coord) {
     coord = normalize(coord);
-    return &cells[coord.y][coord.x];
+    return &cells[coord.y][coord.x]; //-V108
 }
 CellsPool::AvailablesIter CellsPool::findInAvailable(CellCPtr cell) {
     // При попытке получить клетку по направлению или соседнюю к заданной
@@ -193,7 +195,7 @@ CellsPool::FillerUPtr CellsPool::createFreeFiller(Coord coord) const {
     return Filler::makeFillerCreator<FreeCell>(0)(default_rectangle, coord);
 }
 
-void CellsPool::draw(sf::RenderTarget& target, sf::RenderStates states) const {
+void CellsPool::draw(sf::RenderTarget& target, sf::RenderStates states) const { //-V813
     // WARN: Получим deadlock в WindowForTests
     std::lock_guard<std::mutex> lock(cells_mutex);
     

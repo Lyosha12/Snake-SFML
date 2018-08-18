@@ -1,3 +1,5 @@
+// This is an open source non-commercial project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 //
 // Created by Lyosha12 on 27.07.2018.
 //
@@ -34,7 +36,7 @@ void MusicPlayer::playUniqueRand() {
     
 }
 
-void MusicPlayer::loadNames(fs::path music_dir) {
+void MusicPlayer::loadNames() {
     for(fs::directory_entry& file: fs::directory_iterator(music_dir)) {
         if(fs::is_regular_file(file) && fs::extension(file) == ".wav") {
             music_names.push_back(file.path().filename().string());
@@ -47,11 +49,11 @@ bool MusicPlayer::tryUpdatePlaylist() {
 }
     
     // Обновим список существующей музыки, если папку с музыкой изменили.
-    time_t cur_update_directory = fs::last_write_time(music_dir);
+    time_t cur_update_directory = fs::last_write_time(music_dir); //-V795
     if(cur_update_directory != last_update_music_dir) {
         last_update_music_dir = cur_update_directory;
         music_names.clear();
-        loadNames(music_dir);
+        loadNames();
         return true;
     }
     

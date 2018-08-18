@@ -60,8 +60,8 @@ class Timer {
     
   private:
     template <class IncomingTimeUnit>
-    InternalTimeUnit convert(IncomingTimeUnit interval) {
-        return std::chrono::duration_cast<InternalTimeUnit> (interval);
+    InternalTimeUnit convert(IncomingTimeUnit incoming_interval) {
+        return std::chrono::duration_cast<InternalTimeUnit> (incoming_interval);
     }
   
   private:

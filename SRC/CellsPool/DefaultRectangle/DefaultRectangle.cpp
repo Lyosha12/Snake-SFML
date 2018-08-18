@@ -1,3 +1,5 @@
+// This is an open source non-commercial project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 //
 // Created by Lyosha12 on 18.06.2018.
 //
@@ -31,9 +33,15 @@ makeSprite(sf::Texture const& texture, Coord on_field, double rotation) const {
     sprite.rotate(static_cast<float>(-rotation));
     
     // Установим нужную позицию на поле для спрайта.
-    float width  = prototype.getSize().x;
-    float height = prototype.getSize().y;
-    sprite.setPosition(width * on_field.x + origin.x + width/2 - width/5, height * on_field.y + origin.y + height/2 - height/5);
+    sf::Vector2f const& default_size = prototype.getSize();
+    float width  = default_size.x;
+    float height = default_size.y;
+    sf::Vector2f magic_offset = {
+        width/2  - width/5,
+        height/2 - height/5
+    };
+    sprite.setPosition(width * on_field.x + origin.x, height * on_field.y + origin.y);
+    sprite.move(magic_offset);
     
     return sprite;
 }

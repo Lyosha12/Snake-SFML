@@ -1,3 +1,5 @@
+// This is an open source non-commercial project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 //
 // Created by Lyosha12 on 18.06.2018.
 //
@@ -11,7 +13,7 @@ int    pseudoscalar  (Coord const& L, Coord const& R) {
     return L.x*R.y - L.y*R.x;
 }
 bool   isCollinear   (Coord const& L, Coord const& R) {
-    return std::abs(pseudoscalar(L, R)) <= 1e-5;
+    return pseudoscalar(L, R) == 0;
 }
 int    scalar        (Coord const& L, Coord const& R) {
     return L.x*R.x + L.y*R.y;
@@ -27,7 +29,7 @@ double angle         (Coord const& L, Coord const& R) {
     return angle; // Угол поворота против часовой стрелки.
 }
 
-double Coord::length (                              ) const {
+double Coord::length (                   ) const {
     return std::sqrt(scalar(*this, *this));
 }
 bool  Coord::operator== (double value    ) const {
