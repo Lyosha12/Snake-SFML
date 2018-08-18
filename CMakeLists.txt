@@ -15,8 +15,7 @@ include_directories(Executable)
 if(MINGW)
 set(CMAKE_RC_COMPILER_INIT windres)
 ENABLE_LANGUAGE(RC)
-SET(CMAKE_RC_COMPILE_OBJECT
-        "<CMAKE_RC_COMPILER> <FLAGS> <DEFINES> -o <OBJECT> <SOURCE>")
+SET(CMAKE_RC_COMPILE_OBJECT "<CMAKE_RC_COMPILER> <FLAGS> <DEFINES> -o <OBJECT> <SOURCE>")
 endif(MINGW)
 
 add_executable(${PROJECT_NAME}
@@ -26,14 +25,17 @@ add_executable(${PROJECT_NAME}
 
         SRC/main.cpp
 
-        SRC/Utility/TextureStorage/TextureStorage.cpp
-        SRC/Utility/TextureStorage/TextureStorage.hpp
+        SRC/Utility/Coord/Coord.cpp
+        SRC/Utility/Coord/Coord.hpp
 
         SRC/Utility/FatalError/FatalError.cpp
         SRC/Utility/FatalError/FatalError.hpp
 
-        SRC/Utility/Coord/Coord.cpp
-        SRC/Utility/Coord/Coord.hpp
+        SRC/Utility/RandomGenerator/RandomGenerator.hpp
+        SRC/Utility/RandomGenerator/RandomGenerator.cpp
+
+        SRC/Utility/TextureStorage/TextureStorage.cpp
+        SRC/Utility/TextureStorage/TextureStorage.hpp
 
         SRC/Utility/ThreadGuard/ThreadGuard.hpp
         SRC/Utility/ThreadGuard/ThreadGuard.cpp
@@ -41,11 +43,11 @@ add_executable(${PROJECT_NAME}
         SRC/Utility/ThreadGuard/LiveStorage/LiveStorage.cpp
         SRC/Utility/ThreadGuard/LiveStorage/LiveStorage.hpp
 
+        SRC/Utility/Trivials/Trivials.cpp
+        SRC/Utility/Trivials/Trivials.hpp
+
         SRC/Utility/WindowForTests/WindowForTests.cpp
         SRC/Utility/WindowForTests/WindowForTests.hpp
-
-        SRC/Utility/RandomGenerator/RandomGenerator.hpp
-        SRC/Utility/RandomGenerator/RandomGenerator.cpp
 
         SRC/Utility/ListRunner.hpp
         SRC/Utility/Stopwatch.hpp
@@ -54,8 +56,6 @@ add_executable(${PROJECT_NAME}
         SRC/Utility/RandomSort.hpp
 
 
-
-        SRC/CellsPool/DefaultRectangle/Configurator.cpp
         SRC/CellsPool/DefaultRectangle/DefaultRectangle.cpp
         SRC/CellsPool/DefaultRectangle/DefaultRectangle.hpp
 
@@ -66,10 +66,14 @@ add_executable(${PROJECT_NAME}
         SRC/CellsPool/NotFoundFreeCell/NotFoundFreeCell.cpp
         SRC/CellsPool/NotFoundFreeCell/NotFoundFreeCell.hpp
 
+        SRC/CellsPool/Cell/Fillers/NullFiller.hpp
+
         SRC/CellsPool/Cell/Fillers/FreeCell.hpp
         SRC/CellsPool/Cell/Fillers/Eat.hpp
         SRC/CellsPool/Cell/Fillers/Head.hpp
-        SRC/CellsPool/Cell/Fillers/Body.hpp
+        SRC/CellsPool/Cell/Fillers/BodyAngle.hpp
+        SRC/CellsPool/Cell/Fillers/BodyStraight.hpp
+        SRC/CellsPool/Cell/Fillers/Tail.hpp
 
         SRC/CellsPool/CellsPool.cpp
         SRC/CellsPool/CellsPool.hpp
@@ -117,7 +121,8 @@ add_executable(${PROJECT_NAME}
 
         SRC/AudioPlayer/SoundPlayer/SoundPlayer.cpp
         SRC/AudioPlayer/SoundPlayer/SoundPlayer.hpp
-)
+
+        )
 
 
 set(SFML_ROOT "D:/Programs/ProgrammingEnvironment/Librares/SFML-2.4.2")

@@ -16,14 +16,15 @@
 #include "Utility/TextureStorage/TextureStorage.hpp"
 
 class Snake;
-class DefaultRectangle;
 
 class Filler: public sf::Drawable {
     /* * Заполнитель клетки - это некий спрайт.
-         Его текстуру и форму определяет наследник этого класса.
-       * Кроме того, что это спрайт, заполнитель ещё определяет доступность
-         клетки: можно ли её посетить (CanBeTake). Например, чтобы клетку
-         змейки одного игрока не забрал другой без "последствий".
+         Его текстуру определяет наследник этого класса,
+         а форму и расположение - вызывающая сторона.
+       * Заполнитель определяет доступность клетки:
+         можно ли её посетить (CanBeTake).
+         Например, чтобы клетка одного игрока
+         вдруг не стала принадлежать другому игроку.
     */
   
   protected:
@@ -31,13 +32,17 @@ class Filler: public sf::Drawable {
         Yes, No
     };
     
+    
   public:
-    Filler(DefaultRectangle const& default_rectangle,
-           Coord const& coord,
-           sf::Texture const& texture,
-           Bonus::LazyCreator const& bonus_creator,
-           Bonus::LazyDestroyer const& bonus_destroy_notify,
-           CanBeTake can_be_take
+    using FUP = std::unique_ptr<Filler>;
+    using FillerCreator = std::function<FUP(DefaultRectangle const&, Coord)>;
+    using SpriteMaker = std::function<sf::Sprite(sf::Texture const&)>;
+    
+    Filler(
+        sf::Sprite sprite,
+        Bonus::LazyCreator const& bonus_creator,
+        Bonus::LazyDestroyer const& bonus_destroy_notify,
+        CanBeTake can_be_take
     );
     
     virtual ~Filler();
@@ -52,6 +57,38 @@ class Filler: public sf::Drawable {
     
     // Можно ли змейке занять клетку с таким заполнителем.
     bool isCanBeTake() const;
+    
+    // TODO: Переделать. Слишком сложно и часто нужно ходить в кучу.
+    // Всё это затевалось только для создания спрайта с нужным поворотом
+    // из заданной текстуры. Эту информацию можно уместить
+    // и в одном этом классе Filler - нет нужды в наследовании.
+    // Достаточно создать массив таких заполнителей,
+    // после чего просто ссылаться на них, скажем, через enum по индексу.
+    //
+    // * Концентрирует сложность создания заполнителя.
+    template <class IncomingFiller>
+    static FillerCreator makeFillerCreator(double rotate) {
+        // * FillerCreator нужен бассейну клеток.
+        // * Это позволяет избавить функции бассейна клеток от шаблонов.
+        return [rotate] (DefaultRectangle const& default_rectangle, Coord coord) -> FUP {
+            // * Заполнитель создаётся из стандартного прямоугольника и
+            //   координаты спрайта. Иногда известно только бассейну клеток.
+            return FUP(
+                new IncomingFiller(
+                    // * Лямбда ниже - это SpriteMaker.
+                    // * Спрайт создаётся через call-back
+                    //   по известной только заполнителю текстуре.
+                    [&] (sf::Texture const& texture) -> sf::Sprite {
+                        return default_rectangle.makeSprite(
+                            texture,
+                            coord,
+                            rotate
+                        );
+                    }
+                )
+            );
+        };
+    }
     
   private:
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

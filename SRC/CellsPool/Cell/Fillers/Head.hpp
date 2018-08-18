@@ -5,27 +5,22 @@
 #ifndef SNAKE_HEAD_HPP
 #define SNAKE_HEAD_HPP
 
-#include <functional>
 #include "BonusManager/SteppedOnHead/SteppedOnHead.hpp"
 #include "CellsPool/Cell/Filler/Filler.hpp"
-
-class DefaultRectangle;
-class Bonus;
-class Snake;
 
 class Head: public Filler {
   public:
     template <class BonusType = SteppedOnHead>
-    Head(DefaultRectangle const& default_rectangle, Coord const& coord)
+    Head(SpriteMaker sprite_maker)
     : Filler(
-        default_rectangle, coord, texture,
+        sprite_maker(texture),
         BonusType::getBonusCreator(),
         BonusType::getBonusDestroyer(),
         CanBeTake::No
-    )
+      )
     { }
     
-    using BonusType = SteppedOnHead;
+    inline static const Coord orientation = {1, 0};
     
   private:
     inline static TextureStorage texture {

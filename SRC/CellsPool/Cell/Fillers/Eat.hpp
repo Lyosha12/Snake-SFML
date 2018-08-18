@@ -5,26 +5,22 @@
 #ifndef SNAKE_EATFILLER_HPP
 #define SNAKE_EATFILLER_HPP
 
-#include <functional>
 #include "CellsPool/Cell/Filler/Filler.hpp"
 #include "BonusManager/AddChapter/AddChapter.hpp"
-
-class DefaultRectangle;
-class Bonus;
-class Snake;
 
 class Eat: public Filler {
   public:
     template <class BonusType = AddChapter>
-    Eat(DefaultRectangle const& default_rectangle, Coord const& coord)
+    Eat(SpriteMaker sprite_maker)
     : Filler(
-          default_rectangle, coord, texture,
-          BonusType::getBonusCreator(),
-          BonusType::getBonusDestroyer(),
-          CanBeTake::Yes
+        sprite_maker(texture),
+        BonusType::getBonusCreator(),
+        BonusType::getBonusDestroyer(),
+        CanBeTake::Yes
       )
     { }
     
+    inline static const Coord orientation = {-1, 0}; // Ориентация еды не используется (пока?).
   
   private:
     inline static TextureStorage texture {

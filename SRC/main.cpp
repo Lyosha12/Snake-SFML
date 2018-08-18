@@ -3,12 +3,12 @@
 #include <windows.h>
 
 #include <SFML/Graphics.hpp>
-#include <Snake/GameEnd.hpp>
 
 #include "Utility/FatalError/FatalError.hpp"
 #include "CellsPool/DefaultRectangle/DefaultRectangle.hpp"
 #include "CellsPool/CellsPool.hpp"
 #include "Snake/Snake.hpp"
+#include "Snake/GameEnd.hpp"
 #include "BonusManager/BonusManager.hpp"
 #include "Utility/ThreadGuard/ThreadGuard.hpp"
 #include "AudioPlayer/AudioController.hpp"
@@ -30,7 +30,7 @@ class Game {
         },
         "Snake"
       )
-    , cells_pool(count_cells_x, count_cells_y, window, default_rectangle)
+    , cells_pool(count_cells_x, count_cells_y, default_rectangle)
     , snake(cells_pool)
     , bonus_manager(cells_pool)
     {

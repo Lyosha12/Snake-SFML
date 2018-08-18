@@ -17,29 +17,11 @@ class DefaultRectangle {
   public:
     DefaultRectangle(float cell_width, float cell_height);
     
-    class TextureConfigurator {
-        // Это вспомогательный класс. Является посредником между стандартным
-        // прямоугольником и спрайтом, который на него натягивается.
-      
-      public:
-        TextureConfigurator(Coord pos_on_field, sf::Texture const& texture);
-      
-      private:
-        friend class DefaultRectangle;
-        
-        sf::Sprite operator() (sf::RectangleShape const&) const;
-        void setPos(sf::Sprite& sprite, sf::RectangleShape const&) const;
-      
-      private:
-        Coord pos_on_field;
-        sf::Texture const& texture;
-    };
-    
-    sf::Sprite configureTexture(TextureConfigurator const& configurator) const;
+    sf::Sprite makeSprite(sf::Texture const& texture, Coord on_field, double rotation) const;
     sf::Vector2f getSize() const;
   
   private:
-    sf::RectangleShape default_rectangle;
+    sf::RectangleShape prototype;
 };
 
 #endif //SNAKE_DEFAULTRECTANGLE_HPP

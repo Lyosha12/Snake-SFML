@@ -10,11 +10,14 @@
 thread_local std::minstd_rand0 generator (
     // Инициализируем уникальным временем.
     static_cast<unsigned>(
+    #ifdef NDEBUG
         std::chrono::system_clock::now().time_since_epoch().count()
+    #else
+        0
+    #endif
     )
 );
 
-thread_local std::random_device random_device;
 size_t random() {
     return generator();
 }

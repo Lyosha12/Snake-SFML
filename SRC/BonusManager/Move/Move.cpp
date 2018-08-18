@@ -4,14 +4,22 @@
 
 #include "Move.hpp"
 #include "Snake/Snake.hpp"
-#include "CellsPool/Cell/Fillers/Body.hpp"
+#include "CellsPool/Cell/Fillers/BodyAngle.hpp"
+
+Move::Move(Snake& snake): Bonus(snake) {
+    // Блок головы уже добавлен в змейку в правильном положении.
+    // Пересмотрим текстуру блока перед новой головой (предыдущую голову).
+    snake.redefineBodySprite(1);
+    
+    // Теперь удалим часть хвоста.
+    snake.popChapter(snake.length() - 1);
+    
+    // И пересмотрим положение хвоста
+    snake.redefineTailSprite();
+}
 
 bool Move::activate() {
-    // Заменим предыдущую голову змейки на часть тела.
-    snake.replaceChapter<Body>(1);
-    
-    // Змейка не может быть нулевой длины. Удалим хвост.
-    snake.popChapter(snake.bodyLength() - 1);
+    // Активация уже была в конструкторе, делать больше нечего.
     return false;
 }
 
@@ -29,5 +37,5 @@ const Bonus::LazyCreator Move::lazy_creator = [] (Snake& snake) {
 
 const Bonus::LazyDestroyer Move::bonus_destroy_notify = [] {
     // Разрушение заполнителя клетки типа "свободная клетка".
-    // Вроде уведомлять никого не нужно.
+    // Уведомлять никого не нужно.
 };

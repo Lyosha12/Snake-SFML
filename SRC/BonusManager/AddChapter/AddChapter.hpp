@@ -13,7 +13,7 @@ class AddChapter: public Bonus {
     // Бонус типа "еда" - при взятии увеличивает количество частей змейки.
     
   public:
-    using Bonus::Bonus;
+    AddChapter(Snake& snake);
     
     bool activate() override;
     

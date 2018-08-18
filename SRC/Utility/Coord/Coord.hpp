@@ -9,22 +9,31 @@
 
 struct Coord {
     // Описывает координату прямоугольника на игровом поле.
-    // От левого верхнего угла: x - по ширине, y - по высоте.
+    // От левого верхнего угла: i - по ширине, y - по высоте.
     // Координаты целые знаковые - это позволяет использовать
     // их как компоненты вектора направления змейки или другого объекта.
     int x = -1, y = -1;
+    Coord() = default;
     Coord(int x, int y);
     Coord(size_t x, size_t y);
     
+    friend int    pseudoscalar (Coord const& L, Coord const& R);
+    friend bool   isCollinear  (Coord const& L, Coord const& R);
+    friend int    scalar       (Coord const& L, Coord const& R);
+    friend double angle        (Coord const& L, Coord const& R);
     
-    double vectorLength() const;
+    double length    (                ) const;
+    bool   operator==(double value    ) const;
+    Coord operator*  (int value       ) const;
     
-    bool  operator== (double value) const;
     bool  operator== (Coord const& rhs) const;
-    bool  operator!= (int value) const;
+    bool  operator!= (int value       ) const;
     Coord operator+  (Coord const& rhs) const;
     Coord operator-  (Coord const& rhs) const;
-    Coord operator-  () const;
+    Coord operator-  (                ) const;
+    
+    
+    Coord operator*= (int value       );
 };
 
 

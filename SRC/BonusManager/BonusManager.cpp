@@ -43,7 +43,7 @@ void BonusManager::trySetEat() {
             cells_pool.releaseCell(eat);
         }
         
-        eat = cells_pool.getRandCell<Eat>().cell;
+        eat = cells_pool.getRandCell(Filler::makeFillerCreator<Eat>(0)).cell;
     }
 }
     

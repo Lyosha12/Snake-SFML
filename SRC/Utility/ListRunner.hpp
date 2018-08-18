@@ -7,52 +7,58 @@
 
 #include <list>
 
+template <class T>  using List           = std::list<T>;
+template <class T>  using ListIter       = typename std::_List_iterator<T>;
+template <class T>  using ConstListIter  = typename std::_List_const_iterator<T>;
+
 
 template <class T>
-using ListIter = typename std::_List_iterator<T>;
-template <class T>
-using List = std::list<T>;
-
-
-template <class T, class Integer>
-static ListIter<T> forward(List<T>& list, Integer requested) {
-    auto element = list.begin();
+static ConstListIter<T> forward(List<T> const& list, size_t requested) {
+    ConstListIter<T> element = list.cbegin();
     for(size_t i = 0; i != requested; ++i)
         ++element;
     return element;
 }
-
-template <class T, class Integer>
-static ListIter<T> backward(List<T>& list, Integer requested) {
-    auto element = list.end() - 1;
+template <class T>
+static ConstListIter<T> backward(List<T> const& list, size_t requested) {
+    ConstListIter<T> element = list.cend() - 1;
     for(size_t i = list.size() - 1; i != requested; --i)
         --element;
     return element;
 }
 
+
+
 // Позволяет использовать индексирование для списка.
-// FIXME: Может, сделать класс-обёртку?
-template <class T, class Integer>
-ListIter<T> getListElement(List<T>& list, Integer requested) {
+template <class T>
+ConstListIter<T> getListElement(List<T> const& list, size_t requested) {
     bool is_on_left = requested <= list.size() / 2;
     
     return is_on_left ? forward(list, requested) : backward(list, requested);
+}
+template <class T>
+ListIter<T> getListElement(List<T>& list, size_t requested) {
+    ConstListIter<T> found = getListElement(const_cast<List<T> const&>(list), requested);
+    // https://stackoverflow.com/a/10669041/9742885
+    return list.erase(found, found);
 }
 
 
 
 
+
+
 // Операторы перемещения по списку.
-template <class T, class Integer>
-ListIter<T> operator+ (ListIter<T> i, Integer x) {
+template <class T>
+ConstListIter<T> operator+ (ConstListIter<T> i, size_t x) {
     while(x--) {
         ++i;
     }
     
     return i;
 }
-template <class T, class Integer>
-ListIter<T> operator- (ListIter<T> i, Integer x) {
+template <class T>
+ConstListIter<T> operator- (ConstListIter<T> i, size_t x) {
     while(x--) {
         --i;
     }

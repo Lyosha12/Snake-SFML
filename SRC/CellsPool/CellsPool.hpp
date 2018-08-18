@@ -27,16 +27,16 @@ class CellsPool: public sf::Drawable {
     // Это разделяемый ресурс. Прежде, чем обратиться к нему,
     // сначала нужно захватить его мьютекс.
     
-    using FillerUPtr   = Cell::FillerUPtr;
-    using CellCPtr     = Cell::CellCPtr  ;
-    using CellPtr      = Cell::CellPtr   ;
+    using FillerCreator  = Filler::FillerCreator;
+    using FillerUPtr     = Cell::FillerUPtr;
+    using CellCPtr       = Cell::CellCPtr  ;
+    using CellPtr        = Cell::CellPtr   ;
     using AvailablesIter = std::list<CellCPtr>::const_iterator;
     
   public:
     CellsPool(
         size_t count_cells_x,
         size_t count_cells_y,
-        sf::RenderWindow& window,
         DefaultRectangle const& settings
     );
     
@@ -48,18 +48,14 @@ class CellsPool: public sf::Drawable {
         Cell::FillerUPtr prev_filler;
     };
     
-    template <class IncomingFiller>
-    RequestedCell getRandCell();
-    template <class IncomingFiller>
-    RequestedCell getNearCell(CellCPtr target);
-    template <class IncomingFiller> // Клетка, по направлению от заданной.
-    RequestedCell getCell(CellCPtr target, Coord direction);
-    template <class IncomingFiller>
-    RequestedCell getCell(Coord coord);
+    RequestedCell getRandCell(FillerCreator filler_creator);
+    RequestedCell getNearCell(CellCPtr target, FillerCreator filler_creator);
+    // Запросить клетку по направлению (direction) от заданной.
+    RequestedCell getCell(CellCPtr target, Coord direction, FillerCreator filler_creator);
+    RequestedCell getCell(Coord coord, FillerCreator filler_creator);
     
     // Выбросить старый заполнитель и создать новый.
-    template <class IncomingFiller>
-    void replaceFiller(CellCPtr target);
+    void replaceFiller(CellCPtr target, FillerCreator filler_creator);
     
     // Установить стандартный FreeCell заполнитель.
     void releaseCell(CellCPtr cell_to_release);
@@ -70,14 +66,14 @@ class CellsPool: public sf::Drawable {
     bool try_lock() const;
   
   private:
-    template <class IncomingFiller>
-    std::unique_ptr<Filler> createFiller(Coord const& sprite_location) const;
     RequestedCell replaceFiller(CellPtr target, FillerUPtr new_filler);
     RequestedCell kickFromAvailable(AvailablesIter target, FillerUPtr new_filler);
     
     Coord normalize(Coord coord) const;
     CellPtr extractCell(Coord coord);
     AvailablesIter findInAvailable(CellCPtr cell);
+    
+    FillerUPtr createFreeFiller(Coord coord) const;
     
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     
@@ -97,11 +93,7 @@ class CellsPool: public sf::Drawable {
     
     TextureStorage background_texture;
     sf::Sprite background;
-    
-    sf::RenderWindow& window;
 };
-
-#include "CellsPool.tpl.cpp"
 
 
 #endif //SNAKE_CELLSPOOL_HPP

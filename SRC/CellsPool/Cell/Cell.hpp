@@ -19,7 +19,7 @@ class Cell: public sf::Drawable {
     // Какой заполнитель установить и как решает бассейн клеток (CellsPool).
   
   public:
-    using FillerUPtr = std::unique_ptr<Filler>;
+    using FillerUPtr = Filler::FUP;
     using CellCPtr   = Cell const*;
     using CellPtr    = Cell*;
     

@@ -8,8 +8,6 @@
 #include "CellsPool/Cell/Filler/Filler.hpp"
 #include "BonusManager/Move/Move.hpp"
 
-class Snake;
-
 class FreeCell: public Filler {
     // * Заполнитель по-умолчанию. Это клетка,
     //   доступная к перемещению на неё.
@@ -18,15 +16,16 @@ class FreeCell: public Filler {
     
   public:
     template <class BonusType = Move>
-    FreeCell(
-        DefaultRectangle const& default_rectangle, Coord const& coord
-    ): Filler(
-        default_rectangle, coord, sf::Texture() /* Пустая */,
+    FreeCell(SpriteMaker sprite_maker)
+    : Filler(
+        sprite_maker(sf::Texture() /* Пустая */),
         BonusType::getBonusCreator(),
         BonusType::getBonusDestroyer(),
         CanBeTake::Yes
-       )
+      )
     { }
+    
+    inline static const Coord orientation = {0, 0}; // Свободная клетка не ориентирована ни в какую сторону.
 };
 
 

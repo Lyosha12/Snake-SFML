@@ -27,36 +27,35 @@ class Snake {
     void move();
     void changeDirection(Direction direction);
     
+    Coord redefineHeadSprite() const;
+    Coord redefineTailSprite() const;
+    Coord redefineBodySprite(size_t chapter_index) const;
+    
   public:
     // Считая с головы-нуля, удаляет запрошенный элемент змейки.
     void popChapter(size_t chapter_index);
     
-    template <class InputFiller> // Заменить заполнитель в клетке змейки на что-то другое.
-    void replaceChapter(size_t chapter_index);
+    // Заменить заполнитель в клетке змейки на что-то другое.
+    void replaceChapter(size_t chapter_index, Filler::FillerCreator filler_creator);
     
-    size_t bodyLength() const;
+    size_t length() const;
     auto getMoveInterval() const;
-    template <class IntervalType>
-    void setMoveInterval(IntervalType move_interval);
+    void setMoveInterval(std::chrono::milliseconds move_interval);
     
   private:
-    void addHead();
-    void addBody();
-    void findHeadDirection();
     void tryChangeDirection();
     void applyEffects();
+    void emptyInitialize();
   
   private:
     std::list<CellCPtr> body;
     Coord direction = {0, 0};
-    Timer<> move_interval = 150ms;
+    Timer<> move_interval = 120ms;
     std::queue<Coord> moves;
     
     CellsPool& cells_pool;
     std::list<std::unique_ptr<Bonus>> active_effects;
 };
-
-#include "Snake.tpl.cpp"
 
 
 #endif //SNAKE_SNAKE_HPP

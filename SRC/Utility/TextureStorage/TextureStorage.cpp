@@ -7,11 +7,14 @@
 
 TextureStorage::TextureStorage(std::vector<TextureParams> params) {
     for(auto const& param: params) {
+        // Нужно создать текстуру прежде, чем загрузить её представление.
         textures.push_back({});
+        
         boost::filesystem::path texture_path("../Resources/Textures/" + param.name);
         bool is_valid_path = boost::filesystem::exists(texture_path);
+        bool is_loaded = textures.back().loadFromFile(texture_path.string());
         
-        if(!is_valid_path || !textures.back().loadFromFile(texture_path.string())) {
+        if(!is_valid_path || !is_loaded) {
             textures.pop_back();
             throw std::runtime_error("Could not found " + texture_path.string());
         }

@@ -4,14 +4,19 @@
 
 #include "AddChapter.hpp"
 #include "Snake/Snake.hpp"
-#include "CellsPool/Cell/Fillers/Body.hpp"
+#include "CellsPool/Cell/Fillers/BodyAngle.hpp"
 
-bool AddChapter::activate() {
-    // Поменяем старую голову на часть тела, как при перемещении.
-    snake.replaceChapter<Body>(1);
+AddChapter::AddChapter(Snake& snake): Bonus(snake) {
+    // Блок головы уже добавлен в змейку в правильном положении.
+    // Пересмотрим текстуру блока перед новой головой (предыдущую голову).
+    snake.redefineBodySprite(1);
     
     // И на этом всё. Бонус движения удалял хвост. Но, т.к. это еда,
     // то не удалим хвост, таким образом увеличив количество клеток змейки на 1.
+}
+
+bool AddChapter::activate() {
+    // Активация уже была в конструкторе, делать больше нечего.
     return false;
 }
 

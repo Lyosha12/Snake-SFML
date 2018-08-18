@@ -11,7 +11,7 @@ class Move: public Bonus {
     // По задумке, бонус движения хранит каждая свободная клетка.
     
   public:
-    using Bonus::Bonus;
+    Move(Snake& snake);
     
     bool activate() override;
     
