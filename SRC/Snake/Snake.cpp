@@ -98,6 +98,9 @@ Coord Snake::redefineHeadSprite() const {
     
     Coord head_direction = head->coord - prev_head->coord;
     
+    // Смотри redefineBodySprite.
+    normalize_invert(head_direction);
+    
     // Вычислим поворот спрайта головы относительно
     // положения головы на спрайте (1, 0).
     // После этого заменим пустышку на правильный спрайт головы.
