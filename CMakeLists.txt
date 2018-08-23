@@ -81,11 +81,9 @@ add_executable(${PROJECT_NAME}
         SRC/CellsPool/Cell/Filler/Filler.hpp
 
 
-
         SRC/Snake/Snake.cpp
         SRC/Snake/Snake.hpp
         SRC/Snake/GameEnd.hpp
-
 
 
         SRC/BonusManager/BonusManager.cpp
@@ -136,14 +134,10 @@ if(SFML_FOUND)
 endif()
 
 
-
-
-
 set(BOOST_ROOT "D:/Programs/ProgrammingEnvironment/Librares/boost_1_67_0/Build")
-set (Boost_USE_STATIC_LIBS    OFF)
+set(Boost_USE_STATIC_LIBS    OFF)
 find_package(Boost 1.67.0 REQUIRED filesystem system)
 if(Boost_FOUND)
     include_directories(SYSTEM ${Boost_INCLUDE_DIRS})
     target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})
 endif()
-

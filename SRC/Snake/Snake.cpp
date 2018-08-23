@@ -4,6 +4,7 @@
 // Created by Lyosha12 on 22.06.2018.
 //
 
+#include <math.h>
 #include "Snake.hpp"
 #include "Utility/Trivials/Trivials.hpp"
 #include "Utility/Coord/Coord.hpp"

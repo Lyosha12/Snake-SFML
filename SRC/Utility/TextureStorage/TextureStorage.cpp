@@ -18,7 +18,11 @@ TextureStorage::TextureStorage(std::vector<TextureParams> params) {
         
         if(!is_valid_path || !is_loaded) {
             textures.pop_back();
-            throw std::runtime_error("Could not found " + texture_path.string());
+            boost::filesystem::path cur_path = boost::filesystem::current_path();
+            throw std::runtime_error(
+                "Could not found '" + texture_path.string() + "'. " +
+                "Current executable path: '" + cur_path.string() + "'"
+            );
         }
         
         textures.back().setRepeated(param.is_repeated);
