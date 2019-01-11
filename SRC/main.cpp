@@ -21,10 +21,10 @@ class Game {
     
   public:
     Game(
-        unsigned long width, unsigned long height,
+        unsigned width, unsigned height,
         size_t count_cells_x, size_t count_cells_y
     )
-    : default_rectangle(width/count_cells_x, height/count_cells_y)
+    : default_rectangle({width/count_cells_x, height/count_cells_y})
     , window(
         {
             static_cast<unsigned>(default_rectangle.getSize().x*count_cells_x),
@@ -36,8 +36,8 @@ class Game {
     , snake(cells_pool)
     , bonus_manager(cells_pool)
     {
-        window.setFramerateLimit(30);
-        window.setIcon(snake_icon.width, snake_icon.height, snake_icon.pixel_data);
+        window.setFramerateLimit(60);
+        window.setIcon(SNAKE_ICON.width, SNAKE_ICON.height, SNAKE_ICON.pixel_data);
     }
     
     void mainLoop() {
@@ -45,7 +45,7 @@ class Game {
             while(window.isOpen()) {
                 window.draw(cells_pool); // Отрисовываем все клетки поля.
                 window.display();
-                handle_events();
+                handleEvents();
                 snake.move(); // Двигаем змейку в соответствии с её направлением.
             }
             
@@ -58,7 +58,7 @@ class Game {
             FatalError(e.what()).print();
         }
     }
-    void handle_events() {
+    void handleEvents() {
         sf::Event event;
         while(window.pollEvent(event)) {
             switch(event.type) {

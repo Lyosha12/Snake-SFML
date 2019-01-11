@@ -15,7 +15,7 @@ class DefaultRectangle {
     // исходя из их положения в массиве координат (бассейне клеток).
   
   public:
-    DefaultRectangle(float cell_width, float cell_height);
+    DefaultRectangle(sf::Vector2u const& size);
     
     sf::Sprite makeSprite(sf::Texture const& texture, Coord on_field, double rotation) const;
     sf::Vector2f getSize() const;

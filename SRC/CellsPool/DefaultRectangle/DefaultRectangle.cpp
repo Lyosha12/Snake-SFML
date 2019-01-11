@@ -7,8 +7,8 @@
 #include "Utility/WindowForTests/WindowForTests.hpp"
 #include "DefaultRectangle.hpp"
 
-DefaultRectangle::DefaultRectangle(float cell_width, float cell_height)
-    : prototype({cell_width, cell_height})
+DefaultRectangle::DefaultRectangle(sf::Vector2u const& size)
+    : prototype({static_cast<float>(size.x), static_cast<float>(size.y)})
 { }
 
 sf::Sprite DefaultRectangle::
@@ -37,7 +37,7 @@ makeSprite(sf::Texture const& texture, Coord on_field, double rotation) const {
     float width  = default_size.x;
     float height = default_size.y;
     sf::Vector2f magic_offset = {
-        width/2  - width/5,
+        width /2  - width/5,
         height/2 - height/5
     };
     sprite.setPosition(width * on_field.x + origin.x, height * on_field.y + origin.y);

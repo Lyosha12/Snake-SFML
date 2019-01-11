@@ -46,7 +46,7 @@ void MusicPlayer::loadNames() {
 bool MusicPlayer::tryUpdatePlaylist() {
     if(!boost::filesystem::exists(music_dir)) {
         return false; // Музыки нет. Вечеринка отменяется.
-}
+	}
     
     // Обновим список существующей музыки, если папку с музыкой изменили.
     time_t cur_update_directory = fs::last_write_time(music_dir); //-V795
