@@ -19,8 +19,8 @@ Snake::Snake(CellsPool& cells_pool)
 : cells_pool(cells_pool)
 {
     std::lock_guard<CellsPool> lock(cells_pool);
- 
-    emptyInitialize();
+    
+    startInitialize();
     
     // Переопределим голову.
     direction = redefineHeadSprite();
@@ -47,6 +47,7 @@ void Snake::move() {
     // Пока ещё не начали двигаться, попробуем изменить направление.
     tryChangeDirection();
     
+    // Сейчас будем работать с бассейном клеток.
     std::lock_guard<CellsPool> lock(cells_pool);
     
     // Получим новую голову по направлению движения относительно текущей головы.
@@ -229,7 +230,7 @@ void Snake::applyEffects() {
         }
     }
 }
-void Snake::emptyInitialize() {
+void Snake::startInitialize() {
     // Для начала создадим тело змейки из пустышек.
     size_t guaranteed_parts = 2;
     size_t max_parts = 4;
@@ -237,11 +238,12 @@ void Snake::emptyInitialize() {
     size_t missing_parts = guaranteed_parts + additional_parts;
     
     // Игнорируем любые возможные бонусы.
-    // Добавим голову и остальные части.
+    // Добавим голову
     body.push_back(
         cells_pool.getRandCell(Filler::makeFillerCreator<NullFiller>(0)).cell
     );
     
+    // Добавим остальные части змейки после головы
     while(missing_parts--) {
         body.push_back(
             cells_pool.getNearCell(

@@ -45,7 +45,7 @@ class Snake {
   private:
     void tryChangeDirection();
     void applyEffects();
-    void emptyInitialize();
+    void startInitialize();
   
   private:
     std::list<CellCPtr> body;

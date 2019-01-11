@@ -4,11 +4,11 @@
 // Created by Lyosha12 on 25.06.2018.
 //
 
-#include "Snake/GameEnd.hpp"
+#include "Snake/EndGame.hpp"
 #include "SteppedOnHead.hpp"
 
 bool SteppedOnHead::activate() {
-    throw GameEnd("Game is end");
+    throw EndGame("Game is end");
 }
 
 Bonus::LazyCreator const& SteppedOnHead::getBonusCreator() {
@@ -24,7 +24,7 @@ const Bonus::LazyCreator SteppedOnHead::lazy_creator = [] (Snake& snake) {
 };
 
 const Bonus::LazyDestroyer SteppedOnHead::bonus_destroy_notify = [] {
-    // Тут тоже делать нечего.
+    // Тут делать нечего.
     // Никому не интересно, что часть тела уничтожена,
     // кроме самой змейки.
 };

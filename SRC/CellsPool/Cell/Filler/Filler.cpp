@@ -24,8 +24,9 @@ Filler::~Filler() {
 }
 
 std::unique_ptr<Bonus> Filler::getBonus(Snake& snake) const {
-    // Бонус получе - бонуса нет на поле.
-    // bonus_creator сообщит об этом и создаст бонус с привязкой к змейке.
+    // Бонус получен -> бонуса нет на поле.
+    // bonus_creator сообщит об этом менеджеру бонусов
+    // и создаст бонус, привязав этот бонус к змейке.
     return std::move(bonus_creator(snake));
 }
 

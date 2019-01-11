@@ -83,7 +83,7 @@ add_executable(${PROJECT_NAME}
 
         SRC/Snake/Snake.cpp
         SRC/Snake/Snake.hpp
-        SRC/Snake/GameEnd.hpp
+        SRC/Snake/EndGame.hpp
 
 
         SRC/BonusManager/BonusManager.cpp

@@ -50,7 +50,7 @@ class CellsPool: public sf::Drawable {
     
     RequestedCell getRandCell(FillerCreator filler_creator);
     RequestedCell getNearCell(CellCPtr target, FillerCreator filler_creator);
-    // Запросить клетку по направлению (direction) от заданной.
+    // Запросить клетку по направлению вектора (direction) от заданной.
     RequestedCell getCell(CellCPtr target, Coord direction, FillerCreator filler_creator);
     RequestedCell getCell(Coord coord, FillerCreator filler_creator);
     

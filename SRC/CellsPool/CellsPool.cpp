@@ -84,7 +84,7 @@ CellsPool::RequestedCell CellsPool::getNearCell(CellCPtr target, FillerCreator f
         size_t rand_neighbor = random()%neighbors.size();
         CellCPtr neighbor = neighbors[rand_neighbor];
         
-        // ... доступную к использованию.
+        // Если клетку возможно передать в управление другому, то передадим.
         if(neighbor->filler->isCanBeTake()) {
             FillerUPtr new_filler = filler_creator(default_rectangle, neighbor->coord);
             return kickFromAvailable(findInAvailable(neighbor), std::move(new_filler));
@@ -102,21 +102,26 @@ CellsPool::RequestedCell CellsPool::getCell(Coord coord, FillerCreator filler_cr
     // Возьмём клетку по заданному направлению относительно текущей.
     CellPtr requested_cell = extractCell(coord);
     
-    FillerUPtr new_filler = filler_creator(default_rectangle, requested_cell->coord);
-    
-    try {
-        AvailablesIter available_cell = findInAvailable(requested_cell);
+    AvailablesIter available_cell = findInAvailable(requested_cell);
+    // Создадим заполнитель.
+    FillerUPtr new_filler = filler_creator(default_rectangle, requested_cell->coord);;
+    if(available_cell != available_cells.end()) {
+        // Заполнитель перемещается в запрошенную клетку
+        // только если эта клетка занята только пустым заполнителем.
         return kickFromAvailable(available_cell, std::move(new_filler));
-    } catch(NotFoundFreeCell const& e) {
-        // TODO: Переписать без исплючений.
-        // * Здесь запрошенная клетка однозначно занята.
-        // * Вернём заполнитель клетки, если она доступна для посещения.
-        // * Иначе заполнитель остаётся,
-        //   а змейка уже будет применять бонус этой клетки на себе,
-        //   не занимая её.
+    } else {
+        // * Если клетка занята, то проверим возможность забрать заполнитель клетки.
+        // - Если можно забрать заполнитель, то заменим существующий заполнитель
+        //   в запрошенной клетке только что созданным new_filler.
+        //   Тогда змейка сможет применить бонус из полученного заполнителя
+        // - Если же присутствующий заполнитель в клетке не допускает
+        //   возможности его "взять", то возвращаем структуру RequestedCell
+        //   без замены заполнителя в запрошенной клетке.
+        //   Тогда змейка будет применять бонус из не взятого заполнителя
+        //   без перемещения на запрошенную клетку.
         return requested_cell->filler->isCanBeTake()
                ? replaceFiller(requested_cell, std::move(new_filler))
-               : RequestedCell { requested_cell, nullptr };
+               : RequestedCell{requested_cell, nullptr};
     }
 }
 
@@ -176,19 +181,13 @@ CellsPool::AvailablesIter CellsPool::findInAvailable(CellCPtr cell) {
     // она может быть недоступна. Если так, то данная функция
     // выбросит исключение NotFoundFreeCell.
     
-    // В поисках нужного пройдёмся по списку доступного...
+    // В поисках нужной клетки пройдёмся по списку доступных...
     auto cur_cell = available_cells.begin();
     while(cur_cell != available_cells.end() && *cur_cell != cell)
         ++cur_cell;
     
-    if(cur_cell != available_cells.end())
-        return cur_cell;
-    else // TODO: Переделать. Взятие еды - это не исключительная ситуация.
-         // А ещё это мешает отладке.
-         // Возвращаем итератор конца, если клетки нет.
-         // Получив итератор конца, в RequestedCell поместим нулевой указатель.
-         // А со змейкой и движением уже потом разберёмся...
-        throw NotFoundFreeCell(cell);
+    // Возвращаем итератор конца, если клетки нет.
+    return cur_cell;
 }
 
 CellsPool::FillerUPtr CellsPool::createFreeFiller(Coord coord) const {

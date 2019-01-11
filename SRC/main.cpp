@@ -10,7 +10,7 @@
 #include "CellsPool/DefaultRectangle/DefaultRectangle.hpp"
 #include "CellsPool/CellsPool.hpp"
 #include "Snake/Snake.hpp"
-#include "Snake/GameEnd.hpp"
+#include "Snake/EndGame.hpp"
 #include "BonusManager/BonusManager.hpp"
 #include "Utility/ThreadGuard/ThreadGuard.hpp"
 #include "AudioPlayer/AudioController.hpp"
@@ -50,7 +50,7 @@ class Game {
             }
             
         }
-        catch(GameEnd const&) {
+        catch(EndGame const&) {
             // TODO: нарисовать "you lose".
         }
         
