@@ -24,7 +24,7 @@ class Snake {
   public:
     Snake(CellsPool& cells_pool);
     
-    void move();
+    void update();
     void changeDirection(Direction direction);
     
     Coord redefineHeadSprite() const;
@@ -43,6 +43,7 @@ class Snake {
     void setMoveInterval(std::chrono::milliseconds move_interval);
     
   private:
+    void move();
     void tryChangeDirection();
     void applyEffects();
     void startInitialize();

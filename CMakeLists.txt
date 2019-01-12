@@ -141,3 +141,12 @@ if(Boost_FOUND)
     include_directories(SYSTEM ${Boost_INCLUDE_DIRS})
     target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})
 endif()
+
+include(PVS-Studio.cmake)
+pvs_studio_add_target(
+        CFG_TEXT "exclude-path = D:/Programs/ProgrammingEnvironment"
+        TARGET ${PROJECT_NAME}.analyze ALL
+        OUTPUT FORMAT errorfile
+        ANALYZE ${PROJECT_NAME}
+        MODE GA 64 OP
+        LOG target.err)

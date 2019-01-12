@@ -12,9 +12,6 @@ MusicPlayer::MusicPlayer(fs::path music_dir)
 { }
 
 void MusicPlayer::playUniqueRand() {
-    // FIXME: Очень часто проверяется то, что изменяется относительно редко.
-    // TODO: Ввести бы сюда как-то условную переменную для синхронизации...
-    // А для её ввода нужно создать очереди сообщений... Много работы.
     
     if(!isMusicReadyToPlay()) {
         return;
@@ -22,6 +19,8 @@ void MusicPlayer::playUniqueRand() {
     
     // Обновим список (кэш) ещё не проигранных треков, если он опустел.
     // Список имён уже содержит хотя бы один трек.
+    // FIXME: Без существования директории часто проверяем её наличие.
+    // TODO: Ввести бы сюда как-то условную переменную для синхронизации...
     if(not_played_yet.empty()) {
         fillUniquePlaylist();
         randomSort(not_played_yet);

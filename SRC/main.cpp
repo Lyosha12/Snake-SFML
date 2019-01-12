@@ -40,18 +40,19 @@ class Game {
         window.setIcon(SNAKE_ICON.width, SNAKE_ICON.height, SNAKE_ICON.pixel_data);
     }
     
-    void mainLoop() {
+    void gameLoop() {
         try {
             while(window.isOpen()) {
                 window.draw(cells_pool); // Отрисовываем все клетки поля.
                 window.display();
                 handleEvents();
-                snake.move(); // Двигаем змейку в соответствии с её направлением.
+                snake.update(); // Двигаем змейку в соответствии с её направлением.
             }
             
         }
         catch(EndGame const&) {
             // TODO: нарисовать "you lose".
+            // return;
         }
         
         catch(std::exception const& e) {
@@ -103,7 +104,7 @@ class Game {
 int main() {
     ShowWindow(GetConsoleWindow(), SW_HIDE);
     
-    Game(800, 800, 20, 20).mainLoop();
+    Game(800, 800, 20, 20).gameLoop();
     
     return 0;
 }

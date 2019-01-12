@@ -35,44 +35,16 @@ Snake::Snake(CellsPool& cells_pool)
     }
 }
 
-// TODO: Переименовать в update, разделить ответственность.
-void Snake::move() {
+void Snake::update() {
     if(!move_interval.isIntervalExpire()) {
         applyEffects(); // Если не время хода, выполним другую работу.
         return;
     }
     
-    move_interval.reset();
-    
     // Пока ещё не начали двигаться, попробуем изменить направление.
     tryChangeDirection();
     
-    // Сейчас будем работать с бассейном клеток.
-    std::lock_guard<CellsPool> lock(cells_pool);
-    
-    // Получим новую голову по направлению движения относительно текущей головы.
-    CellsPool::RequestedCell new_head = cells_pool.getCell(
-        body.front(), direction,
-        Filler::makeFillerCreator<Head>(angle(direction, Head::orientation))
-    );
-    
-    // Добавим новую голову к телу, если эта клетка свободна.
-    // Предыдущий заполнитель клетки должен быть перемещён в член prev_filler.
-    if(new_head.prev_filler != nullptr) {
-        body.push_front(new_head.cell);
-    }
-    
-    // Добавим бонус с этой клетки в список активных бонусов змейки.
-    this->active_effects.push_back(
-        // Возьмём бонус с полученной клетки (new_head.prev_filler).
-        // Если клетку не получили, то заполнитель там старый (new_head.cell->filler)
-        (
-            new_head.prev_filler
-            ? new_head.prev_filler
-            : new_head.cell->filler
-        )->getBonus(*this)
-    );
-    
+    move();
 }
 void Snake::changeDirection(Direction incoming_direction) {
     // Внешнее управление змейкой посредством пользовательского ввода.
@@ -209,6 +181,35 @@ void Snake::setMoveInterval(std::chrono::milliseconds move_interval) {
     this->move_interval.setInterval<std::chrono::milliseconds>(move_interval);
 }
 
+void Snake::move() {
+    move_interval.reset();
+    
+    // Сейчас будем работать с бассейном клеток.
+    std::lock_guard<CellsPool> lock(cells_pool);
+    
+    // Получим новую голову по направлению движения относительно текущей головы.
+    CellsPool::RequestedCell new_head = cells_pool.getCell(
+        body.front(), direction,
+        Filler::makeFillerCreator<Head>(angle(direction, Head::orientation))
+    );
+    
+    // Добавим новую голову к телу, если эта клетка свободна.
+    // Предыдущий заполнитель клетки должен быть перемещён в член prev_filler.
+    if(new_head.prev_filler != nullptr) {
+        body.push_front(new_head.cell);
+    }
+    
+    // Добавим бонус с этой клетки в список активных бонусов змейки.
+    this->active_effects.push_back(
+        // Возьмём бонус с полученной клетки (new_head.prev_filler).
+        // Если клетку не получили, то заполнитель там старый (new_head.cell->filler)
+        (
+            new_head.prev_filler
+            ? new_head.prev_filler
+            : new_head.cell->filler
+        )->getBonus(*this)
+    );
+}
 void Snake::tryChangeDirection() {
     // Извлечём из очереди идемпотентные или
     // прямо противоположные текущему направлению ходы.
